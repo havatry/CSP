@@ -9,6 +9,7 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 
 import fileInput.CoreNodeFile;
+import fileInput.NodeFile;
 import randomTopology.Point;
 import randomTopology.RandomPoint;
 import randomTopology.Constant;
@@ -27,7 +28,8 @@ public class Display extends JFrame {
 
 	public Display(int time) {
 		Constant.TimeForTest = time;// 测试的文件编号
-		points = new RandomPoint().getPoints(Constant.TimeForTest);// 获取该文件的节点矩阵
+//		points = new RandomPoint().getPoints(Constant.TimeForTest);// 获取该文件的节点矩阵
+		points = NodeFile.GetNodes(Constant.TimeForTest);
 		core = CoreNodeFile.GetCoreNodeIndex();// 获取该文件的核心节点编号
 		setTitle("展示图形");
 		setSize(1300, 700);

@@ -70,6 +70,10 @@ public class MainRun extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String line = JOptionPane.showInputDialog(null, "输入组号-组内号", "1-1");
+				if (line == null) {
+					// 点击取消了
+					return;
+				}
 				int groupTh = Integer.parseInt(line.split("-")[0]);
 				int copyTh = Integer.parseInt(line.split("-")[1]);
 				int copy = Integer.parseInt(jbtProduceTopology.getClientProperty("copy").toString());
