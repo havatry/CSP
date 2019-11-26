@@ -32,8 +32,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
 
 import fileInput.ClearFiles;
+import fileInput.FileLine;
 import randomTopology.Constant;
-import randomTopology.GenerateRandomNetwork_MainProgram;
 import randomTopology.Topology;
 import randomTopology.XMLHelper;
 
@@ -385,7 +385,7 @@ public class MainRun extends JFrame {
 		protected void done() {
 			// TODO Auto-generated method stub
 			super.done();
-			GenerateRandomNetwork_MainProgram.writeCharacteristicToFile();
+//			GenerateRandomNetwork_MainProgram.writeCharacteristicToFile();
 			status.setText("save dir: " + Constant.basePath);
 			status.setVisible(true);
 			infoBar.setValue(0);
@@ -401,7 +401,7 @@ public class MainRun extends JFrame {
 					setProgress(100 * Constant.WriteFile_TimeFor / count);//当这个到100的时候，可能提前结束了
 				}
 			}
-			GenerateRandomNetwork_MainProgram.writeCharacteristicToFile();
+//			GenerateRandomNetwork_MainProgram.writeCharacteristicToFile();
 		}
 	}
 
@@ -470,6 +470,8 @@ public class MainRun extends JFrame {
 						// 确认选中
 						Constant.specIdFile = fc.getSelectedFile().getAbsolutePath();
 						Constant.specFile = true; // 指定目录
+						// key
+						Constant.numNodes = FileLine.GetLineNumber(Constant.specIdFile);
 						tfData.setText("OK");
 					}
 				}
@@ -519,6 +521,8 @@ public class MainRun extends JFrame {
 							// 取消
 							return;
 						}
+					}
+					if (title.equals("RandomGeneration")) {
 						jbtProduceTopology.putClientProperty("group", tfGroup.getText());
 						jbtProduceTopology.putClientProperty("copy", tfCopy.getText());
 						jbtProduceTopology.putClientProperty("step", tfStep.getText());

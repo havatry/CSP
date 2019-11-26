@@ -1,12 +1,5 @@
 package randomTopology;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 /**
  * 
  * <p>
@@ -48,41 +41,7 @@ public class RandomPoint {
 			points[i].setX(x);
 			points[i].setY(y);
 		}
-		// 序列化
-		String basePath = XMLHelper.getValue("allInfo/file/@basePath");
-		String nodeOutput = basePath + XMLHelper.getValue("allInfo/file/nodeFile");
-		//将节点矩阵序列化到文件中，该文件是二进制的
-		try (ObjectOutputStream out = new ObjectOutputStream(
-				new FileOutputStream(new File(nodeOutput.replace(".", "_" + Constant.WriteFile_TimeFor + "."))))) {
-			out.writeObject(points);
-		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
 		return points;
-	}
-
-	/**
-	 * 
-	 * Function:
-	 *		获取指定文件中的节点矩阵
-	 * Details:
-	 *		使用反序列化来获取
-	 * Remark: 2018年9月19日 下午1:13:09
-	 */
-	public Point[] getPoints(int time) {// 读第几个的文件,不常用
-		String basePath = XMLHelper.getValue("allInfo/file/@basePath");
-		String nodeOutput = basePath + XMLHelper.getValue("allInfo/file/nodeFile");
-		//反序列化
-		try (ObjectInputStream out = new ObjectInputStream(
-				new FileInputStream(new File(nodeOutput.replace(".", "_" + time + "."))))) {
-			Point[] points = (Point[]) out.readObject();
-			return points;
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	/**

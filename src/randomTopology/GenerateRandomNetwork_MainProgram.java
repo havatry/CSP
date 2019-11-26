@@ -26,7 +26,6 @@ public class GenerateRandomNetwork_MainProgram {
 				Constant.WriteFile_TimeFor++;// 更新，重要
 			}
 		}
-		writeCharacteristicToFile();//将特征写入
 	}
 	
 	/**

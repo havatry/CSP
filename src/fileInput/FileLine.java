@@ -33,4 +33,22 @@ public class FileLine {
 		}
 		return count;
 	}
+	
+	public static int parseNodeNumFormIdFile(String idFileName) {
+		int max = 0;
+		try {
+			Scanner in = new Scanner(new File(idFileName));
+			in.nextLine();
+			while (in.hasNextLine()) {
+				String[] part = in.nextLine().split("\t");
+				max = Math.max(max, Math.max(Integer.parseInt(part[1]), 
+						Integer.parseInt(part[2])));
+			}
+			in.close();
+		} catch (FileNotFoundException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return max;
+	}
 }

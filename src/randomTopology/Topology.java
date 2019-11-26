@@ -37,9 +37,6 @@ public class Topology {
 	 */
 	public void ProduceTopology() {
 		ConnectEdges();
-		writeNodeToFile();
-		writeCoreNodeToFile(coreNodes);
-		writeEdgeLinkToFile();
 		writeIdToFile();
 	}
 
@@ -112,7 +109,7 @@ public class Topology {
 		PrintWriter idout = null;
 		try {
 			idout = new PrintWriter(Constant.idFile.replace(".", "_" + Constant.WriteFile_TimeFor + "."));// 通信
-			idout.println("id\t起点\t终点\t距离\t代价\t延时");
+			idout.println("id\tsource\ttarget\tcost\tdelay");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,9 +126,9 @@ public class Topology {
 			Pair p = pq.poll();
 			p.setDelay(delay);
 			idout.println(2 * i + "\t" + p.getStart() + "\t" + p.getEnd() + "\t"
-					+ String.format("%.1f", p.getDistance()) + "\t" + p.getCost() + "\t" + p.getDelay());
+					+ p.getCost() + "\t" + p.getDelay());
 			idout.println((2 * i + 1) + "\t" + p.getEnd() + "\t" + p.getStart() + "\t"
-					+ String.format("%.1f", p.getDistance()) + "\t" + p.getCost() + "\t" + p.getDelay());
+					+ p.getCost() + "\t" + p.getDelay());
 		}
 		idout.close();
 	}

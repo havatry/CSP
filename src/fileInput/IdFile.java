@@ -34,8 +34,8 @@ public class IdFile {
 				int currentId = Integer.parseInt(parts[0]);
 				id[currentId][0] = Integer.parseInt(parts[1]);// 起点
 				id[currentId][1] = Integer.parseInt(parts[2]);// 终点
-				id[currentId][2] = Integer.parseInt(parts[4]);// 代价
-				id[currentId][3] = Integer.parseInt(parts[5]);// 延时
+				id[currentId][2] = Integer.parseInt(parts[3]);// 代价
+				id[currentId][3] = Integer.parseInt(parts[4]);// 延时
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
