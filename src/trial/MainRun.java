@@ -48,7 +48,6 @@ public class MainRun extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JButton jbtProduceTopology = new JButton("生成拓扑");
-//	private JButton jbtDisplayGraphics = new JButton("展示图形");
 	private JButton jbtProduceExcel = new JButton("生成Excel");
 	private JProgressBar infoBar = new JProgressBar();
 	private JLabel status = new JLabel("Step1");
@@ -74,7 +73,6 @@ public class MainRun extends JFrame {
 		JCheckBox chLaracWithMd = new JCheckBox("LARACMD算法", state[2]);
 		JCheckBox chBiLAD = new JCheckBox("BiLAD Algorithm", state[3]);
 		JCheckBox chExactBiLAD = new JCheckBox("ExactBiLAD Algorithm", state[4]);
-		JCheckBox chNull = new JCheckBox();
 		JTextField tfGama = new JTextField(2);
 		JTextField tfDelayContraint = new JTextField(2);
 		JTextField tfMd = new JTextField(2);
@@ -319,28 +317,6 @@ public class MainRun extends JFrame {
 		infoBar.setVisible(false);
 	}
 
-	private int[] getDelays(String delayConstraint) {
-		int delayStart = Integer.parseInt(delayConstraint.split("-")[0]);
-		int delayStep = Integer.parseInt(delayConstraint.split("-")[1]);
-		int delayEnd = Integer.parseInt(delayConstraint.split("-")[2]);
-		int count = (delayEnd - delayStart) / delayStep + 1;
-		int[] delay = new int[count];
-		for (int i = 0; i < count; i++)
-			delay[i] = delayStart + i * delayStep;
-		return delay;
-	}
-
-	private double[] getGamas(String gama) {
-		double gamaStart = Double.parseDouble(gama.split("-")[0]);
-		double gamaStep = Double.parseDouble(gama.split("-")[1]);
-		double gamaEnd = Double.parseDouble(gama.split("-")[2]);
-		int count = (int) ((gamaEnd - gamaStart) / gamaStep) + 1;
-		double[] gamaRet = new double[count];
-		for (int i = 0; i < count; i++)
-			gamaRet[i] = gamaStart + i * gamaStep;
-		return gamaRet;
-	}
-
 	private boolean[] getStates(String state) {
 		boolean[] stateRet = new boolean[state.length()];
 		for (int i = 0; i < state.length(); i++)
@@ -469,140 +445,6 @@ public class MainRun extends JFrame {
 		}
 	}
 
-	private class MyExcelDialog extends JDialog {
-		private static final long serialVersionUID = 1L;
-
-		public MyExcelDialog() {
-			// TODO Auto-generated constructor stub
-			this(null, true);
-		}
-
-		public MyExcelDialog(Frame parent, boolean modal) {
-			super(parent, modal);
-			boolean[] state = new boolean[5];
-			String statestr = jbtProduceExcel.getClientProperty("mask").toString();
-			for (int i = 0; i < statestr.length(); i++)
-				if (statestr.charAt(i) == '1')
-					state[i] = true;
-			JCheckBox chYen = new JCheckBox("Yen算法", state[0]);
-			JCheckBox chLarac = new JCheckBox("LARAC算法", state[1]);
-			JCheckBox chLaracWithMd = new JCheckBox("LARACMD算法", state[2]);
-			JCheckBox chBiLAD = new JCheckBox("BiLAD算法", state[3]);
-			JCheckBox chExactBiLAD = new JCheckBox("ExactBiLAD算法", state[4]);
-			JCheckBox chNull = new JCheckBox();
-			JTextField tfGama = new JTextField(2);
-			JTextField tfDelayContraint = new JTextField(2);
-			JTextField tfMd = new JTextField(2);
-			JPanel panelTop = new JPanel(new GridLayout(6, 2, 5, 5));
-			panelTop.add(chYen);
-			panelTop.add(chLarac);
-			panelTop.add(chLaracWithMd);
-			panelTop.add(chBiLAD);
-			panelTop.add(chExactBiLAD);
-			panelTop.add(chNull);
-			panelTop.add(new JLabel("Game取值"));
-			panelTop.add(tfGama);
-			panelTop.add(new JLabel("Delay取值"));
-			panelTop.add(tfDelayContraint);
-			panelTop.add(new JLabel("Md取值"));
-			panelTop.add(tfMd);
-			chNull.setVisible(false);
-
-			tfGama.setText(jbtProduceExcel.getClientProperty("gama").toString());
-			tfDelayContraint.setText(jbtProduceExcel.getClientProperty("delay").toString());
-			tfMd.setText(jbtProduceExcel.getClientProperty("md").toString());
-
-			JPanel footer = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			JButton jbtOK = new JButton("确定");
-			JButton jbtCancel = new JButton("取消");
-			footer.add(jbtOK);
-			footer.add(jbtCancel);
-
-			chLaracWithMd.addChangeListener(new ChangeListener() {
-
-				@Override
-				public void stateChanged(ChangeEvent e) {
-					// TODO Auto-generated method stub
-					if (!chLaracWithMd.isSelected()) {
-						tfMd.setText("");
-						tfMd.setEditable(false);
-					} else {
-						tfMd.setText("0.2");
-						tfMd.setEditable(true);
-					}
-				}
-			});
-
-			jbtOK.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					if (jbtProduceTopology.getClientProperty("hasDone") instanceof Boolean)
-						if (!(Boolean) jbtProduceTopology.getClientProperty("hasDone")) {
-							JOptionPane.showMessageDialog(getContentPane(), "请先生成拓扑", "警告",
-									JOptionPane.WARNING_MESSAGE);
-							setVisible(false);
-							dispose();
-							return;
-						}
-					jbtProduceExcel.putClientProperty("gama", tfGama.getText());
-					jbtProduceExcel.putClientProperty("delay", tfDelayContraint.getText());
-					jbtProduceExcel.putClientProperty("md", tfMd.getText());
-					String statestr = "00000";
-					char[] statechars = statestr.toCharArray();
-					if (chYen.isSelected())
-						statechars[0] = '1';
-					if (chLarac.isSelected())
-						statechars[1] = '1';
-					if (chLaracWithMd.isSelected())
-						statechars[2] = '1';
-					if (chBiLAD.isSelected())
-						statechars[3] = '1';
-					if (chExactBiLAD.isSelected())
-						statechars[4] = '1';
-					jbtProduceExcel.putClientProperty("mask", new String(statechars));
-					setVisible(false);
-					status.setVisible(false);
-					infoBar.setVisible(true);
-					
-					// ------------------//
-					int[] delay = getDelays(jbtProduceExcel.getClientProperty("delay").toString());
-					double[] gama = getGamas(jbtProduceExcel.getClientProperty("gama").toString());
-					String[] methods = getMethods(jbtProduceExcel.getClientProperty("mask").toString());
-					Task2 task2 = new Task2(methods, delay, gama);
-					task2.addPropertyChangeListener(new PropertyChangeListener() {
-						@Override
-						public void propertyChange(PropertyChangeEvent evt) {
-							// TODO Auto-generated method stub
-							if ("progress".equals(evt.getPropertyName())) {
-								infoBar.setValue((Integer) evt.getNewValue());
-							}
-						}
-					});
-					task2.execute();
-					// ---------------//
-					dispose();
-				}
-			});
-
-			jbtCancel.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					setVisible(false);
-					dispose();
-					return;
-				}
-			});
-
-			add(panelTop, BorderLayout.CENTER);
-			add(footer, BorderLayout.SOUTH);
-			pack();
-		}
-	}
-
 	private class MyTopologyDialog extends JDialog {
 		private static final long serialVersionUID = 1L;
 		
@@ -686,61 +528,76 @@ public class MainRun extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
+					// 检查输入是否都填充了
+					if (title.equals("RandomGeneration")) {
+						if (tfCopy.getText().equals("") || tfStep.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "Please fill all textFields");
+							return;
+						}
+					} else {
+						if (!tfData.getText().equals("OK") || tfSource.getText().equals("")
+								|| tfTarget.getText().equals("") || tfDelay.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "Please fill all textFields");
+							return;
+						}
+					}
 					File[] files = new File("resource/file").listFiles();
 					boolean judge = files.length == 0 ? false : true;
 					if (title.equals("RandomGeneration") && judge) {
-//						int a = JOptionPane.showConfirmDialog(getContentPane(), "Clear existed files", "Information",
-//								JOptionPane.YES_NO_OPTION);
-//						if (a == JOptionPane.YES_OPTION) {
-//							ClearFiles.main(null);
-//							setVisible(false);
-//							try {
-//								Thread.sleep(1000);
-//							} catch (InterruptedException e1) {
-//								// TODO Auto-generated catch block
-//								e1.printStackTrace();
-//							}
-//						}
-						if (Constant.clearBeforeProduce) {
+						int a = JOptionPane.showConfirmDialog(getContentPane(), "Clear existed files", "Information",
+								JOptionPane.YES_NO_OPTION);
+						if (a == JOptionPane.YES_OPTION) {
 							ClearFiles.main(null);
+							setVisible(false);
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						} else {
+							// 取消
+							return;
 						}
-					}
-					jbtProduceTopology.putClientProperty("group", tfGroup.getText());
-					jbtProduceTopology.putClientProperty("copy", tfCopy.getText());
-					jbtProduceTopology.putClientProperty("step", tfStep.getText());
-					jbtProduceTopology.putClientProperty("hasDone", true);
-					status.setVisible(false);
-					infoBar.setVisible(true);
-					// --------------------//
-					int group = Integer.parseInt(jbtProduceTopology.getClientProperty("group").toString());
-					int copy = Integer.parseInt(jbtProduceTopology.getClientProperty("copy").toString());
-					int step = Integer.parseInt(jbtProduceTopology.getClientProperty("step").toString());
-					Constant.group = group;
-					Constant.copy = copy;
-					Constant.step = step;
-					
+						jbtProduceTopology.putClientProperty("group", tfGroup.getText());
+						jbtProduceTopology.putClientProperty("copy", tfCopy.getText());
+						jbtProduceTopology.putClientProperty("step", tfStep.getText());
+						jbtProduceTopology.putClientProperty("hasDone", true);
+						status.setVisible(false);
+						infoBar.setVisible(true);
+						// --------------------//
+						int group = Integer.parseInt(jbtProduceTopology.getClientProperty("group").toString());
+						int copy = Integer.parseInt(jbtProduceTopology.getClientProperty("copy").toString());
+						int step = Integer.parseInt(jbtProduceTopology.getClientProperty("step").toString());
+						Constant.group = group;
+						Constant.copy = copy;
+						Constant.step = step;
+						Task task = new Task(Constant.group * Constant.copy);
+						task.addPropertyChangeListener(new PropertyChangeListener() {
+
+							@Override
+							public void propertyChange(PropertyChangeEvent evt) {
+								// TODO Auto-generated method stub
+								if ("progress".equals(evt.getPropertyName())) {
+									infoBar.setValue((Integer) evt.getNewValue());
+								}
+							}
+						});
+						task.execute();
+					} else 
 					// 考虑指定文件的情况
-					if (title.equals("YourInstance")) {
+					{
 						Constant.group = 1;
 						Constant.copy = 1;
 						Constant.start = Integer.parseInt(tfSource.getText());
 						Constant.end = Integer.parseInt(tfTarget.getText());
 						Constant.specDelay = Integer.parseInt(tfDelay.getText());
+						status.setText("Locate file: " + 
+								Constant.specIdFile.substring(Constant.specIdFile.lastIndexOf("\\") + 1));
 					}
 					hasProduced = true; // 已经产生拓扑了
 //					Task task = new Task(group * copy);
-					Task task = new Task(Constant.group * Constant.copy);
-					task.addPropertyChangeListener(new PropertyChangeListener() {
-
-						@Override
-						public void propertyChange(PropertyChangeEvent evt) {
-							// TODO Auto-generated method stub
-							if ("progress".equals(evt.getPropertyName())) {
-								infoBar.setValue((Integer) evt.getNewValue());
-							}
-						}
-					});
-					task.execute();
+					
 					// -------------------//
 					dispose();
 				}
