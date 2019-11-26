@@ -53,6 +53,8 @@ public class MainRun extends JFrame {
 	private JButton jbtCompute = new JButton("Compute");
 	private boolean hasProduced = false;
 	private JButton jbtPrev = new JButton("Prev");
+	private String info1 = "Step1";
+	private String info2 = "Step2";
 	
 	public MainRun() {
 		// TODO Auto-generated constructor stub
@@ -61,7 +63,7 @@ public class MainRun extends JFrame {
 	
 	private void page2() {
 		setTitle("Algorithms");
-		status.setText("Step2");
+		status.setText(info2);
 		boolean[] state = new boolean[5];
 		String statestr = jbtProduceExcel.getClientProperty("mask").toString();
 		for (int i = 0; i < statestr.length(); i++)
@@ -179,6 +181,7 @@ public class MainRun extends JFrame {
 						// TODO: handle exception
 						e1.printStackTrace();
 					}
+					dispose(); // 解决第二次点击 弹出多个相同的excel表格
 					return;
 				}
 				getContentPane().remove(0);
@@ -197,7 +200,7 @@ public class MainRun extends JFrame {
 		JButton jbtRandom = new JButton("RandomGeneration");
 		JButton jbtImport = new JButton("YourExample");
 		setTitle("TestInstances");
-		status.setText("Step1");
+		status.setText(info1);
 		// 第一页
 		JPanel panelTop = new JPanel(new GridBagLayout());
 		panelTop.add(jbtRandom, new GBC(0, 0).setInsets(50, 100, 0, 75).setIpad(70, 10));
@@ -351,7 +354,7 @@ public class MainRun extends JFrame {
 			infoBar.setVisible(false);
 			status.setVisible(true);
 			jbtPrev.setText("Open");
-			status.setText("save path: " + mc.getFilename());
+			status.setText((info2 = "save path: " + mc.getFilename()));
 			Constant.excelFile = mc.getFilename();
 			jbtCompute.setText("Finish");
 			System.gc();// KEY
@@ -386,7 +389,7 @@ public class MainRun extends JFrame {
 			// TODO Auto-generated method stub
 			super.done();
 //			GenerateRandomNetwork_MainProgram.writeCharacteristicToFile();
-			status.setText("save dir: " + Constant.basePath);
+			status.setText((info1 = "save dir: " + Constant.basePath));
 			status.setVisible(true);
 			infoBar.setValue(0);
 			infoBar.setVisible(false);
@@ -556,8 +559,8 @@ public class MainRun extends JFrame {
 						Constant.start = Integer.parseInt(tfSource.getText());
 						Constant.end = Integer.parseInt(tfTarget.getText());
 						Constant.specDelay = Integer.parseInt(tfDelay.getText());
-						status.setText("Locate file: " + 
-								Constant.specIdFile.substring(Constant.specIdFile.lastIndexOf("\\") + 1));
+						status.setText((info1 = "Locate file: " + 
+								Constant.specIdFile.substring(Constant.specIdFile.lastIndexOf("\\") + 1)));
 					}
 					hasProduced = true; // 已经产生拓扑了
 					dispose();
