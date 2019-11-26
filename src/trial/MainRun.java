@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -76,25 +75,13 @@ public class MainRun extends JFrame {
 		JTextField tfGama = new JTextField(2);
 		JTextField tfDelayContraint = new JTextField(2);
 		JTextField tfMd = new JTextField(2);
-
 		JPanel panelTop = new JPanel(new GridBagLayout());
-//		panelTop.add(chYen);
-//		panelTop.add(chLarac);
-//		panelTop.add(chLaracWithMd);
 		panelTop.add(chBiLAD, new GBC(0, 0).setInsets(50, 73, 0, 75).setIpad(42, 10));
 		panelTop.add(chExactBiLAD, new GBC(0, 1).setInsets(50, 100, 0, 75).setIpad(42, 10));
-//		panelTop.add(chNull);
-//		panelTop.add(new JLabel("Game取值"));
-//		panelTop.add(tfGama);
-//		panelTop.add(new JLabel("Delay取值"));
-//		panelTop.add(tfDelayContraint);
-//		panelTop.add(new JLabel("Md取值"));
-//		panelTop.add(tfMd);
-//		chNull.setVisible(false);
-
 		tfGama.setText(jbtProduceExcel.getClientProperty("gama").toString());
 		tfDelayContraint.setText(jbtProduceExcel.getClientProperty("delay").toString());
 		tfMd.setText(jbtProduceExcel.getClientProperty("md").toString());
+		
 		JPanel panelBlow = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
 		panelBlow.add(infoBar);
 		panelBlow.add(status);
@@ -130,15 +117,6 @@ public class MainRun extends JFrame {
 					dispose();
 					return;
 				}
-				// TODO Auto-generated method stub
-//				if (jbtProduceTopology.getClientProperty("hasDone") instanceof Boolean)
-//					if (!(Boolean) jbtProduceTopology.getClientProperty("hasDone")) {
-//						JOptionPane.showMessageDialog(getContentPane(), "请先生成拓扑", "警告",
-//								JOptionPane.WARNING_MESSAGE);
-////						setVisible(false);
-////						dispose();
-//						return;
-//					}
 				jbtProduceExcel.putClientProperty("gama", tfGama.getText());
 				jbtProduceExcel.putClientProperty("delay", tfDelayContraint.getText());
 				jbtProduceExcel.putClientProperty("md", tfMd.getText());
@@ -159,15 +137,12 @@ public class MainRun extends JFrame {
 					JOptionPane.showMessageDialog(null, "Please choose one algorithm at least");
 					return;
 				}
-//				setVisible(false);
 				status.setVisible(false);
 				infoBar.setVisible(true);
 				
 				// ------------------//
-//				int[] delay = getDelays(jbtProduceExcel.getClientProperty("delay").toString());
 				int random_dalay = Math.random() < 0.5 ? 1 : 2;
 				int[] delay = new int[] { random_dalay }; // 固定
-//				double[] gama = getGamas(jbtProduceExcel.getClientProperty("gama").toString());
 				double[] gama = new double[] { 0.05 };
 				String[] methods = getMethods(jbtProduceExcel.getClientProperty("mask").toString());
 				Task2 task2 = new Task2(methods, delay, gama);
@@ -181,8 +156,6 @@ public class MainRun extends JFrame {
 					}
 				});
 				task2.execute();
-				// ---------------//
-//				dispose();
 			}
 		});
 
@@ -200,11 +173,6 @@ public class MainRun extends JFrame {
 					try {
 						File file = new File(Constant.excelFile);
 						String absolute = file.getAbsolutePath();
-//						System.out.println(absolute);
-//						rt.exec("cmd /c cd " + absolute.substring(0, absolute.lastIndexOf("/")));
-//						rt.exec("cmd /c " + absolute.substring(absolute.lastIndexOf("/")));
-//						System.out.println(absolute.substring(absolute.lastIndexOf("\\") + 1));
-//						System.out.println(absolute.substring(0, absolute.lastIndexOf("\\")));
 						rt.exec("cmd /c " + absolute.substring(absolute.lastIndexOf("\\") + 1),
 								null, new File(absolute.substring(0, absolute.lastIndexOf("\\"))));
 					} catch (Exception e1) {
@@ -213,7 +181,6 @@ public class MainRun extends JFrame {
 					}
 					return;
 				}
-//				info = "Step1";
 				getContentPane().remove(0);
 				page1();
 				repaint();
@@ -232,10 +199,8 @@ public class MainRun extends JFrame {
 		setTitle("TestInstances");
 		status.setText("Step1");
 		// 第一页
-//		JPanel panelTop = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		JPanel panelTop = new JPanel(new GridBagLayout());
 		panelTop.add(jbtRandom, new GBC(0, 0).setInsets(50, 100, 0, 75).setIpad(70, 10));
-//		panelTop.add(jbtDisplayGraphics);
 		panelTop.add(jbtImport, new GBC(0, 1).setInsets(50, 100, 0, 75).setIpad(100, 10));
 		jbtRandom.addActionListener(new ActionListener() {
 			@Override
@@ -255,10 +220,6 @@ public class MainRun extends JFrame {
 				MyTopologyDialog dialog = new MyTopologyDialog("YourInstance");
 				dialog.setLocationRelativeTo(null);
 				dialog.setVisible(true);
-//				Constant.WriteFile_TimeFor = 1;// 重置
-//				MyExcelDialog dialog = new MyExcelDialog();
-//				dialog.setLocationRelativeTo(null);
-//				dialog.setVisible(true);
 			}
 		});
 		
@@ -284,7 +245,6 @@ public class MainRun extends JFrame {
 					JOptionPane.showMessageDialog(null, "Please produce topology first");
 					return;
 				}
-//				info = "Step2";
 				getContentPane().remove(0);
 				page2();
 				repaint();
@@ -596,9 +556,6 @@ public class MainRun extends JFrame {
 								Constant.specIdFile.substring(Constant.specIdFile.lastIndexOf("\\") + 1));
 					}
 					hasProduced = true; // 已经产生拓扑了
-//					Task task = new Task(group * copy);
-					
-					// -------------------//
 					dispose();
 				}
 			});
@@ -623,8 +580,6 @@ public class MainRun extends JFrame {
 	public static void main(String[] args) {
 		MainRun frame = new MainRun();
 		frame.page1();
-//		frame.setSize(300, 300);
-//		frame.setTitle("CSPMethods");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
