@@ -10,6 +10,13 @@ public class Constant {
 	// 手动更新的变量
 	public static int WriteFile_TimeFor = 1;
 	public static int TimeForTest = 1;
+	public static boolean specFile = false; // 是否是指定文件导入
+	public static String specIdFile; // 指定的文件名
+	public static int start = 2; // 指定起点
+	public static int end = 16; // 指定终点
+	public static int specDelay; // 指定时延
+	public static String excelFile;
+	public static boolean clearBeforeProduce = true;
 
 	// 程序更新的变量
 	public static int numNodes = Integer.parseInt(XMLHelper.getValue("//allInfo/node/number"));
@@ -20,7 +27,7 @@ public class Constant {
 	public static int group = Integer.parseInt(XMLHelper.getValue("//allInfo/input/group"));
 	public static int copy = Integer.parseInt(XMLHelper.getValue("//allInfo/input/copy"));
 	public static int step = Integer.parseInt(XMLHelper.getValue("//allInfo/input/step"));
-
+	
 	// 常量
 	public static final int W = Integer.parseInt(XMLHelper.getValue("//allInfo/node/area"));
 	public static final double coreProbility = Double.parseDouble(XMLHelper.getValue("//allInfo/node/coreProbility"));

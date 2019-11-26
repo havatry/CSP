@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -129,8 +130,23 @@ public class MutilMethodsComparision {
 					Constant.TimeForTest = t * Constant.copy + h + 1;// 测试数据的index，通知修改TimeForTest
 					double[][] Id = IdFile.GetId();
 					int[][] IdLink = IdFile.GetIdLink(Id);
-					int start = 2;
-					int end = 16;
+					// 预设是2和6
+					// 预处理一下
+					int start = Constant.start;
+					int end = Constant.end;
+					if (nodenum < 2) {
+						// 异常
+						JOptionPane.showMessageDialog(null, "Node number less than 2, program exit");
+						System.exit(1);
+					}
+					if (start >= nodenum) {
+						start = (int)(Math.random() * nodenum); // 随机取一个点
+					}
+					if (end >= nodenum) {
+						do {
+							end = (int)(Math.random() * nodenum);
+						} while (start == end);
+					}
 
 					// 设置描述字段的具体值
 					row.createCell(0).setCellValue(nodenum);// 设置节点数
@@ -220,6 +236,10 @@ public class MutilMethodsComparision {
 				}
 			}
 		}
+		sheet.setColumnHidden(3, true);
+		sheet.setColumnHidden(4, true);
+		sheet.setColumnHidden(5, true);
+		sheet.setColumnHidden(6, true);
 		// 写入到Excel文件中
 		workbook.write(new FileOutputStream(new File(filename)));
 		workbook.close();

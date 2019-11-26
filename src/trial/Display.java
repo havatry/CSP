@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import fileInput.CoreNodeFile;
 import fileInput.NodeFile;
 import randomTopology.Point;
-import randomTopology.RandomPoint;
 import randomTopology.Constant;
 
 /**
