@@ -36,7 +36,7 @@ public class Constant {
 	public static final double coreToNormalProbility = Double
 			.parseDouble(XMLHelper.getValue("//allInfo/node/coreToNormalProbility"));
 	public static final String basePath = XMLHelper.getValue("//allInfo/file/@basePath");
-	public static final String idFile = basePath + XMLHelper.getValue("//allInfo/file/idFile");
+	public static String idFile = basePath + XMLHelper.getValue("//allInfo/file/idFile");
 	public static final String edgeFile = basePath + XMLHelper.getValue("allInfo/file/edgeFile");
 	public static final String nodeFile = basePath + XMLHelper.getValue("allInfo/file/nodeFile");
 	public static final String coreNodeFile = basePath + XMLHelper.getValue("//allInfo/file/coreNodeFile");

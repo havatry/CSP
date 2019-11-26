@@ -21,9 +21,7 @@ import cspAlgorithms.AbstractCSPMethods;
 import cspAlgorithms.SearchTriangle;
 import cspAlgorithms.Common;
 import cspAlgorithms.LARACMethod;
-import cspAlgorithms.LARACMethodWithMD;
 import cspAlgorithms.BiLAD;
-import cspAlgorithms.YenMethod;
 import fileInput.IdFile;
 import randomTopology.XMLHelper;
 import randomTopology.Constant;
@@ -128,6 +126,10 @@ public class MutilMethodsComparision {
 					for (int s = 0; s < nodenum; s++)
 						Node[s] = s;
 					Constant.TimeForTest = t * Constant.copy + h + 1;// 测试数据的index，通知修改TimeForTest
+					// 指定idFile
+					if (Constant.specFile) {
+						Constant.idFile = Constant.specIdFile;
+					}
 					double[][] Id = IdFile.GetId();
 					int[][] IdLink = IdFile.GetIdLink(Id);
 					// 预设是2和6
@@ -175,16 +177,7 @@ public class MutilMethodsComparision {
 							double c, d;
 							int time;
 							long startTime = System.currentTimeMillis();
-							if (methodNames[j].equals("LARAC")) {
-								LARACMethod lm = new LARACMethod();
-								List<Integer> pathlm = lm.OptimalPath(Node, Id, IdLink, delayCST[i], start, end);
-								if (pathlm == null) {
-									continue;
-								}
-								c = lm.Ctheta(pathlm, Id, IdLink);
-								d = lm.Ptheta(pathlm, Id, IdLink);
-								time = lm.getCallDijkstraTime();
-							} else if (methodNames[j].equals("BiLAD")) {
+							if (methodNames[j].equals("BiLAD")) {
 								BiLAD lmwnsf = new BiLAD();
 								List<Integer> pathlmwnsf = lmwnsf.OptimalPath(Node, Id, IdLink, delayCST[i], start,
 										end);
@@ -194,24 +187,6 @@ public class MutilMethodsComparision {
 								c = lmwnsf.Ctheta(pathlmwnsf, Id, IdLink);
 								d = lmwnsf.Ptheta(pathlmwnsf, Id, IdLink);
 								time = lmwnsf.getCallDijkstraTime();
-							} else if (methodNames[j].equals("YEN")) {
-								YenMethod ym = new YenMethod();
-								List<Integer> pathym = ym.OptimalPath(Node, Id, IdLink, delayCST[i], start, end);
-								if (pathym == null) {
-									continue;
-								}
-								c = ym.Ctheta(pathym, Id, IdLink);
-								d = ym.Ptheta(pathym, Id, IdLink);
-								time = ym.getCallDijkstraTime();
-							} else if (methodNames[j].equals("LARACMD")) {
-								LARACMethodWithMD lmwd = new LARACMethodWithMD();
-								List<Integer> pathlmwd = lmwd.OptimalPath(Node, Id, IdLink, delayCST[i], start, end);
-								if (pathlmwd == null) {
-									continue;
-								}
-								c = lmwd.Ctheta(pathlmwd, Id, IdLink);
-								d = lmwd.Ptheta(pathlmwd, Id, IdLink);
-								time = lmwd.getCallDijkstraTime();
 							} else if (methodNames[j].equals("ExactBiLAD")) {
 								SearchTriangle st = new SearchTriangle(new BiLAD());
 								List<Integer> pathst = st.OptimalPath(Node, Id, IdLink, delayCST[i], start, end);

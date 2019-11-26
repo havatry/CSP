@@ -47,7 +47,7 @@ import randomTopology.XMLHelper;
 public class MainRun extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JButton jbtProduceTopology = new JButton("生成拓扑");
+	private JButton jbtProduceTopology = new JButton("RandomGeneration");
 	private JButton jbtProduceExcel = new JButton("生成Excel");
 	private JProgressBar infoBar = new JProgressBar();
 	private JLabel status = new JLabel("Step1");
