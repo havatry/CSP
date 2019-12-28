@@ -5,15 +5,15 @@ import java.io.Serializable;
 /**
  * 
  * OverView:
- *		¸ÃÀàÊÇ½ÚµãÀà¡£Ìá¹©½ÚµãµÄĞÅÏ¢¡£
+ *		è¯¥ç±»æ˜¯èŠ‚ç‚¹ç±»ã€‚æä¾›èŠ‚ç‚¹çš„ä¿¡æ¯ã€‚
  */
 public class Point implements Serializable {
 	/** serialVersionUID */
 	private static final long serialVersionUID = 1L;
 
-	private int x;// ½Úµãºá×ø±ê
-	private int y;// ½Úµã×İ×ø±ê
-	private int lable;// ½Úµã±àºÅ
+	private int x;// èŠ‚ç‚¹æ¨ªåæ ‡
+	private int y;// èŠ‚ç‚¹çºµåæ ‡
+	private int lable;// èŠ‚ç‚¹ç¼–å·
 
 	public Point() {
 		// TODO Auto-generated constructor stub

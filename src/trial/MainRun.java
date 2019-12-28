@@ -40,14 +40,14 @@ import randomTopology.XMLHelper;
 /**
  * 
  * OverView:
- *		¸ÃÀàÊÇ¶Ô±¾³ÌĞòµÄÒ»¸ö×Ü½á¡£Í¨¹ıÈı¸ö°´Å¥¡¢Ò»¸ö½ø¶ÈÌõºÍÒ»¸öÏÔÊ¾ĞÅÏ¢µÄ×´Ì¬À¸£¬Íê³ÉÁË±¾³ÌĞòµÄËùÓĞ¹¦ÄÜ¡£
- *		APP¿ÉÒÔÓÉ±¾³ÌĞòËã·¨×ÔĞĞ¿ª·¢¡£´ËÍ¼ĞÎ½çÃæ´úÂëºÍ±¾³ÌĞòÏà¹Ø¶È²»´ó£¬²»ÔÙ½øĞĞ×¢ÊÍ¡£
+ *		è¯¥ç±»æ˜¯å¯¹æœ¬ç¨‹åºçš„ä¸€ä¸ªæ€»ç»“ã€‚é€šè¿‡ä¸‰ä¸ªæŒ‰é’®ã€ä¸€ä¸ªè¿›åº¦æ¡å’Œä¸€ä¸ªæ˜¾ç¤ºä¿¡æ¯çš„çŠ¶æ€æ ï¼Œå®Œæˆäº†æœ¬ç¨‹åºçš„æ‰€æœ‰åŠŸèƒ½ã€‚
+ *		APPå¯ä»¥ç”±æœ¬ç¨‹åºç®—æ³•è‡ªè¡Œå¼€å‘ã€‚æ­¤å›¾å½¢ç•Œé¢ä»£ç å’Œæœ¬ç¨‹åºç›¸å…³åº¦ä¸å¤§ï¼Œä¸å†è¿›è¡Œæ³¨é‡Šã€‚
  */
 public class MainRun extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JButton jbtProduceTopology = new JButton("RandomGeneration");
-	private JButton jbtProduceExcel = new JButton("Éú³ÉExcel");
+	private JButton jbtProduceExcel = new JButton("ç”ŸæˆExcel");
 	private JProgressBar infoBar = new JProgressBar();
 	private JLabel status = new JLabel("Step1");
 	private JButton jbtCompute = new JButton("Compute");
@@ -69,9 +69,9 @@ public class MainRun extends JFrame {
 		for (int i = 0; i < statestr.length(); i++)
 			if (statestr.charAt(i) == '1')
 				state[i] = true;
-		JCheckBox chYen = new JCheckBox("YenËã·¨", state[0]);
-		JCheckBox chLarac = new JCheckBox("LARACËã·¨", state[1]);
-		JCheckBox chLaracWithMd = new JCheckBox("LARACMDËã·¨", state[2]);
+		JCheckBox chYen = new JCheckBox("Yenç®—æ³•", state[0]);
+		JCheckBox chLarac = new JCheckBox("LARACç®—æ³•", state[1]);
+		JCheckBox chLaracWithMd = new JCheckBox("LARACMDç®—æ³•", state[2]);
 		JCheckBox chBiLAD = new JCheckBox("BiLAD Algorithm", state[3]);
 		JCheckBox chExactBiLAD = new JCheckBox("ExactBiLAD Algorithm", state[4]);
 		JTextField tfGama = new JTextField(2);
@@ -114,8 +114,8 @@ public class MainRun extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getActionCommand().equals("Finish")) {
-					// Íê³É
-					// ´ò¿ªexcel, ²¢ÇÒ¹Ø±Õ
+					// å®Œæˆ
+					// æ‰“å¼€excel, å¹¶ä¸”å…³é—­
 					dispose();
 					return;
 				}
@@ -144,7 +144,7 @@ public class MainRun extends JFrame {
 				
 				// ------------------//
 				int random_dalay = Math.random() < 0.5 ? 1 : 2;
-				int[] delay = new int[] { random_dalay }; // ¹Ì¶¨
+				int[] delay = new int[] { random_dalay }; // å›ºå®š
 				double[] gama = new double[] { 0.05 };
 				String[] methods = getMethods(jbtProduceExcel.getClientProperty("mask").toString());
 				Task2 task2 = new Task2(methods, delay, gama);
@@ -170,7 +170,7 @@ public class MainRun extends JFrame {
 					return;
 				}
 				if (e.getActionCommand().equals("Open")) {
-					// ´ò¿ªexcel
+					// æ‰“å¼€excel
 					Runtime rt = Runtime.getRuntime();
 					try {
 						File file = new File(Constant.excelFile);
@@ -181,7 +181,7 @@ public class MainRun extends JFrame {
 						// TODO: handle exception
 						e1.printStackTrace();
 					}
-					dispose(); // ½â¾öµÚ¶ş´Îµã»÷ µ¯³ö¶à¸öÏàÍ¬µÄexcel±í¸ñ
+					dispose(); // è§£å†³ç¬¬äºŒæ¬¡ç‚¹å‡» å¼¹å‡ºå¤šä¸ªç›¸åŒçš„excelè¡¨æ ¼
 					return;
 				}
 				getContentPane().remove(0);
@@ -201,7 +201,7 @@ public class MainRun extends JFrame {
 		JButton jbtImport = new JButton("YourExample");
 		setTitle("TestInstances");
 		status.setText(info1);
-		// µÚÒ»Ò³
+		// ç¬¬ä¸€é¡µ
 		JPanel panelTop = new JPanel(new GridBagLayout());
 		panelTop.add(jbtRandom, new GBC(0, 0).setInsets(50, 100, 0, 75).setIpad(70, 10));
 		panelTop.add(jbtImport, new GBC(0, 1).setInsets(50, 100, 0, 75).setIpad(100, 10));
@@ -241,7 +241,7 @@ public class MainRun extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (infoBar.isVisible()) {
-					// ÕıÔÚÉú³ÉÍØÆË
+					// æ­£åœ¨ç”Ÿæˆæ‹“æ‰‘
 					return;
 				}
 				if (!hasProduced) {
@@ -358,7 +358,7 @@ public class MainRun extends JFrame {
 			Constant.excelFile = mc.getFilename();
 			jbtCompute.setText("Finish");
 			System.gc();// KEY
-			//×Ô¶¯¹Ø»ú
+			//è‡ªåŠ¨å…³æœº
 			if(jbtProduceExcel.getClientProperty("mask").toString().charAt(0)=='1' 
 					&& Boolean.parseBoolean(XMLHelper.getValue("//allInfo/test/shutdown"))){
 				MutilMethodsComparision.shutdown();
@@ -397,11 +397,11 @@ public class MainRun extends JFrame {
 
 		public void produce() {
 			for (int i = 0; i < Constant.group; i++) {
-				XMLHelper.setValue("//allInfo/node/number", Constant.step * (i + 1) + "");// ÀïÃæÓĞ¸üĞÂ±äÁ¿
+				XMLHelper.setValue("//allInfo/node/number", Constant.step * (i + 1) + "");// é‡Œé¢æœ‰æ›´æ–°å˜é‡
 				for (int j = 0; j < Constant.copy; j++) {
 					new Topology().ProduceTopology();
-					Constant.WriteFile_TimeFor++;// ¸üĞÂ
-					setProgress(100 * Constant.WriteFile_TimeFor / count);//µ±Õâ¸öµ½100µÄÊ±ºò£¬¿ÉÄÜÌáÇ°½áÊøÁË
+					Constant.WriteFile_TimeFor++;// æ›´æ–°
+					setProgress(100 * Constant.WriteFile_TimeFor / count);//å½“è¿™ä¸ªåˆ°100çš„æ—¶å€™ï¼Œå¯èƒ½æå‰ç»“æŸäº†
 				}
 			}
 //			GenerateRandomNetwork_MainProgram.writeCharacteristicToFile();
@@ -470,9 +470,9 @@ public class MainRun extends JFrame {
 					});
 					int value = fc.showOpenDialog(null);
 					if (value == JFileChooser.APPROVE_OPTION) {
-						// È·ÈÏÑ¡ÖĞ
+						// ç¡®è®¤é€‰ä¸­
 						Constant.specIdFile = fc.getSelectedFile().getAbsolutePath();
-						Constant.specFile = true; // Ö¸¶¨Ä¿Â¼
+						Constant.specFile = true; // æŒ‡å®šç›®å½•
 						// key
 						Constant.numNodes = FileLine.GetLineNumber(Constant.specIdFile);
 						tfData.setText("OK");
@@ -493,7 +493,7 @@ public class MainRun extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					// ¼ì²éÊäÈëÊÇ·ñ¶¼Ìî³äÁË
+					// æ£€æŸ¥è¾“å…¥æ˜¯å¦éƒ½å¡«å……äº†
 					if (title.equals("RandomGeneration")) {
 						if (tfCopy.getText().equals("") || tfStep.getText().equals("")) {
 							JOptionPane.showMessageDialog(null, "Please fill all textFields");
@@ -521,7 +521,7 @@ public class MainRun extends JFrame {
 								e1.printStackTrace();
 							}
 						} else {
-							// È¡Ïû
+							// å–æ¶ˆ
 							return;
 						}
 					}
@@ -552,7 +552,7 @@ public class MainRun extends JFrame {
 						});
 						task.execute();
 					} else 
-					// ¿¼ÂÇÖ¸¶¨ÎÄ¼şµÄÇé¿ö
+					// è€ƒè™‘æŒ‡å®šæ–‡ä»¶çš„æƒ…å†µ
 					{
 						Constant.group = 1;
 						Constant.copy = 1;
@@ -562,7 +562,7 @@ public class MainRun extends JFrame {
 						status.setText((info1 = "Locate file: " + 
 								Constant.specIdFile.substring(Constant.specIdFile.lastIndexOf("\\") + 1)));
 					}
-					hasProduced = true; // ÒÑ¾­²úÉúÍØÆËÁË
+					hasProduced = true; // å·²ç»äº§ç”Ÿæ‹“æ‰‘äº†
 					dispose();
 				}
 			});

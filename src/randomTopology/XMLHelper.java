@@ -12,26 +12,26 @@ import org.dom4j.io.XMLWriter;
 /**
  * 
  * OverView: 
- * 		Í¨¹ıDOM4JÀ´ÊµÏÖ¶ÔÅäÖÃÎÄ¼şsetting.xmlµÄ»ñÈ¡Öµ»òÕßĞŞ¸ÄÖµ¡£
- * 		 ¾ßÌåDOM4J·½·¨²Î¿¼ÍøÉÏ½Ì³Ì¡£
- * 		Ìá¹©»ñÈ¡xmlÖµ¡¢ĞŞ¸ÄxmlÖµµÄ·½·¨¡£
+ * 		é€šè¿‡DOM4Jæ¥å®ç°å¯¹é…ç½®æ–‡ä»¶setting.xmlçš„è·å–å€¼æˆ–è€…ä¿®æ”¹å€¼ã€‚
+ * 		 å…·ä½“DOM4Jæ–¹æ³•å‚è€ƒç½‘ä¸Šæ•™ç¨‹ã€‚
+ * 		æä¾›è·å–xmlå€¼ã€ä¿®æ”¹xmlå€¼çš„æ–¹æ³•ã€‚
  */
 public class XMLHelper {
-	private final static String XMLFILE = "resource/set/setting.xml";// ÉèÖÃÎÄ¼ş
+	private final static String XMLFILE = "resource/set/setting.xml";// è®¾ç½®æ–‡ä»¶
 
 	/**
 	 * 
 	 * Function: 
-	 * 		»ñÈ¡xmlµÄÖµ 
+	 * 		è·å–xmlçš„å€¼ 
 	 * Details: 
-	 * 		Ê¹ÓÃdom4jºÍxpath¼¼ÊõÀ´»ñÈ¡xmlÎÄ¼şÖĞµÄÌØ¶¨½ÚµãµÄÖµ 
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç1:31:43
+	 * 		ä½¿ç”¨dom4jå’ŒxpathæŠ€æœ¯æ¥è·å–xmlæ–‡ä»¶ä¸­çš„ç‰¹å®šèŠ‚ç‚¹çš„å€¼ 
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ1:31:43
 	 */
 	public static String getValue(String xpath) {
 		SAXReader sax = new SAXReader();
 		try {
 			Document dom = sax.read(XMLFILE);
-			Node node = dom.selectSingleNode(xpath);// ºËĞÄ²Ù×÷
+			Node node = dom.selectSingleNode(xpath);// æ ¸å¿ƒæ“ä½œ
 			return node.getText();
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
@@ -43,10 +43,10 @@ public class XMLHelper {
 	/**
 	 * 
 	 * Function: 
-	 * 		ĞŞ¸ÄxmlÖµ 
+	 * 		ä¿®æ”¹xmlå€¼ 
 	 * Details:
-	 * 		 Ê¹ÓÃdom4jºÍxpath¼¼ÊõÀ´ĞŞ¸ÄxmlÎÄ¼şÖĞµÄÌØ¶¨½ÚµãµÄÖµ 
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç1:32:16
+	 * 		 ä½¿ç”¨dom4jå’ŒxpathæŠ€æœ¯æ¥ä¿®æ”¹xmlæ–‡ä»¶ä¸­çš„ç‰¹å®šèŠ‚ç‚¹çš„å€¼ 
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ1:32:16
 	 */
 	public static void setValue(String xpath, String text) {
 		SAXReader sax = new SAXReader();
@@ -59,9 +59,9 @@ public class XMLHelper {
 			writer.write(dom);
 			writer.flush();
 			writer.close();
-			// ÓÉÓÚContantÀàÖĞ¶¼ÊÇ¾²Ì¬±äÁ¿£¬ÕâĞ©±äÁ¿Ö»³õÊ¼»¯Ò»´Î£¬¼´±ã¸ÄÁËÎÄ¼ş£¬ÆäÒ²²»ÊÇÖ÷¶¯ÖØĞÂ»ñÈ¡ĞÂµÄÖµ
-			// Òò´ËÕâÀïĞèÒªÊÖ¶¯¸üĞÂÄ³Ğ©ConstantÀàÖĞµÄ±äÁ¿
-			Constant.numNodes = Integer.parseInt(getValue("//allInfo/node/number"));// ¸üĞÂ±äÁ¿
+			// ç”±äºContantç±»ä¸­éƒ½æ˜¯é™æ€å˜é‡ï¼Œè¿™äº›å˜é‡åªåˆå§‹åŒ–ä¸€æ¬¡ï¼Œå³ä¾¿æ”¹äº†æ–‡ä»¶ï¼Œå…¶ä¹Ÿä¸æ˜¯ä¸»åŠ¨é‡æ–°è·å–æ–°çš„å€¼
+			// å› æ­¤è¿™é‡Œéœ€è¦æ‰‹åŠ¨æ›´æ–°æŸäº›Constantç±»ä¸­çš„å˜é‡
+			Constant.numNodes = Integer.parseInt(getValue("//allInfo/node/number"));// æ›´æ–°å˜é‡
 			Constant.gama = Double.parseDouble(XMLHelper.getValue("//allInfo/test/gama"));
 			Constant.MD = Double.parseDouble(XMLHelper.getValue("//allInfo/test/md"));
 		} catch (DocumentException | IOException e) {

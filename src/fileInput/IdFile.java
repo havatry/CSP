@@ -10,32 +10,32 @@ import randomTopology.Constant;
 /**
  * 
  * OverView: 
- * 		¸ÃÀàÖ÷ÒªÍ¨¹ıÎÄ¼şÀ´»ñÈ¡ID¾ØÕó¡£ Ìá¹©»ñÈ¡Á´Â·¾ØÕó¡¢»ñÈ¡±ßÈ¨ÖØ¾ØÕó¡¢»ñÈ¡±ßÁ¬½Ó¾ØÕó·½·¨¡£
+ * 		è¯¥ç±»ä¸»è¦é€šè¿‡æ–‡ä»¶æ¥è·å–IDçŸ©é˜µã€‚ æä¾›è·å–é“¾è·¯çŸ©é˜µã€è·å–è¾¹æƒé‡çŸ©é˜µã€è·å–è¾¹è¿æ¥çŸ©é˜µæ–¹æ³•ã€‚
  */
 public class IdFile {
 	/**
 	 * 
 	 * Function:
-	 *		Í¨¹ı¸ø¶¨ÎÄ¼ş£¬»ñÈ¡ÎÄ¼şÖÕµãÁ´Â·ĞÅÏ¢¡£
-	 *		ÎÄ¼ş¸ñÊ½ÎªÃ¿ĞĞ¶ÔÓ¦Æğµã¡¢ÖÕµã¡¢´ú¼ÛºÍÑÓÊ±
+	 *		é€šè¿‡ç»™å®šæ–‡ä»¶ï¼Œè·å–æ–‡ä»¶ç»ˆç‚¹é“¾è·¯ä¿¡æ¯ã€‚
+	 *		æ–‡ä»¶æ ¼å¼ä¸ºæ¯è¡Œå¯¹åº”èµ·ç‚¹ã€ç»ˆç‚¹ã€ä»£ä»·å’Œå»¶æ—¶
 	 * Details:
-	 *		Í¨¹ı»ñÈ¡ÎÄ¼şĞĞÊı£¬¹¹ÔìÁ´Â·¾ØÕó¡£
-	 *		È»ºó¶ÁÈ¡ÌØ¶¨ÎÄ¼ş£¬Ğ´ÈëÁ´Â·¾ØÕó
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç12:48:31
+	 *		é€šè¿‡è·å–æ–‡ä»¶è¡Œæ•°ï¼Œæ„é€ é“¾è·¯çŸ©é˜µã€‚
+	 *		ç„¶åè¯»å–ç‰¹å®šæ–‡ä»¶ï¼Œå†™å…¥é“¾è·¯çŸ©é˜µ
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ12:48:31
 	 */
 	public static double[][] GetId() {
 		int linenum = FileLine.GetLineNumber(Constant.idFile.replace(".", "_" + Constant.TimeForTest + "."));
-		double[][] id = new double[linenum - 1][4];// 0-4·Ö±ğ±íÊ¾Æğµã£¬ÖÕµã£¬´ú¼Û£¬ÑÓÊ±
+		double[][] id = new double[linenum - 1][4];// 0-4åˆ†åˆ«è¡¨ç¤ºèµ·ç‚¹ï¼Œç»ˆç‚¹ï¼Œä»£ä»·ï¼Œå»¶æ—¶
 		try {
 			Scanner in = new Scanner(new File(Constant.idFile.replace(".", "_" + Constant.TimeForTest + ".")));
-			in.nextLine();// ÏÈ³ıÈ¥µÚÒ»ĞĞ±¸×¢
+			in.nextLine();// å…ˆé™¤å»ç¬¬ä¸€è¡Œå¤‡æ³¨
 			while (in.hasNextLine()) {
 				String[] parts = in.nextLine().split("\t");
 				int currentId = Integer.parseInt(parts[0]);
-				id[currentId][0] = Integer.parseInt(parts[1]);// Æğµã
-				id[currentId][1] = Integer.parseInt(parts[2]);// ÖÕµã
-				id[currentId][2] = Integer.parseInt(parts[3]);// ´ú¼Û
-				id[currentId][3] = Integer.parseInt(parts[4]);// ÑÓÊ±
+				id[currentId][0] = Integer.parseInt(parts[1]);// èµ·ç‚¹
+				id[currentId][1] = Integer.parseInt(parts[2]);// ç»ˆç‚¹
+				id[currentId][2] = Integer.parseInt(parts[3]);// ä»£ä»·
+				id[currentId][3] = Integer.parseInt(parts[4]);// å»¶æ—¶
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
@@ -48,11 +48,11 @@ public class IdFile {
 	/**
 	 * 
 	 * Function:
-	 *		»ñÈ¡±ßÈ¨ÖØ¾ØÕó
+	 *		è·å–è¾¹æƒé‡çŸ©é˜µ
 	 * Details:
-	 *		ÔÚ¸ø¶¨µÄÁ´Â·¾ØÕóÊ±ºò£¬ÓÉÓÚÁ´Â·¾ØÕóµÄµÚÈıÁĞ¾ÍÊÇ±ßÉÏµÄÈ¨ÖØ
-	 *		Òò´Ë¿ÉÒÔ½«Á½¸ö½Úµã¶ÔÓ¦Á´Â·ÉÏµÄµÚÈıÁĞÖµ±ãÊÇÕâÁ½µãµÄÈ¨ÖØ
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç12:49:49
+	 *		åœ¨ç»™å®šçš„é“¾è·¯çŸ©é˜µæ—¶å€™ï¼Œç”±äºé“¾è·¯çŸ©é˜µçš„ç¬¬ä¸‰åˆ—å°±æ˜¯è¾¹ä¸Šçš„æƒé‡
+	 *		å› æ­¤å¯ä»¥å°†ä¸¤ä¸ªèŠ‚ç‚¹å¯¹åº”é“¾è·¯ä¸Šçš„ç¬¬ä¸‰åˆ—å€¼ä¾¿æ˜¯è¿™ä¸¤ç‚¹çš„æƒé‡
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ12:49:49
 	 */
 	public static double[][] GetEdge(double[][] Id) {
 		int nodeNum = Constant.numNodes;
@@ -65,7 +65,7 @@ public class IdFile {
 				if (i == j) {
 					edge[i][j] = 0;
 				} else {
-					edge[i][j] = Id[idlink[i][j]][2];//ºËĞÄ²Ù×÷
+					edge[i][j] = Id[idlink[i][j]][2];//æ ¸å¿ƒæ“ä½œ
 				}
 			}
 		}
@@ -75,11 +75,11 @@ public class IdFile {
 	/**
 	 * 
 	 * Function:
-	 *		»ñÈ¡±ßÁ¬½Ó¾ØÕó
+	 *		è·å–è¾¹è¿æ¥çŸ©é˜µ
 	 * Details:
-	 *		±ßÁ¬½Ó¾ØÕóÊÇÖ¸Í¨¹ıÁ½¸öµãÎ¨Ò»¶¨Î»µ½Ò»¸öÁ´Â·ÉÏ¡£
-	 *		Èç¹ûÁ½¸öµãÖ®¼äÃ»ÓĞÁ´Â·£¬ÄÇÃ´±ßÁ¬½Ó¾ØÕóµÄÖµÎª-1£¬Í¨³£ÓÃÀ´ÅĞ¶Ï¡£
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç12:51:00
+	 *		è¾¹è¿æ¥çŸ©é˜µæ˜¯æŒ‡é€šè¿‡ä¸¤ä¸ªç‚¹å”¯ä¸€å®šä½åˆ°ä¸€ä¸ªé“¾è·¯ä¸Šã€‚
+	 *		å¦‚æœä¸¤ä¸ªç‚¹ä¹‹é—´æ²¡æœ‰é“¾è·¯ï¼Œé‚£ä¹ˆè¾¹è¿æ¥çŸ©é˜µçš„å€¼ä¸º-1ï¼Œé€šå¸¸ç”¨æ¥åˆ¤æ–­ã€‚
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ12:51:00
 	 */
 	public static int[][] GetIdLink(double[][] Id) {
 		int nodeNum = Constant.numNodes;
@@ -87,7 +87,7 @@ public class IdFile {
 		for (int i = 0; i < IdLink.length; i++)
 			Arrays.fill(IdLink[i], -1);
 		for (int i = 0; i < Id.length; i++)
-			IdLink[(int) Id[i][0]][(int) Id[i][1]] = i;// IdºÅ£¬ºËĞÄ²Ù×÷
+			IdLink[(int) Id[i][0]][(int) Id[i][1]] = i;// Idå·ï¼Œæ ¸å¿ƒæ“ä½œ
 		return IdLink;
 	}
 }

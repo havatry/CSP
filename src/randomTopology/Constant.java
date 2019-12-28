@@ -3,32 +3,32 @@ package randomTopology;
 /**
  * 
  * OverView:
- *		Í¨¹ı±¾°üÖĞXMLHelpÀàÀ´»ñÈ¡setting.xmlÅäÖÃÎÄ¼şÖĞËùÓĞ³£Á¿
- *		¾ßÌåº¬Òå²Î¿¿setting.xmlÖĞËµÃ÷
+ *		é€šè¿‡æœ¬åŒ…ä¸­XMLHelpç±»æ¥è·å–setting.xmlé…ç½®æ–‡ä»¶ä¸­æ‰€æœ‰å¸¸é‡
+ *		å…·ä½“å«ä¹‰å‚é setting.xmlä¸­è¯´æ˜
  */
 public class Constant {
-	// ÊÖ¶¯¸üĞÂµÄ±äÁ¿
+	// æ‰‹åŠ¨æ›´æ–°çš„å˜é‡
 	public static int WriteFile_TimeFor = 1;
 	public static int TimeForTest = 1;
-	public static boolean specFile = false; // ÊÇ·ñÊÇÖ¸¶¨ÎÄ¼şµ¼Èë
-	public static String specIdFile; // Ö¸¶¨µÄÎÄ¼şÃû
-	public static int start = 2; // Ö¸¶¨Æğµã
-	public static int end = 16; // Ö¸¶¨ÖÕµã
-	public static int specDelay; // Ö¸¶¨Ê±ÑÓ
+	public static boolean specFile = false; // æ˜¯å¦æ˜¯æŒ‡å®šæ–‡ä»¶å¯¼å…¥
+	public static String specIdFile; // æŒ‡å®šçš„æ–‡ä»¶å
+	public static int start = 2; // æŒ‡å®šèµ·ç‚¹
+	public static int end = 16; // æŒ‡å®šç»ˆç‚¹
+	public static int specDelay; // æŒ‡å®šæ—¶å»¶
 	public static String excelFile;
 	public static boolean clearBeforeProduce = true;
 
-	// ³ÌĞò¸üĞÂµÄ±äÁ¿
+	// ç¨‹åºæ›´æ–°çš„å˜é‡
 	public static int numNodes = Integer.parseInt(XMLHelper.getValue("//allInfo/node/number"));
 	public static double gama = Double.parseDouble(XMLHelper.getValue("//allInfo/test/gama"));
 	public static double MD = Double.parseDouble(XMLHelper.getValue("//allInfo/test/md"));
 
-	// ÊäÈë±äÁ¿
+	// è¾“å…¥å˜é‡
 	public static int group = Integer.parseInt(XMLHelper.getValue("//allInfo/input/group"));
 	public static int copy = Integer.parseInt(XMLHelper.getValue("//allInfo/input/copy"));
 	public static int step = Integer.parseInt(XMLHelper.getValue("//allInfo/input/step"));
 	
-	// ³£Á¿
+	// å¸¸é‡
 	public static final int W = Integer.parseInt(XMLHelper.getValue("//allInfo/node/area"));
 	public static final double coreProbility = Double.parseDouble(XMLHelper.getValue("//allInfo/node/coreProbility"));
 	public static final double coreToCoreProbility = Double
@@ -43,7 +43,7 @@ public class Constant {
 	public static final String CharacteristicFile=basePath+XMLHelper.getValue("//allInfo/file/characteristicFile");
 	public static final int MAX_VALUE = Integer
 			.parseInt(XMLHelper.getValue("//allInfo/program/notExistsEdgeForValueOfYen"));
-	public static final double esp = Double.parseDouble(XMLHelper.getValue("//allInfo/input/esp"));// LARACºÍ¶ş·Ö·¨¾«¶È
+	public static final double esp = Double.parseDouble(XMLHelper.getValue("//allInfo/input/esp"));// LARACå’ŒäºŒåˆ†æ³•ç²¾åº¦
 	public static final int MIN = Integer.parseInt(XMLHelper.getValue("//allInfo/program/notExistsPathForValue"));
 	public static final double ExistsPathForValue = Double
 			.parseDouble(XMLHelper.getValue("//allInfo/program/ExistsPathForValue"));

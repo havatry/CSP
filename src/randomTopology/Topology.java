@@ -12,28 +12,28 @@ import java.util.PriorityQueue;
 /**
  * 
  * OverView: 
- * 		¸ÃÀàÖ÷ÒªÍê³ÉÒ»¸öÍøÂçµÄÍØÆËÉú³É¡£ Ìá¹©
+ * 		è¯¥ç±»ä¸»è¦å®Œæˆä¸€ä¸ªç½‘ç»œçš„æ‹“æ‰‘ç”Ÿæˆã€‚ æä¾›
  */
 public class Topology {
-	private Point[] points;// ½Úµã¾ØÕó
-	private Graph graph;// µ±Ç°ÍøÂçÍ¼
-	private List<Integer> coreNodes;// ºËĞÄ½Úµã±àºÅÁĞ±í
+	private Point[] points;// èŠ‚ç‚¹çŸ©é˜µ
+	private Graph graph;// å½“å‰ç½‘ç»œå›¾
+	private List<Integer> coreNodes;// æ ¸å¿ƒèŠ‚ç‚¹ç¼–å·åˆ—è¡¨
 
 	public Topology() {
 		// TODO Auto-generated constructor stub
-		points = new RandomPoint().getPoints(Constant.numNodes, Constant.W);// Ëæ»úÉú³É½Úµã¾ØÕó
-		graph = new HamiltonGraph(Constant.numNodes).connectHamilton(); // Á¬½Ó¹şÃÜ¶û¶ÙÈ¦
-		coreNodes = new CoreNode().findCoreNodes(Constant.numNodes);// ÕÒºËĞÄ½Úµã
+		points = new RandomPoint().getPoints(Constant.numNodes, Constant.W);// éšæœºç”ŸæˆèŠ‚ç‚¹çŸ©é˜µ
+		graph = new HamiltonGraph(Constant.numNodes).connectHamilton(); // è¿æ¥å“ˆå¯†å°”é¡¿åœˆ
+		coreNodes = new CoreNode().findCoreNodes(Constant.numNodes);// æ‰¾æ ¸å¿ƒèŠ‚ç‚¹
 	}
 
 	/**
 	 * 
 	 * Function: 
-	 * 		ºËĞÄ·½·¨£¬ÓÃÀ´Éú³ÉÍØÆË 
+	 * 		æ ¸å¿ƒæ–¹æ³•ï¼Œç”¨æ¥ç”Ÿæˆæ‹“æ‰‘ 
 	 * Details: 
-	 * 		¸Ã·½·¨Ê×ÏÈÔÚÒÑ¾­ÊÇ¹şÃÜ¶û¶ÙÈ¦µÄÍøÂçÍ¼ÖĞ£¬¼ÌĞøÁ¬½ÓÒ»Ğ©±ß£¬µÃµ½ÍêÉÆµÄÍØÆË¡£
-	 * 		½Ó×Å½«ÍøÂçÖĞµÄ½Úµã¾ØÕó¡¢ºËĞÄ½Úµã±àºÅ¡¢±ßÁ¬½ÓÇé¿ö¡¢ºÍÁ´Â·¾ØÕóĞ´Èëµ½Ö¸¶¨ÎÄ¼şÖĞ¡£
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç1:16:48
+	 * 		è¯¥æ–¹æ³•é¦–å…ˆåœ¨å·²ç»æ˜¯å“ˆå¯†å°”é¡¿åœˆçš„ç½‘ç»œå›¾ä¸­ï¼Œç»§ç»­è¿æ¥ä¸€äº›è¾¹ï¼Œå¾—åˆ°å®Œå–„çš„æ‹“æ‰‘ã€‚
+	 * 		æ¥ç€å°†ç½‘ç»œä¸­çš„èŠ‚ç‚¹çŸ©é˜µã€æ ¸å¿ƒèŠ‚ç‚¹ç¼–å·ã€è¾¹è¿æ¥æƒ…å†µã€å’Œé“¾è·¯çŸ©é˜µå†™å…¥åˆ°æŒ‡å®šæ–‡ä»¶ä¸­ã€‚
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ1:16:48
 	 */
 	public void ProduceTopology() {
 		ConnectEdges();
@@ -43,30 +43,30 @@ public class Topology {
 	/**
 	 * 
 	 * Function: 
-	 * 		°´ÕÕÅäÖÃÎÄ¼şÀ´¶Ô¹şÃÜ¶û¶ÙÈ¦µÄÍøÂç£¬¼ÌĞøÁ¬½Ó±ß£¬½øĞĞÍêÉÆ
+	 * 		æŒ‰ç…§é…ç½®æ–‡ä»¶æ¥å¯¹å“ˆå¯†å°”é¡¿åœˆçš„ç½‘ç»œï¼Œç»§ç»­è¿æ¥è¾¹ï¼Œè¿›è¡Œå®Œå–„
 	 * Details:
-	 * 		°´ÕÕÅäÖÃÎÄ¼ş£¬À´¾ö¶¨Á½¸ö½ÚµãÁ¬±ß¸ÅÂÊprobility¡£ È»ºó¾İ´ËÀ´¾ö¶¨ÍøÂçÖĞ¶ÔÕâÁ½¸ö½ÚµãÊÇ·ñ¼ÌĞø¼Ó±ß¡£
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç1:19:33
+	 * 		æŒ‰ç…§é…ç½®æ–‡ä»¶ï¼Œæ¥å†³å®šä¸¤ä¸ªèŠ‚ç‚¹è¿è¾¹æ¦‚ç‡probilityã€‚ ç„¶åæ®æ­¤æ¥å†³å®šç½‘ç»œä¸­å¯¹è¿™ä¸¤ä¸ªèŠ‚ç‚¹æ˜¯å¦ç»§ç»­åŠ è¾¹ã€‚
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ1:19:33
 	 */
-	public void ConnectEdges() {// ÎÄ¼ş²Ù×÷
+	public void ConnectEdges() {// æ–‡ä»¶æ“ä½œ
 		for (int i = 0; i < Constant.numNodes; i++) {
 			boolean isCore = coreNodes.contains(i);
 			for (int j = 0; j < Constant.numNodes; j++) {
 				if (i == j)
-					continue;// Í¬Ò»¸öµã
+					continue;// åŒä¸€ä¸ªç‚¹
 				double probility = 0.0;
-				if (isCore) {// ¿¼ÂÇËÄÖÖÇé¿ö
-					if (coreNodes.contains(j)) {// ºËĞÄ¶ÔºËĞÄ
+				if (isCore) {// è€ƒè™‘å››ç§æƒ…å†µ
+					if (coreNodes.contains(j)) {// æ ¸å¿ƒå¯¹æ ¸å¿ƒ
 						probility = Constant.coreToCoreProbility;
-					} else {// ºËĞÄ¶Ô±ßÔµ
+					} else {// æ ¸å¿ƒå¯¹è¾¹ç¼˜
 						probility = Constant.coreToNormalProbility;
 					}
-				} else {// ±ßÔµ¶ÔºËĞÄ
+				} else {// è¾¹ç¼˜å¯¹æ ¸å¿ƒ
 					if (coreNodes.contains(j)) {
 						probility = Constant.coreToNormalProbility;
 					}
 				}
-				if (Math.random() < probility) {// Èç¹ûÂú×ãÉÏÃæµÄ¸ÅÂÊ£¬ÔòÌí¼Ó±ß
+				if (Math.random() < probility) {// å¦‚æœæ»¡è¶³ä¸Šé¢çš„æ¦‚ç‡ï¼Œåˆ™æ·»åŠ è¾¹
 					graph.addUndirectedEdge(i, j);
 				}
 			}
@@ -76,16 +76,16 @@ public class Topology {
 	/**
 	 * 
 	 * Function: 
-	 * 		½«Á´Â·¾ØÕóĞ´ÈëÎÄ¼şÖĞ 
+	 * 		å°†é“¾è·¯çŸ©é˜µå†™å…¥æ–‡ä»¶ä¸­ 
 	 * Details: 
-	 * 		Ê¹ÓÃÓÅÏÈ¶ÓÁĞ£¬½«Á´Â·¶ÔÏó¼ÓÈëµ½ÓÅÏÈ¶ÓÁĞÖĞ£¬Íê³É¶ÔÃ¿¸öÁ´Â·¶ÔÏóµÄÑÓÊ±½øĞĞ¸³Öµ¡£
-	 * 		×îºó½«Íê³ÉËùÓĞ¸³ÖµµÄÁ´Â·¶ÔÏóĞ´ÈëÎÄ¼şÖĞ¡£
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç1:21:32
+	 * 		ä½¿ç”¨ä¼˜å…ˆé˜Ÿåˆ—ï¼Œå°†é“¾è·¯å¯¹è±¡åŠ å…¥åˆ°ä¼˜å…ˆé˜Ÿåˆ—ä¸­ï¼Œå®Œæˆå¯¹æ¯ä¸ªé“¾è·¯å¯¹è±¡çš„å»¶æ—¶è¿›è¡Œèµ‹å€¼ã€‚
+	 * 		æœ€åå°†å®Œæˆæ‰€æœ‰èµ‹å€¼çš„é“¾è·¯å¯¹è±¡å†™å…¥æ–‡ä»¶ä¸­ã€‚
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ1:21:32
 	 */
 	public void writeIdToFile() {
-		// ÏÂÃæ¸øÉú³ÉµÄÍøÂçÍØÆË¼ÓÑÓÊ±ºÍ´ú¼Û
-		PriorityQueue<Pair> pq = new PriorityQueue<>(new Pair());// ÓÅÏÈ¶ÓÁĞ
-		for (Node node : graph.nodes) {// ±éÀúÃ¿¸ö½Úµã
+		// ä¸‹é¢ç»™ç”Ÿæˆçš„ç½‘ç»œæ‹“æ‰‘åŠ å»¶æ—¶å’Œä»£ä»·
+		PriorityQueue<Pair> pq = new PriorityQueue<>(new Pair());// ä¼˜å…ˆé˜Ÿåˆ—
+		for (Node node : graph.nodes) {// éå†æ¯ä¸ªèŠ‚ç‚¹
 			for (Integer value : node.getNeighbors()) {
 				Pair tmp = new Pair();
 				tmp.setStart(node.getIdentifier());
@@ -95,26 +95,26 @@ public class Topology {
 				tmp.setDistance(distance);
 				int cost = (int) (Math.random() * 30) + 1;// 1-15
 				tmp.setCost(cost);
-				// ½«ÁíÒ»¸öÏà¹ØµÄÉ¾³ı£¬ÒòÎªÒ»¸ö±ß¶ÔÓ¦µÄÊÇÁ½¸öÁ´Â·¡£ÕâÁ½¸öÁ´Â·³ıÁËÆğµãºÍÖÕµãÇ¡ºÃÏà·´Íâ
-				// ÆäÓàµÄ¶¼ÏàÍ¬¡£Êµ¼ÊÉÏÕâÀï¾ÍÊÇÉ¾³ıÆğµãºÍÖÕµãºÍµ±Ç°Õâ¸öÁ´Â·Ç¡ºÃÏà·´µÄÄÇ¸öÁ´Â·
-				// Ò²¾ÍÊÇ½«ÆğµãºÍÖÕµãµÄÁÚ¾Óµ÷ÕûÏÂ
+				// å°†å¦ä¸€ä¸ªç›¸å…³çš„åˆ é™¤ï¼Œå› ä¸ºä¸€ä¸ªè¾¹å¯¹åº”çš„æ˜¯ä¸¤ä¸ªé“¾è·¯ã€‚è¿™ä¸¤ä¸ªé“¾è·¯é™¤äº†èµ·ç‚¹å’Œç»ˆç‚¹æ°å¥½ç›¸åå¤–
+				// å…¶ä½™çš„éƒ½ç›¸åŒã€‚å®é™…ä¸Šè¿™é‡Œå°±æ˜¯åˆ é™¤èµ·ç‚¹å’Œç»ˆç‚¹å’Œå½“å‰è¿™ä¸ªé“¾è·¯æ°å¥½ç›¸åçš„é‚£ä¸ªé“¾è·¯
+				// ä¹Ÿå°±æ˜¯å°†èµ·ç‚¹å’Œç»ˆç‚¹çš„é‚»å±…è°ƒæ•´ä¸‹
 				graph.nodes.get(value).removeEdgeTo(node.getIdentifier());
-				pq.offer(tmp);// ½«µ±Ç°µÄÁ´Â·¶ÔÏó¼ÓÈëµ½ÓÅÏÈ¶ÓÁĞÖĞ£¬ÕâÀïÁ´Â·¶ÔÏó»¹Ã»ÓĞ¶ÔÑÓÊ±¸³Öµ
+				pq.offer(tmp);// å°†å½“å‰çš„é“¾è·¯å¯¹è±¡åŠ å…¥åˆ°ä¼˜å…ˆé˜Ÿåˆ—ä¸­ï¼Œè¿™é‡Œé“¾è·¯å¯¹è±¡è¿˜æ²¡æœ‰å¯¹å»¶æ—¶èµ‹å€¼
 			}
 		}
-		// ¶ÔÇ°75%¸ö½øĞĞÉèÖÃÑÓÊ±1-5,ºó5%ÉèÖÃ20-30,ÆäÓàÉèÖÃ5-8
+		// å¯¹å‰75%ä¸ªè¿›è¡Œè®¾ç½®å»¶æ—¶1-5,å5%è®¾ç½®20-30,å…¶ä½™è®¾ç½®5-8
 		int pre = (int) (pq.size() * 0.75);
 		int post = (int) (pq.size() * 0.95);
 		int size = pq.size();
 		PrintWriter idout = null;
 		try {
-			idout = new PrintWriter(Constant.idFile.replace(".", "_" + Constant.WriteFile_TimeFor + "."));// Í¨ĞÅ
+			idout = new PrintWriter(Constant.idFile.replace(".", "_" + Constant.WriteFile_TimeFor + "."));// é€šä¿¡
 			idout.println("id\tsource\ttarget\tcost\tdelay");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// ÔÚĞ´ÈëÇ°Íê³É¶ÔÑÓÊ±µÄ¸³Öµ£¬Ò»²¢Ğ´Èë
+		// åœ¨å†™å…¥å‰å®Œæˆå¯¹å»¶æ—¶çš„èµ‹å€¼ï¼Œä¸€å¹¶å†™å…¥
 		for (int i = 0; i < size; i++) {
 			int delay;
 			if (i < pre)
@@ -136,10 +136,10 @@ public class Topology {
 	/**
 	 * 
 	 * Function: 
-	 * 		½«±ßÁ¬½ÓĞÅÏ¢Ğ´Èëµ½ÎÄ¼şÖĞ 
+	 * 		å°†è¾¹è¿æ¥ä¿¡æ¯å†™å…¥åˆ°æ–‡ä»¶ä¸­ 
 	 * Details: 
-	 * 		Ğ´Èëµ½µÄÎÄ¼ş£¬ÔÚ»æÖÆÍ¼ĞÎ½çÃæµÄÊ±ºò»áÓÃµ½
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç1:27:04
+	 * 		å†™å…¥åˆ°çš„æ–‡ä»¶ï¼Œåœ¨ç»˜åˆ¶å›¾å½¢ç•Œé¢çš„æ—¶å€™ä¼šç”¨åˆ°
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ1:27:04
 	 */
 	public void writeEdgeLinkToFile() {
 		PrintWriter out = null;
@@ -158,10 +158,10 @@ public class Topology {
 	/**
 	 * 
 	 * Function: 
-	 * 		½«½Úµã¾ØÕóĞ´Èëµ½ÎÄ¼şÖĞ
+	 * 		å°†èŠ‚ç‚¹çŸ©é˜µå†™å…¥åˆ°æ–‡ä»¶ä¸­
 	 * Details: 
-	 * 		Ğ´ÈëµÄÎÄ¼şÔÚÉú³ÉÍØÆËºÍ»æÖÆÍ¼ĞÎ½çÃæµÄÊ±ºò¶¼»áÓÃµ½¡£´ó¶àÊıÊÇÔÚ»æÖÆÍ¼ĞÎµÄÊ±ºòÓÃµ½¡£
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç1:28:16
+	 * 		å†™å…¥çš„æ–‡ä»¶åœ¨ç”Ÿæˆæ‹“æ‰‘å’Œç»˜åˆ¶å›¾å½¢ç•Œé¢çš„æ—¶å€™éƒ½ä¼šç”¨åˆ°ã€‚å¤§å¤šæ•°æ˜¯åœ¨ç»˜åˆ¶å›¾å½¢çš„æ—¶å€™ç”¨åˆ°ã€‚
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ1:28:16
 	 */
 	public void writeNodeToFile() {
 		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(
@@ -176,10 +176,10 @@ public class Topology {
 	/**
 	 * 
 	 * Function: 
-	 * 		½«ºËĞÄ½ÚµãĞ´Èëµ½ÎÄ¼şÖĞ 
+	 * 		å°†æ ¸å¿ƒèŠ‚ç‚¹å†™å…¥åˆ°æ–‡ä»¶ä¸­ 
 	 * Details: 
-	 * 		Ğ´ÈëµÄÎÄ¼ş´ó¶àÊıÔÚ»æÖÆÍ¼ĞÎ½çÃæµÄÊ±ºòÓÃµ½ 
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç1:29:17
+	 * 		å†™å…¥çš„æ–‡ä»¶å¤§å¤šæ•°åœ¨ç»˜åˆ¶å›¾å½¢ç•Œé¢çš„æ—¶å€™ç”¨åˆ° 
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ1:29:17
 	 */
 	public void writeCoreNodeToFile(List<Integer> coreNodeLists) {
 		PrintWriter out = null;

@@ -11,7 +11,7 @@ import java.util.Set;
  * Represents a graph.
  * 
  * OverView:
- * 		该类在github上复制来的，作为网络的基础
+ * 		璇ョ被鍦╣ithub涓婂鍒舵潵鐨勶紝浣滀负缃戠粶鐨勫熀纭�
  */
 class Graph
 {

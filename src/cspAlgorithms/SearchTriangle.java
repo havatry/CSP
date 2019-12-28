@@ -7,10 +7,10 @@ import randomTopology.Constant;
 /**
  * 
  * OverView: 
- * 		¸ÃÀàÔÚ¸ø¶¨Ò»¸öCSP·½·¨ºó£¬¼ÌĞøÔÚCSP·½·¨ºóÇóÈı½ÇĞÎÇøÓòÄÚµÄ¾«È·½â¡£
+ * 		è¯¥ç±»åœ¨ç»™å®šä¸€ä¸ªCSPæ–¹æ³•åï¼Œç»§ç»­åœ¨CSPæ–¹æ³•åæ±‚ä¸‰è§’å½¢åŒºåŸŸå†…çš„ç²¾ç¡®è§£ã€‚
  */
 public class SearchTriangle extends AbstractCSPMethods {
-	private CSP CspMethod; // ´ı´«ÈëµÄCSP·½·¨
+	private CSP CspMethod; // å¾…ä¼ å…¥çš„CSPæ–¹æ³•
 
 	public SearchTriangle(CSP CspMethod) {
 		// TODO Auto-generated constructor stub
@@ -20,18 +20,18 @@ public class SearchTriangle extends AbstractCSPMethods {
 	@Override
 	public List<Integer> OptimalPath(int[] Node, double[][] Id, int[][] IdLink, int delayConstraint, int start,
 			int end) {
-		// ´«ÈëµÄCSP·½·¨»ñÈ¡×î¼ÑÂ·¾¶£¨ÕâÀï×î¼Ñ²»µÈÍ¬ÓÚ¾«È·£¬×¢ÒâÇø·Ö£©
+		// ä¼ å…¥çš„CSPæ–¹æ³•è·å–æœ€ä½³è·¯å¾„ï¼ˆè¿™é‡Œæœ€ä½³ä¸ç­‰åŒäºç²¾ç¡®ï¼Œæ³¨æ„åŒºåˆ†ï¼‰
 		List<Integer> path = CspMethod.OptimalPath(Node, Id, IdLink, delayConstraint, start, end);
 		if (path == null)
-			return null;// ÕÒ²»µ½Â·¾¶£¬Ôò·µ»Ø
-		double theta = CspMethod.getTheta();// »ñÈ¡CSPÇóµÃ×î¼Ñ½âµÄÊ±ºò¶ÔÓ¦µÄĞ±ÂÊ½Ç¶È
-		// ÓÃÕâ¸ö½Ç¶ÈÀ´ÇóbaseCost,¹ØÓÚbaseCostÇë²Î¿¼±¾°üÖĞµÄDijkstraÀàÖĞYenWithSearch·½·¨¶ÔÓ¦ÃèÊö
+			return null;// æ‰¾ä¸åˆ°è·¯å¾„ï¼Œåˆ™è¿”å›
+		double theta = CspMethod.getTheta();// è·å–CSPæ±‚å¾—æœ€ä½³è§£çš„æ—¶å€™å¯¹åº”çš„æ–œç‡è§’åº¦
+		// ç”¨è¿™ä¸ªè§’åº¦æ¥æ±‚baseCost,å…³äºbaseCostè¯·å‚è€ƒæœ¬åŒ…ä¸­çš„Dijkstraç±»ä¸­YenWithSearchæ–¹æ³•å¯¹åº”æè¿°
 		double baseCost = Math.cos(theta) * Ctheta(path, Id, IdLink) + Math.sin(theta) * delayConstraint;
 		Dijkstra dijkstra = new Dijkstra();
-		// ÀûÓÃYenWithSearch·½·¨Çó³öËùÓĞÂú×ãÌõ¼şµÄ×î¶ÌÂ·¾¶
+		// åˆ©ç”¨YenWithSearchæ–¹æ³•æ±‚å‡ºæ‰€æœ‰æ»¡è¶³æ¡ä»¶çš„æœ€çŸ­è·¯å¾„
 		List<List<Integer>> allPaths = dijkstra.YenWithSearch(Node, Common.getEdge(Node, Id, IdLink, theta), Id, IdLink,
 				start, end, baseCost, theta, delayConstraint);
-		// ÕÒ³öËùÓĞ×î¶ÌÂ·¾¶ÖĞ´ú¼Û×îĞ¡µÄÄÇ¸ö£¬¼´Îª¾«È·½â
+		// æ‰¾å‡ºæ‰€æœ‰æœ€çŸ­è·¯å¾„ä¸­ä»£ä»·æœ€å°çš„é‚£ä¸ªï¼Œå³ä¸ºç²¾ç¡®è§£
 		List<Integer> retPath = null;
 		int MIN = Constant.MIN;
 		for (int i = 0; i < allPaths.size(); i++) {
@@ -42,7 +42,7 @@ public class SearchTriangle extends AbstractCSPMethods {
 				}
 			}
 		}
-		// ´Ó±¾°üDijkstraÀàÖĞ»ñÈ¡µ÷ÓÃdijkstraµÄ´ÎÊı
+		// ä»æœ¬åŒ…Dijkstraç±»ä¸­è·å–è°ƒç”¨dijkstraçš„æ¬¡æ•°
 		CallDijkstraTime = dijkstra.getCallDijkstraTime() + CspMethod.getCallDijkstraTime();
 		return retPath;
 	}

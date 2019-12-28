@@ -7,16 +7,16 @@ import randomTopology.Constant;
 /**
  * 
  * OverView: 
- * 		ÕâÊÇËùÓĞCSPËã·¨µÄ»ùÀà¡£¸Ã»ùÀàÊµÏÖÁËCSP½Ó¿Ú£¬²¢ÇÒÌá¹©ÁËÒ»Ğ©ÆäËû»ù±¾·½·¨¡£ÕâĞ©·½·¨°üÀ¨
- * 		¸ø¶¨thetaÊ±»ñÈ¡ĞÂÍøÂçµÄÂ·¾¶¡¢»ñÈ¡×îĞ¡¶È¡¢»ñÈ¡Æ½¾ù¶È¡£
+ * 		è¿™æ˜¯æ‰€æœ‰CSPç®—æ³•çš„åŸºç±»ã€‚è¯¥åŸºç±»å®ç°äº†CSPæ¥å£ï¼Œå¹¶ä¸”æä¾›äº†ä¸€äº›å…¶ä»–åŸºæœ¬æ–¹æ³•ã€‚è¿™äº›æ–¹æ³•åŒ…æ‹¬
+ * 		ç»™å®šthetaæ—¶è·å–æ–°ç½‘ç»œçš„è·¯å¾„ã€è·å–æœ€å°åº¦ã€è·å–å¹³å‡åº¦ã€‚
  */
 public abstract class AbstractCSPMethods implements CSP {
-	protected double esp = Constant.esp;// ¶ş·Ö·¨ºÍLARACµÄ¾«¶È
-	protected double theta = -1.0;// ¸ºÊı±íÊ¾Ã»ÓĞÕÒµ½Â·¾¶
-	protected int CallDijkstraTime = 0;// ·µ»Øµ÷ÓÃDijkstraËã·¨µÄ´ÎÊı
+	protected double esp = Constant.esp;// äºŒåˆ†æ³•å’ŒLARACçš„ç²¾åº¦
+	protected double theta = -1.0;// è´Ÿæ•°è¡¨ç¤ºæ²¡æœ‰æ‰¾åˆ°è·¯å¾„
+	protected int CallDijkstraTime = 0;// è¿”å›è°ƒç”¨Dijkstraç®—æ³•çš„æ¬¡æ•°
 
 	@Override
-	public double Ctheta(List<Integer> path, double[][] Id, int[][] IdLink) {// ÓÃÓÚÇó½âÂ·¾¶ÉÏµÄ´ú¼Û
+	public double Ctheta(List<Integer> path, double[][] Id, int[][] IdLink) {// ç”¨äºæ±‚è§£è·¯å¾„ä¸Šçš„ä»£ä»·
 		// TODO Auto-generated method stub
 		double total = 0;
 		for (int i = path.size() - 1; i >= 1; i--) {
@@ -29,7 +29,7 @@ public abstract class AbstractCSPMethods implements CSP {
 	}
 
 	@Override
-	public double Ptheta(List<Integer> path, double[][] Id, int[][] IdLink) {// ÓÃÓÚÇó½âÂ·¾¶ÉÏµÄÑÓÊ±
+	public double Ptheta(List<Integer> path, double[][] Id, int[][] IdLink) {// ç”¨äºæ±‚è§£è·¯å¾„ä¸Šçš„å»¶æ—¶
 		// TODO Auto-generated method stub
 		double delay = 0;
 		for (int i = path.size() - 1; i >= 1; i--) {
@@ -44,16 +44,16 @@ public abstract class AbstractCSPMethods implements CSP {
 	/**
 	 * 
 	 * Function:
-	 * 		ÔÚ¸ø¶¨ÍøÂçÍØÆËÇé¿öÏÂ£¬Í¨¹ıthetaÖØĞÂ¹¹Ôì±ßµÄÈ¨ÖØ¡£
-	 * 		ÆäÖĞÈ¨ÖØ¶¨ÒåÎªc=cos(theta)*c+sin(theta)*d,cÊÇÔ­À´
-	 * 		ÍøÂçÖĞµÄÈ¨ÖØ£¬dÊÇÔ­À´ÍøÂçÖĞµÄÑÓÊ±¡£ÔÚÓÃĞÂµÄ´ú¼ÛµÄÍøÂçÖĞ£¬´Óstart½Úµãµ½end½ÚµãÇó³öÒ»¸öÂ·¾¶¡£
+	 * 		åœ¨ç»™å®šç½‘ç»œæ‹“æ‰‘æƒ…å†µä¸‹ï¼Œé€šè¿‡thetaé‡æ–°æ„é€ è¾¹çš„æƒé‡ã€‚
+	 * 		å…¶ä¸­æƒé‡å®šä¹‰ä¸ºc=cos(theta)*c+sin(theta)*d,cæ˜¯åŸæ¥
+	 * 		ç½‘ç»œä¸­çš„æƒé‡ï¼Œdæ˜¯åŸæ¥ç½‘ç»œä¸­çš„å»¶æ—¶ã€‚åœ¨ç”¨æ–°çš„ä»£ä»·çš„ç½‘ç»œä¸­ï¼Œä»startèŠ‚ç‚¹åˆ°endèŠ‚ç‚¹æ±‚å‡ºä¸€ä¸ªè·¯å¾„ã€‚
 	 * Details:
-	 * 		ÇóÂ·¾¶µÄ·½·¨ÊÇdijkstraËã·¨¡£¸Ãº¯ÊıÃ¿´Î±»µ÷ÓÃµÄÊ±ºò£¬dijkstraËã·¨Ò²±»µ÷ÓÃ¡£
-	 * 		Òò´Ë×ÜµÄµ÷ÓÃdijkstra´ÎÊı ¾ÍÏàÓ¦×ÔÔö¡£
-	 * Remark: 2018Äê9ÔÂ18ÈÕ ÏÂÎç9:14:35
+	 * 		æ±‚è·¯å¾„çš„æ–¹æ³•æ˜¯dijkstraç®—æ³•ã€‚è¯¥å‡½æ•°æ¯æ¬¡è¢«è°ƒç”¨çš„æ—¶å€™ï¼Œdijkstraç®—æ³•ä¹Ÿè¢«è°ƒç”¨ã€‚
+	 * 		å› æ­¤æ€»çš„è°ƒç”¨dijkstraæ¬¡æ•° å°±ç›¸åº”è‡ªå¢ã€‚
+	 * Remark: 2018å¹´9æœˆ18æ—¥ ä¸‹åˆ9:14:35
 	 */
 	protected List<Integer> getPath(int[] Node, double[][] Id, double theta, int start, int end) {
-		// ¹¹ÔìĞÂÍøÂçµÄÈ¨ÖØ
+		// æ„é€ æ–°ç½‘ç»œçš„æƒé‡
 		double[][] Edge = new double[Node.length][Node.length];
 		for (int i = 0; i < Id.length; i++) {
 			Edge[(int) Id[i][0]][(int) Id[i][1]] = Math.cos(theta) * Id[i][2] + Math.sin(theta) * Id[i][3];
@@ -66,7 +66,7 @@ public abstract class AbstractCSPMethods implements CSP {
 			}
 		}
 
-		// µ÷ÓÃdijkstraËã·¨·µ»Ø
+		// è°ƒç”¨dijkstraç®—æ³•è¿”å›
 		CallDijkstraTime++;
 		return new Dijkstra().DijkstraOfPath(Node, Edge, start, end);
 	}
@@ -74,11 +74,11 @@ public abstract class AbstractCSPMethods implements CSP {
 	/**
 	 * 
 	 * Function: 
-	 * 		ÕâÊµ¼ÊÉÏÔÚÇóµ±thetaÎªPI/2µÄÊ±ºò×î¶ÌÂ·¾¶£¬¸ÃÂ·¾¶¶ÔÓ¦µÄÑÓÊ±¼´Îª×îĞ¡ÑÓÊ±¡£
+	 * 		è¿™å®é™…ä¸Šåœ¨æ±‚å½“thetaä¸ºPI/2çš„æ—¶å€™æœ€çŸ­è·¯å¾„ï¼Œè¯¥è·¯å¾„å¯¹åº”çš„å»¶æ—¶å³ä¸ºæœ€å°å»¶æ—¶ã€‚
 	 * Details:
-	 * 		µ±thetaÎªPI/2µÄÊ±ºò£¬ĞÂµÄÍøÂçÈ¨ÖØ¾Í±ä³ÉÔ­À´ÍøÂçµÄÑÓÊ±¡£
-	 * 		´ËÊ±×î¶ÌÂ·¾¶¾ÍÊÇ¶ÔÓ¦Ô­À´ÍøÂçµÄ×îĞ¡ÑÓÊ±¡£
-	 * Remark: 2018Äê9ÔÂ18ÈÕ ÏÂÎç9:27:11
+	 * 		å½“thetaä¸ºPI/2çš„æ—¶å€™ï¼Œæ–°çš„ç½‘ç»œæƒé‡å°±å˜æˆåŸæ¥ç½‘ç»œçš„å»¶æ—¶ã€‚
+	 * 		æ­¤æ—¶æœ€çŸ­è·¯å¾„å°±æ˜¯å¯¹åº”åŸæ¥ç½‘ç»œçš„æœ€å°å»¶æ—¶ã€‚
+	 * Remark: 2018å¹´9æœˆ18æ—¥ ä¸‹åˆ9:27:11
 	 */
 	public double GetMinDelay(int[] Node, double[][] Id, int[][] IdLink, int start, int end) {
 		return Ptheta(getPath(Node, Id, Math.PI / 2, start, end), Id, IdLink); // d-minial
@@ -97,12 +97,12 @@ public abstract class AbstractCSPMethods implements CSP {
 	/**
 	 * 
 	 * Function:
-	 * 		 »ñÈ¡ÍøÂçµÄÆ½¾ù¶È¡£ 
+	 * 		 è·å–ç½‘ç»œçš„å¹³å‡åº¦ã€‚ 
 	 * Detail:
-	 * 		Æ½¾ù¶ÈµÄÇó·¨ÊÇÍøÂçÖĞµÄËùÓĞ±ßÊı³ıÒÔ×ÜµÄ½ÚµãÊı¡£ÕâÀïµÄ¶ÈÊµ¼ÊÉÏÊÇ°üÀ¨³ö¶ÈºÍÈë¶È¡£
-	 * 		¼òµ¥À´Ëµ¾ÍÊÇÒ»Ìõ±ß¶ÔÓ¦µÄ¶ÈÊÇ2¡£ÕâÔÚÉú³ÉExcelÖĞ»á³ıÒÔ2¡£
-	 * 		IdµÄ¾ßÌåº¬ÒåÇë²Î¿¼randomTopology°üÖĞTopologyÀà½éÉÜ¡£
-	 * Remark: 2018Äê9ÔÂ18ÈÕ  ÏÂÎç9:29:32
+	 * 		å¹³å‡åº¦çš„æ±‚æ³•æ˜¯ç½‘ç»œä¸­çš„æ‰€æœ‰è¾¹æ•°é™¤ä»¥æ€»çš„èŠ‚ç‚¹æ•°ã€‚è¿™é‡Œçš„åº¦å®é™…ä¸Šæ˜¯åŒ…æ‹¬å‡ºåº¦å’Œå…¥åº¦ã€‚
+	 * 		ç®€å•æ¥è¯´å°±æ˜¯ä¸€æ¡è¾¹å¯¹åº”çš„åº¦æ˜¯2ã€‚è¿™åœ¨ç”ŸæˆExcelä¸­ä¼šé™¤ä»¥2ã€‚
+	 * 		Idçš„å…·ä½“å«ä¹‰è¯·å‚è€ƒrandomTopologyåŒ…ä¸­Topologyç±»ä»‹ç»ã€‚
+	 * Remark: 2018å¹´9æœˆ18æ—¥  ä¸‹åˆ9:29:32
 	 */
 	public static double getAverageDegree(int[] Node, double[][] Id) {
 		return (double) Id.length / Node.length;

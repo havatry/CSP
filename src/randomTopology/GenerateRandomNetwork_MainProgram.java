@@ -6,24 +6,24 @@ import java.util.Date;
 
 /**
  * 
- * OverView: Éú³ÉÍØÆËµÄÈë¿Ú
+ * OverView: ç”Ÿæˆæ‹“æ‰‘çš„å…¥å£
  */
 public class GenerateRandomNetwork_MainProgram {
 	/**
 	 * 
 	 * Function:
-	 *		Éú³É¸ø¶¨ÍøÂçÍØÆË
+	 *		ç”Ÿæˆç»™å®šç½‘ç»œæ‹“æ‰‘
 	 * Details:
-	 *		ÒÀ¾İÅäÖÃÎÄ¼şÖĞµÄ×éÊıgroupºÍÃ¿×éµÄ¸öÊıcopy
-	 *		ÒÀ´ÎÉú³É·ûºÏÒªÇóµÄÍØÆË£¬½èÖú±¾°üÖĞµÄTopologyÀà¡£
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç1:00:22
+	 *		ä¾æ®é…ç½®æ–‡ä»¶ä¸­çš„ç»„æ•°groupå’Œæ¯ç»„çš„ä¸ªæ•°copy
+	 *		ä¾æ¬¡ç”Ÿæˆç¬¦åˆè¦æ±‚çš„æ‹“æ‰‘ï¼Œå€ŸåŠ©æœ¬åŒ…ä¸­çš„Topologyç±»ã€‚
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ1:00:22
 	 */
 	public static void main(String[] args) {
 		for (int i = 0; i < Constant.group; i++) {
-			XMLHelper.setValue("//allInfo/node/number", Constant.step * (i + 1) + "");// ÀïÃæÓĞ¸üĞÂ±äÁ¿
+			XMLHelper.setValue("//allInfo/node/number", Constant.step * (i + 1) + "");// é‡Œé¢æœ‰æ›´æ–°å˜é‡
 			for (int j = 0; j < Constant.copy; j++) {
 				new Topology().ProduceTopology();
-				Constant.WriteFile_TimeFor++;// ¸üĞÂ£¬ÖØÒª
+				Constant.WriteFile_TimeFor++;// æ›´æ–°ï¼Œé‡è¦
 			}
 		}
 	}
@@ -31,24 +31,24 @@ public class GenerateRandomNetwork_MainProgram {
 	/**
 	 * 
 	 * Function:
-	 *		½«±¾³ÌĞòµÄ¹Ø¼üÅäÖÃÊı¾İĞ´Èëµ½ÎÄ¼şÖĞ
+	 *		å°†æœ¬ç¨‹åºçš„å…³é”®é…ç½®æ•°æ®å†™å…¥åˆ°æ–‡ä»¶ä¸­
 	 * Details:
-	 *		Í¬ÉÏ
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç2:22:46
+	 *		åŒä¸Š
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ2:22:46
 	 */
 	public static void writeCharacteristicToFile() {
-		//Ğ´ÈëºËĞÄ½Úµã¸ÅÂÊ¡¢ºËĞÄÓëºËĞÄÁ¬±ß¸ÅÂÊ¡¢ºËĞÄÓë±ßÔµÁ¬±ß¸ÅÂÊ¡¢±ß³¤´óĞ¡¡¢group¡¢copy¡¢step´óĞ¡¡¢Ğ´ÈëÈÕÆÚ
+		//å†™å…¥æ ¸å¿ƒèŠ‚ç‚¹æ¦‚ç‡ã€æ ¸å¿ƒä¸æ ¸å¿ƒè¿è¾¹æ¦‚ç‡ã€æ ¸å¿ƒä¸è¾¹ç¼˜è¿è¾¹æ¦‚ç‡ã€è¾¹é•¿å¤§å°ã€groupã€copyã€stepå¤§å°ã€å†™å…¥æ—¥æœŸ
 		PrintWriter out=null;
 		try {
-			out=new PrintWriter(Constant.CharacteristicFile);//Ò»¸öÄ¿Â¼ÏÂÖ»ÓĞÒ»¸öÌØÕ÷ÎÄ¼ş
-			out.println("ºËĞÄ½Úµã¸ÅÂÊ: "+Constant.coreProbility);
-			out.println("ºËĞÄÓëºËĞÄÁ¬±ß¸ÅÂÊ: "+Constant.coreToCoreProbility);
-			out.println("ºËĞÄÓë±ßÔµÁ¬±ß¸ÅÂÊ: "+Constant.coreToNormalProbility);
-			out.println("ÇøÓò±ß³¤: "+Constant.W);
-			out.println("ËùÓĞ×éÊı: "+Constant.group);
-			out.println("Ã¿×é¸öÊı: "+Constant.copy);
-			out.println("Ã¿×éÏà²î½ÚµãÊı: "+Constant.step);
-			out.println("Ğ´ÈëÈÕÆÚ: "+new Date());
+			out=new PrintWriter(Constant.CharacteristicFile);//ä¸€ä¸ªç›®å½•ä¸‹åªæœ‰ä¸€ä¸ªç‰¹å¾æ–‡ä»¶
+			out.println("æ ¸å¿ƒèŠ‚ç‚¹æ¦‚ç‡: "+Constant.coreProbility);
+			out.println("æ ¸å¿ƒä¸æ ¸å¿ƒè¿è¾¹æ¦‚ç‡: "+Constant.coreToCoreProbility);
+			out.println("æ ¸å¿ƒä¸è¾¹ç¼˜è¿è¾¹æ¦‚ç‡: "+Constant.coreToNormalProbility);
+			out.println("åŒºåŸŸè¾¹é•¿: "+Constant.W);
+			out.println("æ‰€æœ‰ç»„æ•°: "+Constant.group);
+			out.println("æ¯ç»„ä¸ªæ•°: "+Constant.copy);
+			out.println("æ¯ç»„ç›¸å·®èŠ‚ç‚¹æ•°: "+Constant.step);
+			out.println("å†™å…¥æ—¥æœŸ: "+new Date());
 		} catch (FileNotFoundException e) {
 			// TODO: handle exception
 		}finally {

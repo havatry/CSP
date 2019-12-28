@@ -6,16 +6,16 @@ import java.util.List;
 /**
  * 
  * OverView: 
- * 		Éú³ÉºËĞÄ½Úµã ¸ÃÀàÌá¹©Ëæ»úÉú³ÉºËĞÄ½ÚµãµÄ·½·¨
+ * 		ç”Ÿæˆæ ¸å¿ƒèŠ‚ç‚¹ è¯¥ç±»æä¾›éšæœºç”Ÿæˆæ ¸å¿ƒèŠ‚ç‚¹çš„æ–¹æ³•
  */
 public class CoreNode {
 	/**
 	 * 
 	 * Function:
-	 *		°´ÕÕ¸ø¶¨µÄ½ÚµãÊıºÍÅäÖÃÎÄ¼şÖĞµÄºËĞÄ½Úµã¸ÅÂÊ£¬À´Éú³ÉºËĞÄ½Úµã
+	 *		æŒ‰ç…§ç»™å®šçš„èŠ‚ç‚¹æ•°å’Œé…ç½®æ–‡ä»¶ä¸­çš„æ ¸å¿ƒèŠ‚ç‚¹æ¦‚ç‡ï¼Œæ¥ç”Ÿæˆæ ¸å¿ƒèŠ‚ç‚¹
 	 * Details:
-	 *		Í¬ÉÏ
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç12:59:10
+	 *		åŒä¸Š
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ12:59:10
 	 */
 	protected List<Integer> findCoreNodes(int numNodes) {
 		List<Integer> coreNodeLists = new ArrayList<Integer>();

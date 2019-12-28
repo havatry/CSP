@@ -28,25 +28,25 @@ import randomTopology.Constant;
 /**
  * 
  * OverView:
- * 		 ¸ÃÀàÍê³ÉÖ¸¶¨Ëã·¨µÄ±È½Ï£¬²¢½«½á¹ûĞ´Èëµ½ExcelÖĞ
- * 		 ¸ÃÀàÌá¹©Éú³ÉExcel·½·¨¡¢·µ»ØExcelÎÄ¼şÃû·½·¨
+ * 		 è¯¥ç±»å®ŒæˆæŒ‡å®šç®—æ³•çš„æ¯”è¾ƒï¼Œå¹¶å°†ç»“æœå†™å…¥åˆ°Excelä¸­
+ * 		 è¯¥ç±»æä¾›ç”ŸæˆExcelæ–¹æ³•ã€è¿”å›Excelæ–‡ä»¶åæ–¹æ³•
  */
 public class MutilMethodsComparision {
-	private String filename;// ExcelÃû³Æ
-	private String[] descrption = { "½ÚµãÊı", "×Ü±ßÊı", "Æ½¾ù¶È", "×îĞ¡¶È", "×î´ó¶È", "×îĞ¡ÑÓÊ±", "gama" };// ExcelÇ°Ãæ¼¸ÁĞµÄÃèÊö×Ö¶Î
-	private String[] testargs = { "c", "d", "µ÷ÓÃdijkstra´ÎÊı", "ÔËËãÊ±¼ä/ms" };// Ã¿¸ö·½·¨Òª²âÊÔµÄÏî
-	private String[] methodNames = { "LARAC", "BiLAD", "ExactBiLAD" };// ²âÊÔµÄ·½·¨
-	private int[] delayConstraint;// ÑÓÊ±Ô¼ÊøÔö¼ÓÖµ£¬ÔÚµ±Ç°×îĞ¡ÑÓÊ±ÏÂ½øĞĞµÄÔö¼ÓÖµ×÷ÎªÑÓÊ±ãĞÖµ
-	private double[] gama;// gama²ÎÊı
-	private SwingWorker<String, String> ref;// Í¼ĞÎ½çÃæÖĞµÄÒıÓÃ
+	private String filename;// Excelåç§°
+	private String[] descrption = { "èŠ‚ç‚¹æ•°", "æ€»è¾¹æ•°", "å¹³å‡åº¦", "æœ€å°åº¦", "æœ€å¤§åº¦", "æœ€å°å»¶æ—¶", "gama" };// Excelå‰é¢å‡ åˆ—çš„æè¿°å­—æ®µ
+	private String[] testargs = { "c", "d", "è°ƒç”¨dijkstraæ¬¡æ•°", "è¿ç®—æ—¶é—´/ms" };// æ¯ä¸ªæ–¹æ³•è¦æµ‹è¯•çš„é¡¹
+	private String[] methodNames = { "LARAC", "BiLAD", "ExactBiLAD" };// æµ‹è¯•çš„æ–¹æ³•
+	private int[] delayConstraint;// å»¶æ—¶çº¦æŸå¢åŠ å€¼ï¼Œåœ¨å½“å‰æœ€å°å»¶æ—¶ä¸‹è¿›è¡Œçš„å¢åŠ å€¼ä½œä¸ºå»¶æ—¶é˜ˆå€¼
+	private double[] gama;// gamaå‚æ•°
+	private SwingWorker<String, String> ref;// å›¾å½¢ç•Œé¢ä¸­çš„å¼•ç”¨
 
-	public MutilMethodsComparision() {// Ä¬ÈÏmain·½·¨µ÷ÓÃ´Ë¹¹Ôìº¯Êı
+	public MutilMethodsComparision() {// é»˜è®¤mainæ–¹æ³•è°ƒç”¨æ­¤æ„é€ å‡½æ•°
 		// TODO Auto-generated constructor stub
 		delayConstraint = new int[] { 1, 2, 3 };
 		gama = new double[] { 0.05, 0.1 };
 	}
 
-	// ¸Ã¹¹Ôìº¯ÊıÊÇÍ¼ĞÎ½çÃæ½øĞĞµ÷ÓÃµÄ£¬Ö¸¶¨ÑÓÊ±Ôö¼Ó¾ØÕó¡¢²âÊÔ·½·¨¾ØÕó¡¢gama²ÎÊı¾ØÕóÒÔ¼°ÒıÓÃ
+	// è¯¥æ„é€ å‡½æ•°æ˜¯å›¾å½¢ç•Œé¢è¿›è¡Œè°ƒç”¨çš„ï¼ŒæŒ‡å®šå»¶æ—¶å¢åŠ çŸ©é˜µã€æµ‹è¯•æ–¹æ³•çŸ©é˜µã€gamaå‚æ•°çŸ©é˜µä»¥åŠå¼•ç”¨
 	public MutilMethodsComparision(String[] methodNames, int[] delayConstraint, double[] gama,
 			SwingWorker<String, String> ref) {
 		this.methodNames = methodNames;
@@ -58,28 +58,28 @@ public class MutilMethodsComparision {
 	/**
 	 * 
 	 * Function:
-	 *		ºËĞÄ·½·¨¡£ÓÃÀ´Éú³ÉExcelÎÄ¼ş¡£
+	 *		æ ¸å¿ƒæ–¹æ³•ã€‚ç”¨æ¥ç”ŸæˆExcelæ–‡ä»¶ã€‚
 	 * Details:
-	 *		Ê×ÏÈ¼ì²éÎÄ¼şÃû£¬»ñÈ¡ÎÄ¼şÃû½áÎ²µÄ×î´óÊı×Ö£¬²¢ÔÚ´ËÊı×ÖÉÏ¼ÓÒ»¡£ÀàËÆLinuxÉÏµÄÌí¼ÓÓÃ»§Ê±ºò¸øµÄUID¡£
-	 *		È»ºóÊÇPOI½øĞĞ²Ù×÷¡£¾ßÌå²Ù×÷¹ı³Ì²ÎÕÕÍøÉÏ½Ì³Ì¡£
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç1:50:01
+	 *		é¦–å…ˆæ£€æŸ¥æ–‡ä»¶åï¼Œè·å–æ–‡ä»¶åç»“å°¾çš„æœ€å¤§æ•°å­—ï¼Œå¹¶åœ¨æ­¤æ•°å­—ä¸ŠåŠ ä¸€ã€‚ç±»ä¼¼Linuxä¸Šçš„æ·»åŠ ç”¨æˆ·æ—¶å€™ç»™çš„UIDã€‚
+	 *		ç„¶åæ˜¯POIè¿›è¡Œæ“ä½œã€‚å…·ä½“æ“ä½œè¿‡ç¨‹å‚ç…§ç½‘ä¸Šæ•™ç¨‹ã€‚
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ1:50:01
 	 */
 	public void DesignExcel() throws FileNotFoundException, IOException {
 		checkFilename();
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("MultiMethodsComparision");
-		// ¶³½á´°¿Ú
+		// å†»ç»“çª—å£
 		if (Boolean.parseBoolean(XMLHelper.getValue("//allInfo/test/isFreeze")))
 			sheet.createFreezePane(0, 2);
 
-		int baseRowNum = Constant.group * Constant.copy + 4;// Ã¿¸ögamaÕ¼ÓÃĞĞÊı
-		for (int k = 0; k < gama.length; k++) {// ±éÀúgama²ÎÊı¾ØÕó
-			XMLHelper.setValue("//allInfo/test/gama", gama[k] + "");// ½«gamaÖµĞ´Èësetting.xmlÎÄ¼şÖĞ
-																	// ¸ÃÖµ»áÔÚĞ´ÈëºóÖØĞÂÉèÖÃConstantµÄgamaÖµ
-																	// ²Î¿¼randomTopology°üÖĞXMLHelpÀàĞŞ¸ÄxmlÖµµÄ·½·¨
+		int baseRowNum = Constant.group * Constant.copy + 4;// æ¯ä¸ªgamaå ç”¨è¡Œæ•°
+		for (int k = 0; k < gama.length; k++) {// éå†gamaå‚æ•°çŸ©é˜µ
+			XMLHelper.setValue("//allInfo/test/gama", gama[k] + "");// å°†gamaå€¼å†™å…¥setting.xmlæ–‡ä»¶ä¸­
+																	// è¯¥å€¼ä¼šåœ¨å†™å…¥åé‡æ–°è®¾ç½®Constantçš„gamaå€¼
+																	// å‚è€ƒrandomTopologyåŒ…ä¸­XMLHelpç±»ä¿®æ”¹xmlå€¼çš„æ–¹æ³•
 			HSSFRow row = sheet.createRow(baseRowNum * k);
-			int baseNum = 4 * methodNames.length + 1;// ÕâÊÇdelay»ù×¼
-			// ½øĞĞµ¥Ôª¸ñµÄºÏ²¢£¬Ã¿¸ö·½·¨ºÏ²¢Ò»´Îµ¥Ôª¸ñ
+			int baseNum = 4 * methodNames.length + 1;// è¿™æ˜¯delayåŸºå‡†
+			// è¿›è¡Œå•å…ƒæ ¼çš„åˆå¹¶ï¼Œæ¯ä¸ªæ–¹æ³•åˆå¹¶ä¸€æ¬¡å•å…ƒæ ¼
 			for (int i = 0; i < delayConstraint.length; i++) {
 				for (int j = 0; j < methodNames.length; j++) {
 					row.createCell(baseNum * i + testargs.length * j + descrption.length + 1)
@@ -90,17 +90,17 @@ public class MutilMethodsComparision {
 					sheet.addMergedRegion(address);
 				}
 			}
-			// ¿ªÊ¼Ìí¼ÓÃèÊö×Ö¶Î
+			// å¼€å§‹æ·»åŠ æè¿°å­—æ®µ
 			row = sheet.createRow(baseRowNum * k + 1);
-			for (int i = 0; i < descrption.length; i++) {// Ìí¼ÓÃèÊö
+			for (int i = 0; i < descrption.length; i++) {// æ·»åŠ æè¿°
 				row.createCell(i).setCellValue(descrption[i]);
 			}
-			// ¿ªÊ¼Ìí¼Ó·½·¨×Ö¶Î
-			for (int i = 0; i < delayConstraint.length; i++) {// Ã¿¸öÔ¼Êø¶¼Ìí¼Ó·½·¨
+			// å¼€å§‹æ·»åŠ æ–¹æ³•å­—æ®µ
+			for (int i = 0; i < delayConstraint.length; i++) {// æ¯ä¸ªçº¦æŸéƒ½æ·»åŠ æ–¹æ³•
 				row.createCell(baseNum * i + descrption.length).setCellValue("delayconstraint");
 				sheet.setColumnWidth(baseNum * i + descrption.length, 13 * 256);
-				for (int j = 0; j < methodNames.length; j++) {// Ã¿¸ö·½·¨¶¼Ìí¼Ó²âÊÔ²ÎÊı
-					for (int h = 0; h < testargs.length; h++) {// Ìí¼Ó²âÊÔ²ÎÊı
+				for (int j = 0; j < methodNames.length; j++) {// æ¯ä¸ªæ–¹æ³•éƒ½æ·»åŠ æµ‹è¯•å‚æ•°
+					for (int h = 0; h < testargs.length; h++) {// æ·»åŠ æµ‹è¯•å‚æ•°
 						row.createCell(baseNum * i + descrption.length + testargs.length * j + h + 1)
 								.setCellValue(testargs[h]);
 					}
@@ -113,35 +113,35 @@ public class MutilMethodsComparision {
 
 			for (int t = 0; t < Constant.group; t++) {
 				for (int h = 0; h < Constant.copy; h++) {
-					// Í¨ÖªMainRunÀà £¬´¥·¢task2µÄ¼àÌıÆ÷
+					// é€šçŸ¥MainRunç±» ï¼Œè§¦å‘task2çš„ç›‘å¬å™¨
 					if (ref != null)
 						ref.firePropertyChange("progress", 0,
 								(k * (Constant.group * Constant.copy) + t * Constant.copy + h + 1) * 100
 										/ (Constant.group * Constant.copy * gama.length));
-					// ¹¹ÔìÍøÂçµÄÍØÆË
+					// æ„é€ ç½‘ç»œçš„æ‹“æ‰‘
 					row = sheet.createRow(baseRowNum * k + t * Constant.copy + h + 2);
 					int nodenum = Constant.step * (t + 1);// baseNumNodes
 					int[] Node = new int[nodenum];
 					for (int s = 0; s < nodenum; s++)
 						Node[s] = s;
-					Constant.TimeForTest = t * Constant.copy + h + 1;// ²âÊÔÊı¾İµÄindex£¬Í¨ÖªĞŞ¸ÄTimeForTest
-					// Ö¸¶¨idFile
+					Constant.TimeForTest = t * Constant.copy + h + 1;// æµ‹è¯•æ•°æ®çš„indexï¼Œé€šçŸ¥ä¿®æ”¹TimeForTest
+					// æŒ‡å®šidFile
 					if (Constant.specFile) {
 						Constant.idFile = Constant.specIdFile;
 					}
 					double[][] Id = IdFile.GetId();
 					int[][] IdLink = IdFile.GetIdLink(Id);
-					// Ô¤ÉèÊÇ2ºÍ6
-					// Ô¤´¦ÀíÒ»ÏÂ
+					// é¢„è®¾æ˜¯2å’Œ6
+					// é¢„å¤„ç†ä¸€ä¸‹
 					int start = Constant.start;
 					int end = Constant.end;
 					if (nodenum < 2) {
-						// Òì³£
+						// å¼‚å¸¸
 						JOptionPane.showMessageDialog(null, "Node number less than 2, program exit");
 						System.exit(1);
 					}
 					if (start >= nodenum) {
-						start = (int)(Math.random() * nodenum); // Ëæ»úÈ¡Ò»¸öµã
+						start = (int)(Math.random() * nodenum); // éšæœºå–ä¸€ä¸ªç‚¹
 					}
 					if (end >= nodenum) {
 						do {
@@ -149,27 +149,27 @@ public class MutilMethodsComparision {
 						} while (start == end);
 					}
 
-					// ÉèÖÃÃèÊö×Ö¶ÎµÄ¾ßÌåÖµ
-					row.createCell(0).setCellValue(nodenum);// ÉèÖÃ½ÚµãÊı
+					// è®¾ç½®æè¿°å­—æ®µçš„å…·ä½“å€¼
+					row.createCell(0).setCellValue(nodenum);// è®¾ç½®èŠ‚ç‚¹æ•°
 					HSSFCell cell = row.createCell(1);
-					cell.setCellValue(Id.length / 2);// ÉèÖÃ×Ü±ßÊı
+					cell.setCellValue(Id.length / 2);// è®¾ç½®æ€»è¾¹æ•°
 					HSSFCellStyle style = workbook.createCellStyle();
 					style.setDataFormat(HSSFDataFormat.getBuiltinFormat("0.00"));
 					cell = row.createCell(2);
 					cell.setCellValue(AbstractCSPMethods.getAverageDegree(Node, Id) / 2);
-					cell.setCellStyle(style);// ÉèÖÃÆ½¾ù¶È
+					cell.setCellStyle(style);// è®¾ç½®å¹³å‡åº¦
 					int[] MinAndMaxDegree = Common.GetMinAndMaxDegree(nodenum, Id);
-					row.createCell(3).setCellValue(MinAndMaxDegree[0] / 2);// ÉèÖÃ×îĞ¡¶È
-					row.createCell(4).setCellValue(MinAndMaxDegree[1] / 2);// ÉèÖÃ×î´ó¶È
+					row.createCell(3).setCellValue(MinAndMaxDegree[0] / 2);// è®¾ç½®æœ€å°åº¦
+					row.createCell(4).setCellValue(MinAndMaxDegree[1] / 2);// è®¾ç½®æœ€å¤§åº¦
 					double mindelay = new BiLAD().GetMinDelay(Node, Id, IdLink, start, end);
-					row.createCell(5).setCellValue(mindelay);// ÉèÖÃ×îĞ¡ÑÓÊ±
-					row.createCell(6).setCellValue(gama[k]);// ÉèÖÃgama
+					row.createCell(5).setCellValue(mindelay);// è®¾ç½®æœ€å°å»¶æ—¶
+					row.createCell(6).setCellValue(gama[k]);// è®¾ç½®gama
 					int[] delayCST = new int[delayConstraint.length];
-					for (int i = 0; i < delayConstraint.length; i++) {// ÉèÖÃÑÓÊ±
+					for (int i = 0; i < delayConstraint.length; i++) {// è®¾ç½®å»¶æ—¶
 						delayCST[i] = (int) mindelay + delayConstraint[i];
 					}
 
-					// ¼ÆËã²Ù×÷CORE,ÉèÖÃÃ¿¸ö·½·¨µÄËÄ¸ö×Ö¶ÎµÄÖµ£¬±È½ÏÓ·Ö×£¬´ıĞŞ¸Ä......
+					// è®¡ç®—æ“ä½œCORE,è®¾ç½®æ¯ä¸ªæ–¹æ³•çš„å››ä¸ªå­—æ®µçš„å€¼ï¼Œæ¯”è¾ƒè‡ƒè‚¿ï¼Œå¾…ä¿®æ”¹......
 					for (int i = 0; i < delayCST.length; i++) {
 						row.createCell(baseNum * i + descrption.length).setCellValue(delayCST[i]);
 						for (int j = 0; j < methodNames.length; j++) {
@@ -195,14 +195,14 @@ public class MutilMethodsComparision {
 								c = st.Ctheta(pathst, Id, IdLink);
 								d = st.Ptheta(pathst, Id, IdLink);
 								time = st.getCallDijkstraTime();
-							} else {// ÆäËû·½·¨
+							} else {// å…¶ä»–æ–¹æ³•
 								c = d = 0.0;
 								time = 0;
 							}
 							int haste = (int) (System.currentTimeMillis() - startTime);
 							row.createCell(baseNum * i + descrption.length + 4 * j + 1).setCellValue(c);
 							row.createCell(baseNum * i + descrption.length + 4 * j + 2).setCellValue(d);
-							row.createCell(baseNum * i + descrption.length + 4 * j + 3).setCellValue(time);// ´ı¸Ä½ø
+							row.createCell(baseNum * i + descrption.length + 4 * j + 3).setCellValue(time);// å¾…æ”¹è¿›
 							row.createCell(baseNum * i + descrption.length + 4 * j + 4).setCellValue(haste);
 						}
 					}
@@ -214,21 +214,21 @@ public class MutilMethodsComparision {
 		sheet.setColumnHidden(4, true);
 		sheet.setColumnHidden(5, true);
 		sheet.setColumnHidden(6, true);
-		// Ğ´Èëµ½ExcelÎÄ¼şÖĞ
+		// å†™å…¥åˆ°Excelæ–‡ä»¶ä¸­
 		workbook.write(new FileOutputStream(new File(filename)));
 		workbook.close();
-		// ×¢Òâ£¬ÕâÀïËäÈ»¹Ø±ÕÁË¡£µ«ÊÇÔÚÍ¼ĞÎ½çÃæÖĞ£¬Éú³ÉµÄExcelÎÄ¼ş´¦ÓÚ±»Õ¼ÓÃ×´Ì¬¡£ĞèÒªÔÚÍ¼ĞÎ½çÃæµÄÊÊµ±Î»ÖÃ
-		// Ê¹ÓÃÀ¬»ø»ØÊÕ¡£
+		// æ³¨æ„ï¼Œè¿™é‡Œè™½ç„¶å…³é—­äº†ã€‚ä½†æ˜¯åœ¨å›¾å½¢ç•Œé¢ä¸­ï¼Œç”Ÿæˆçš„Excelæ–‡ä»¶å¤„äºè¢«å ç”¨çŠ¶æ€ã€‚éœ€è¦åœ¨å›¾å½¢ç•Œé¢çš„é€‚å½“ä½ç½®
+		// ä½¿ç”¨åƒåœ¾å›æ”¶ã€‚
 	}
 
 	/**
 	 * 
 	 * Function: 
-	 * 		¼ì²âÎÄ¼ş£¬´Ó¶øÉú³É¸ÃÄ¿Â¼ÏÂÎ¨Ò»µÄÎÄ¼ş
+	 * 		æ£€æµ‹æ–‡ä»¶ï¼Œä»è€Œç”Ÿæˆè¯¥ç›®å½•ä¸‹å”¯ä¸€çš„æ–‡ä»¶
 	 * Details: 
-	 * 		¼ì²âÄ¿Â¼ÏÂÎÄ¼ş½áÎ²Êı×ÖµÄ×î´óÖµ£¬È»ºó½«×î´óÖµ¼Ó1×÷ÎªĞÂÎÄ¼şµÄ½áÎ²¡£
-	 * 		¸Ã·½·¨×÷ÎªÉÏÃæµÄDesignExcelµÄ¸¨Öú·½·¨ 
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç2:00:46
+	 * 		æ£€æµ‹ç›®å½•ä¸‹æ–‡ä»¶ç»“å°¾æ•°å­—çš„æœ€å¤§å€¼ï¼Œç„¶åå°†æœ€å¤§å€¼åŠ 1ä½œä¸ºæ–°æ–‡ä»¶çš„ç»“å°¾ã€‚
+	 * 		è¯¥æ–¹æ³•ä½œä¸ºä¸Šé¢çš„DesignExcelçš„è¾…åŠ©æ–¹æ³• 
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ2:00:46
 	 */
 	public void checkFilename() {
 		int max = 0;
@@ -239,19 +239,19 @@ public class MutilMethodsComparision {
 			if (value > max)
 				max = value;
 		}
-		filename = "resource/excel/Ëã·¨±È½Ï" + (max + 1) + ".xls";// Èç¹ûÃ»ÓĞÎÄ¼ş£¬ÄÇÃ´ÎÄ¼şÃûÎªËã·¨±È½Ï1.xls
+		filename = "resource/excel/ç®—æ³•æ¯”è¾ƒ" + (max + 1) + ".xls";// å¦‚æœæ²¡æœ‰æ–‡ä»¶ï¼Œé‚£ä¹ˆæ–‡ä»¶åä¸ºç®—æ³•æ¯”è¾ƒ1.xls
 	}
 
 	/**
 	 * 
 	 * Function: 
-	 * 		×Ô¶¯¹Ø»úµÄ·½·¨
+	 * 		è‡ªåŠ¨å…³æœºçš„æ–¹æ³•
 	 * Details:
-	 * 		 Í¨¹ı¿ØÖÆÌ¨£¬À´ÊµÏÖ×Ô¶¯¹Ø»ú¡£
-	 * 		¸Ã·½·¨Ö÷ÒªÅäºÍÔÚÉú³ÉExcelÖĞÊ¹ÓÃÁËYENËã·¨¡£
-	 * 		ÒòÎªYENËã·¨ºÜºÄÊ±¼ä¡£ Ò»°ãÀ´Ëµ100¸öÓÃÀı2¸ö¶àĞ¡Ê±¡£
-	 * 		½¨ÒéÔÚÊ¹ÓÃYENËã·¨µÄÊ±ºò£¬×Ô¶¯¹Ø»ú¡£
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç2:02:01
+	 * 		 é€šè¿‡æ§åˆ¶å°ï¼Œæ¥å®ç°è‡ªåŠ¨å…³æœºã€‚
+	 * 		è¯¥æ–¹æ³•ä¸»è¦é…å’Œåœ¨ç”ŸæˆExcelä¸­ä½¿ç”¨äº†YENç®—æ³•ã€‚
+	 * 		å› ä¸ºYENç®—æ³•å¾ˆè€—æ—¶é—´ã€‚ ä¸€èˆ¬æ¥è¯´100ä¸ªç”¨ä¾‹2ä¸ªå¤šå°æ—¶ã€‚
+	 * 		å»ºè®®åœ¨ä½¿ç”¨YENç®—æ³•çš„æ—¶å€™ï¼Œè‡ªåŠ¨å…³æœºã€‚
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ2:02:01
 	 */
 	public static void shutdown() {
 		Runtime rt = Runtime.getRuntime();
@@ -266,17 +266,17 @@ public class MutilMethodsComparision {
 	/**
 	 * 
 	 * Function: 
-	 * 		·µ»ØÉú³ÉµÄExcelµÄÎÄ¼şÃû
+	 * 		è¿”å›ç”Ÿæˆçš„Excelçš„æ–‡ä»¶å
 	 * Details: 
-	 * 		¸Ã·½·¨Ö÷ÒªÊÇÔÚÍ¼ĞÎ½çÃæÖĞÌáÊ¾ExcelÉú³ÉµÄÎ»ÖÃ£¨¾ø¶ÔÂ·¾¶£©
-	 * Remark:  2018Äê9ÔÂ19ÈÕ ÏÂÎç2:05:01
+	 * 		è¯¥æ–¹æ³•ä¸»è¦æ˜¯åœ¨å›¾å½¢ç•Œé¢ä¸­æç¤ºExcelç”Ÿæˆçš„ä½ç½®ï¼ˆç»å¯¹è·¯å¾„ï¼‰
+	 * Remark:  2018å¹´9æœˆ19æ—¥ ä¸‹åˆ2:05:01
 	 */
 	public String getFilename() {
 		return filename;
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		MutilMethodsComparision tmc = new MutilMethodsComparision();// ¿ØÖÆÌ¨µ÷ÓÃ¸Ã·½·¨
+		MutilMethodsComparision tmc = new MutilMethodsComparision();// æ§åˆ¶å°è°ƒç”¨è¯¥æ–¹æ³•
 		tmc.checkFilename();
 		tmc.DesignExcel();
 		System.out.println("Done");

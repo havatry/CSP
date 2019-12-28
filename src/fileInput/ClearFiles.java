@@ -7,19 +7,19 @@ import randomTopology.Constant;
 /**
  * 
  * OverView: 
- * 		Çå³ıÉú³ÉÎÄ¼ş
+ * 		æ¸…é™¤ç”Ÿæˆæ–‡ä»¶
  */
 public class ClearFiles {
 	/**
 	 * 
 	 * Function:
-	 *		É¾³ıÉú³ÉµÄÎÄ¼ş
+	 *		åˆ é™¤ç”Ÿæˆçš„æ–‡ä»¶
 	 * Details:
-	 *		Ê¹ÓÃÃüÁîĞĞÉ¾³ı
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç12:53:28
+	 *		ä½¿ç”¨å‘½ä»¤è¡Œåˆ é™¤
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ12:53:28
 	 */
 	public static void main(String[] args) {
-		Runtime rt = Runtime.getRuntime();// µ÷ÓÃ¿ØÖÆÌ¨·½·¨
+		Runtime rt = Runtime.getRuntime();// è°ƒç”¨æ§åˆ¶å°æ–¹æ³•
 		try {
 			rt.exec("cmd /c rm " + Constant.basePath + "/*");
 		} catch (IOException e) {

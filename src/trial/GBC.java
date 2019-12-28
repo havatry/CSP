@@ -6,14 +6,14 @@ import java.awt.Insets;
 public class GBC extends GridBagConstraints  {  
 	private static final long serialVersionUID = 1L;
 
-	//³õÊ¼»¯×óÉÏ½ÇÎ»ÖÃ  
+	//åˆå§‹åŒ–å·¦ä¸Šè§’ä½ç½®  
    public GBC(int gridx, int gridy)  
    {  
       this.gridx = gridx;  
       this.gridy = gridy;  
    }  
   
-   //³õÊ¼»¯×óÉÏ½ÇÎ»ÖÃºÍËùÕ¼ĞĞÊıºÍÁĞÊı  
+   //åˆå§‹åŒ–å·¦ä¸Šè§’ä½ç½®å’Œæ‰€å è¡Œæ•°å’Œåˆ—æ•°  
    public GBC(int gridx, int gridy, int gridwidth, int gridheight)  
    {  
       this.gridx = gridx;  
@@ -22,21 +22,21 @@ public class GBC extends GridBagConstraints  {
       this.gridheight = gridheight;  
    }  
   
-   //¶ÔÆë·½Ê½  
+   //å¯¹é½æ–¹å¼  
    public GBC setAnchor(int anchor)  
    {  
       this.anchor = anchor;  
       return this;  
    }  
   
-   //ÊÇ·ñÀ­Éì¼°À­Éì·½Ïò  
+   //æ˜¯å¦æ‹‰ä¼¸åŠæ‹‰ä¼¸æ–¹å‘  
    public GBC setFill(int fill)  
    {  
       this.fill = fill;  
       return this;  
    }  
   
-   //xºÍy·½ÏòÉÏµÄÔöÁ¿  
+   //xå’Œyæ–¹å‘ä¸Šçš„å¢é‡  
    public GBC setWeight(double weightx, double weighty)  
    {  
       this.weightx = weightx;  
@@ -44,21 +44,21 @@ public class GBC extends GridBagConstraints  {
       return this;  
    }  
   
-   //Íâ²¿Ìî³ä  
+   //å¤–éƒ¨å¡«å……  
    public GBC setInsets(int distance)  
    {  
       this.insets = new Insets(distance, distance, distance, distance);  
       return this;  
    }  
   
-   //ÍâÌî³ä  
+   //å¤–å¡«å……  
    public GBC setInsets(int top, int left, int bottom, int right)  
    {  
       this.insets = new Insets(top, left, bottom, right);  
       return this;  
    }  
   
-   //ÄÚÌî³ä  
+   //å†…å¡«å……  
    public GBC setIpad(int ipadx, int ipady)  
    {  
       this.ipadx = ipadx;  

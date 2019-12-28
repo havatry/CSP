@@ -5,15 +5,15 @@ import java.util.Comparator;
 /**
  * 
  * OverView:
- *		¸ÃÀàÌá¹©ÁËÁ´Â·ĞÅÏ¢¡£²¢ÇÒÊµÏÖÁËÅÅĞò¡£
- *		Ö÷ÒªÍê³ÉÒÀ¾İÁ´Â·µÄ³¤¶ÈÀ´¸³²»Í¬µÄdelay¡£
+ *		è¯¥ç±»æä¾›äº†é“¾è·¯ä¿¡æ¯ã€‚å¹¶ä¸”å®ç°äº†æ’åºã€‚
+ *		ä¸»è¦å®Œæˆä¾æ®é“¾è·¯çš„é•¿åº¦æ¥èµ‹ä¸åŒçš„delayã€‚
  */
-public class Pair implements Comparator<Pair> {// pairÒ²¿ÉÀí½âÎªÁ´Â·
-	private int start;// Á´Â·Æğµã
-	private int end;// Á´Â·ÖÕµã
-	private double distance;// Á´Â·³¤¶È
-	private int delay;// Á´Â·ÑÓÊ±
-	private int cost;// Á´Â·´ú¼Û
+public class Pair implements Comparator<Pair> {// pairä¹Ÿå¯ç†è§£ä¸ºé“¾è·¯
+	private int start;// é“¾è·¯èµ·ç‚¹
+	private int end;// é“¾è·¯ç»ˆç‚¹
+	private double distance;// é“¾è·¯é•¿åº¦
+	private int delay;// é“¾è·¯å»¶æ—¶
+	private int cost;// é“¾è·¯ä»£ä»·
 
 	public int getStart() {
 		return start;
@@ -58,7 +58,7 @@ public class Pair implements Comparator<Pair> {// pairÒ²¿ÉÀí½âÎªÁ´Â·
 	@Override
 	public int compare(Pair o1, Pair o2) {
 		// TODO Auto-generated method stub
-		// ÊµÏÖÅÅĞòµÄ¹æÔò£¬ÒÀ¾İÁ´Â·µÄ³¤¶È
+		// å®ç°æ’åºçš„è§„åˆ™ï¼Œä¾æ®é“¾è·¯çš„é•¿åº¦
 		if (o1.getDistance() - o2.getDistance() > 0)
 			return 1;
 		else if (o1.getDistance() - o2.getDistance() == 0)

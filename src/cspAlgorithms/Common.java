@@ -9,30 +9,30 @@ import randomTopology.Constant;
 /**
  * 
  * OverView: 
- * 		¸ÃÀàÆäÊµÏàµ±ÓÚÒ»¸ö»ùÀà¡£±¾ÊÇ¿ÉÒÔ½«¸ÃÀàÖĞµÄ·½·¨ºÏ²¢µ½AbstractCSPMethodsÀàÖĞ¡£Ö»ÊÇ½éÓÚDijkstraÀàµÄÔ­Òò¡£
- * 		ÒòÎªDijkstraÀàÖĞºÜ¶à·½·¨£¬²¢²»ÄÜÖ±½Óµ÷ÓÃAbstractCSPMethodsÀàÖĞµÄ·½·¨£¬ÒòÎªDijkstraÀà²»ÊÇ¼Ì³ĞÁËºóÕß¡£
- * 		Òò´Ë£¬ÕâÀïĞÂ¼ÓÁËÒ»¸ö¹«¹²Àà£¬´ó²¿·ÖÊÇ¸øDijkstraÀàÀ´µ÷ÓÃ¡£Ò²Ğí½«¸ÃÀàÃüÃûÎªUtils¸ü¼ÓºÏÊÊ¡£ ¸ÃÀàÌá¹©ÁË
+ * 		è¯¥ç±»å…¶å®ç›¸å½“äºä¸€ä¸ªåŸºç±»ã€‚æœ¬æ˜¯å¯ä»¥å°†è¯¥ç±»ä¸­çš„æ–¹æ³•åˆå¹¶åˆ°AbstractCSPMethodsç±»ä¸­ã€‚åªæ˜¯ä»‹äºDijkstraç±»çš„åŸå› ã€‚
+ * 		å› ä¸ºDijkstraç±»ä¸­å¾ˆå¤šæ–¹æ³•ï¼Œå¹¶ä¸èƒ½ç›´æ¥è°ƒç”¨AbstractCSPMethodsç±»ä¸­çš„æ–¹æ³•ï¼Œå› ä¸ºDijkstraç±»ä¸æ˜¯ç»§æ‰¿äº†åè€…ã€‚
+ * 		å› æ­¤ï¼Œè¿™é‡Œæ–°åŠ äº†ä¸€ä¸ªå…¬å…±ç±»ï¼Œå¤§éƒ¨åˆ†æ˜¯ç»™Dijkstraç±»æ¥è°ƒç”¨ã€‚ä¹Ÿè®¸å°†è¯¥ç±»å‘½åä¸ºUtilsæ›´åŠ åˆé€‚ã€‚ è¯¥ç±»æä¾›äº†
  */
 public class Common {
 	/**
 	 * 
 	 * Function: 
-	 * 		ÔÚ¸ø¶¨thetaºó£¬½èÖú´ú¼Ûº¯Êı£¨¾ßÌå²Î¿¼jutterÂÛÎÄ£¬»òÕßÖ®Ç°ÃèÊö),½«Ô­ÍøÂçµÄ±ß´ú¼Û×ª±äÎªĞÂÍøÂçµÄ±ß´ú¼Û
+	 * 		åœ¨ç»™å®šthetaåï¼Œå€ŸåŠ©ä»£ä»·å‡½æ•°ï¼ˆå…·ä½“å‚è€ƒjutterè®ºæ–‡ï¼Œæˆ–è€…ä¹‹å‰æè¿°),å°†åŸç½‘ç»œçš„è¾¹ä»£ä»·è½¬å˜ä¸ºæ–°ç½‘ç»œçš„è¾¹ä»£ä»·
 	 * Details:
-	 * 		ÕâÀï×ª±äºÍÂÛÎÄÃèÊö²¢²»ÊÇÒ»ÖÂµÄ¡£ÕâÀïÓÃcosºÍsinº¯ÊıÀ´´úÌælambda×÷ÓÃ¡£
-	 * 		Êµ¼ÊÉÏ½á¹û²»±ä£¬Ö»²»¹ı¶Ô½á¹û½øĞĞËõ·Åcos(theta)±¶¡£
-	 * Remark: 2018Äê9ÔÂ18ÈÕ ÏÂÎç9:58:18
+	 * 		è¿™é‡Œè½¬å˜å’Œè®ºæ–‡æè¿°å¹¶ä¸æ˜¯ä¸€è‡´çš„ã€‚è¿™é‡Œç”¨coså’Œsinå‡½æ•°æ¥ä»£æ›¿lambdaä½œç”¨ã€‚
+	 * 		å®é™…ä¸Šç»“æœä¸å˜ï¼Œåªä¸è¿‡å¯¹ç»“æœè¿›è¡Œç¼©æ”¾cos(theta)å€ã€‚
+	 * Remark: 2018å¹´9æœˆ18æ—¥ ä¸‹åˆ9:58:18
 	 */
 	protected static double[][] getEdge(int[] Node, double[][] Id, int[][] IdLink, double theta) {
 		int nodeNum = Node.length;
 		double[][] Edge = new double[nodeNum][nodeNum];
 		for (int i = 0; i < Id.length; i++) {
-			Edge[(int) Id[i][0]][(int) Id[i][1]] = Math.cos(theta) * Id[i][2] + Math.sin(theta) * Id[i][3];// ´ú¼Ûº¯Êı
+			Edge[(int) Id[i][0]][(int) Id[i][1]] = Math.cos(theta) * Id[i][2] + Math.sin(theta) * Id[i][3];// ä»£ä»·å‡½æ•°
 		}
 		for (int i = 0; i < nodeNum; i++) {
 			for (int j = 0; j < nodeNum; j++) {
 				if ((Edge[i][j] == 0) && (i != j)) {
-					Edge[i][j] = Constant.MAX_VALUE;// ½«²»´æÔÚµÄ±ßÒÔÒ»¸öºÜ´óµÄÖµ´úÌæ£¬¸ÃÖµÔÚsetting.xmlÖĞÉèÖÃ
+					Edge[i][j] = Constant.MAX_VALUE;// å°†ä¸å­˜åœ¨çš„è¾¹ä»¥ä¸€ä¸ªå¾ˆå¤§çš„å€¼ä»£æ›¿ï¼Œè¯¥å€¼åœ¨setting.xmlä¸­è®¾ç½®
 				}
 			}
 		}
@@ -42,18 +42,18 @@ public class Common {
 	/**
 	 * 
 	 * Function: 
-	 * 		¸Ã·½·¨ÊÇ½«±ßµÄĞÅÏ¢¿½±´³öÀ´·ÅÔÚĞÂµÄÄÚ´æÖĞ¡£
+	 * 		è¯¥æ–¹æ³•æ˜¯å°†è¾¹çš„ä¿¡æ¯æ‹·è´å‡ºæ¥æ”¾åœ¨æ–°çš„å†…å­˜ä¸­ã€‚
 	 * Details:
-	 * 		ÓÉÓÚÔÚ²Ù×÷ÖĞ£¬Èç¹ûÊ¹ÓÃÒıÓÃ£¬»á¸Ä±ä×î³õµÄÖµ¡£ÎªÁË±£Ö¤ÔÚ²Ù×÷¹ı³ÌÖĞ£¬±£Ö¤Ô­ÏÈ¸ø¶¨µÄÖµ²»»á·¢Éú¸Ä±ä£¬
-	 * 		ÔÚÒ»Ğ©µØ·½½øĞĞ¸±±¾±£´æºÍ»¹Ô­£¬½ø¶ø±£Ö¤²Ù×÷²»»áÓ°ÏìÊı¾İ¡£
-	 * 		ÕâÀï±¾À´Ó¦¸ÃÊ¹ÓÃObjectÀàµÄclone·½·¨£¬½éÓÚ²»ÊÇºÜÊìÏ¤£¬»¹ÊÇ×Ô¼ºÊµÏÖÁË±£´æ¸±±¾µÄ·½·¨¡£
-	 * Remark: 2018Äê9ÔÂ18ÈÕ ÏÂÎç10:02:29
+	 * 		ç”±äºåœ¨æ“ä½œä¸­ï¼Œå¦‚æœä½¿ç”¨å¼•ç”¨ï¼Œä¼šæ”¹å˜æœ€åˆçš„å€¼ã€‚ä¸ºäº†ä¿è¯åœ¨æ“ä½œè¿‡ç¨‹ä¸­ï¼Œä¿è¯åŸå…ˆç»™å®šçš„å€¼ä¸ä¼šå‘ç”Ÿæ”¹å˜ï¼Œ
+	 * 		åœ¨ä¸€äº›åœ°æ–¹è¿›è¡Œå‰¯æœ¬ä¿å­˜å’Œè¿˜åŸï¼Œè¿›è€Œä¿è¯æ“ä½œä¸ä¼šå½±å“æ•°æ®ã€‚
+	 * 		è¿™é‡Œæœ¬æ¥åº”è¯¥ä½¿ç”¨Objectç±»çš„cloneæ–¹æ³•ï¼Œä»‹äºä¸æ˜¯å¾ˆç†Ÿæ‚‰ï¼Œè¿˜æ˜¯è‡ªå·±å®ç°äº†ä¿å­˜å‰¯æœ¬çš„æ–¹æ³•ã€‚
+	 * Remark: 2018å¹´9æœˆ18æ—¥ ä¸‹åˆ10:02:29
 	 */
-	protected static double[][] deepCloneEdge(double[][] Edge) {// ±£´æEdgeµÄ¸±±¾
+	protected static double[][] deepCloneEdge(double[][] Edge) {// ä¿å­˜Edgeçš„å‰¯æœ¬
 		double[][] subEdge = new double[Edge.length][Edge.length];
 		for (int i = 0; i < Edge.length; i++) {
 			for (int j = 0; j < Edge.length; j++) {
-				subEdge[i][j] = Edge[i][j];// ±£´æ
+				subEdge[i][j] = Edge[i][j];// ä¿å­˜
 			}
 		}
 		return subEdge;
@@ -62,15 +62,15 @@ public class Common {
 	/**
 	 * 
 	 * Function: 
-	 * 		¸Ã·½·¨ÊÇ½«Â·¾¶ĞÅÏ¢¿½±´³öÀ´·ÅÔÚĞÂµÄÄÚ´æÖĞ
+	 * 		è¯¥æ–¹æ³•æ˜¯å°†è·¯å¾„ä¿¡æ¯æ‹·è´å‡ºæ¥æ”¾åœ¨æ–°çš„å†…å­˜ä¸­
 	 * Details: 
-	 * 		¾ßÌåÊµÏÖ£¬ºÍÉÏÃædeepCloneEdge·½·¨ÀàËÆ
-	 * Remark: 2018Äê9ÔÂ18ÈÕ ÏÂÎç10:05:08
+	 * 		å…·ä½“å®ç°ï¼Œå’Œä¸Šé¢deepCloneEdgeæ–¹æ³•ç±»ä¼¼
+	 * Remark: 2018å¹´9æœˆ18æ—¥ ä¸‹åˆ10:05:08
 	 */
-	protected static List<Integer> deepCloneList(List<Integer> path) {// ±£´æÂ·¾¶¸±±¾
+	protected static List<Integer> deepCloneList(List<Integer> path) {// ä¿å­˜è·¯å¾„å‰¯æœ¬
 		List<Integer> subPath = new ArrayList<>();
 		for (int i = 0; i < path.size(); i++) {
-			subPath.add(path.get(i));// ±£´æ
+			subPath.add(path.get(i));// ä¿å­˜
 		}
 		return subPath;
 	}
@@ -78,12 +78,12 @@ public class Common {
 	/**
 	 * 
 	 * Function: 
-	 * 		¸Ã·½·¨ÒÀ¾İÁ´Â·ĞÅÏ¢À´»ñÈ¡ÍøÂçÍØÆËÖĞµÄ×î´ó¶ÈºÍ×îĞ¡¶È 
+	 * 		è¯¥æ–¹æ³•ä¾æ®é“¾è·¯ä¿¡æ¯æ¥è·å–ç½‘ç»œæ‹“æ‰‘ä¸­çš„æœ€å¤§åº¦å’Œæœ€å°åº¦ 
 	 * Details:
-	 * 		±éÀúËùÓĞÁ´Â·£¬½«ÆğµãºÍÖÕµã³öÏÖµÄ´ÎÊı×ÔÔö¡£ÒòÎªÃ¿¸öÁ´Â·µÄÆğµãºÍÖÕµã·Ö±ğ×÷Îª³ö¶ÈºÍÈë¶È¡£
-	 * 		ÕâÑù¾ÍÍ³¼ÆÍêËùÓĞ½ÚµãµÄ¶È¡£µ±È»ÕâÀïµÄ¶ÈºÍAbstractCSPMethodsÖĞ½éÉÜµÄ¶È¸ÅÄîÀàËÆ¡£
-	 * 		È»ºó¶ÔËùÓĞµÄ¶È½øĞĞÅÅĞò£¬È»ºó·µ»Ø×î´óºÍ×îĞ¡µÄÁ½¸ö¡£
-	 * Remark: 2018Äê9ÔÂ18ÈÕ ÏÂÎç10:05:56
+	 * 		éå†æ‰€æœ‰é“¾è·¯ï¼Œå°†èµ·ç‚¹å’Œç»ˆç‚¹å‡ºç°çš„æ¬¡æ•°è‡ªå¢ã€‚å› ä¸ºæ¯ä¸ªé“¾è·¯çš„èµ·ç‚¹å’Œç»ˆç‚¹åˆ†åˆ«ä½œä¸ºå‡ºåº¦å’Œå…¥åº¦ã€‚
+	 * 		è¿™æ ·å°±ç»Ÿè®¡å®Œæ‰€æœ‰èŠ‚ç‚¹çš„åº¦ã€‚å½“ç„¶è¿™é‡Œçš„åº¦å’ŒAbstractCSPMethodsä¸­ä»‹ç»çš„åº¦æ¦‚å¿µç±»ä¼¼ã€‚
+	 * 		ç„¶åå¯¹æ‰€æœ‰çš„åº¦è¿›è¡Œæ’åºï¼Œç„¶åè¿”å›æœ€å¤§å’Œæœ€å°çš„ä¸¤ä¸ªã€‚
+	 * Remark: 2018å¹´9æœˆ18æ—¥ ä¸‹åˆ10:05:56
 	 */
 	public static int[] GetMinAndMaxDegree(int nodenum, double[][] Id) {
 		int[] frequence = new int[nodenum];
@@ -91,19 +91,19 @@ public class Common {
 			frequence[(int) Id[i][0]]++;
 			frequence[(int) Id[i][1]]++;
 		}
-		Arrays.sort(frequence);// ÅÅĞò
+		Arrays.sort(frequence);// æ’åº
 		return new int[] { frequence[0], frequence[frequence.length - 1] };
 	}
 
 	/**
 	 * 
 	 * Function:
-	 * 		 Çó¸ø¶¨Â·¾¶ÉÏµÄ´ú¼Û×ÜºÍ 
+	 * 		 æ±‚ç»™å®šè·¯å¾„ä¸Šçš„ä»£ä»·æ€»å’Œ 
 	 * Details: 
-	 * 		ÕâÊÇCSP½Ó¿Ú¸Ã·½·¨ÖĞÃèÊöÏàÍ¬¡£Ö÷ÒªÊÇÎª±¾°üÖĞµÄDijkstraÀàÊ¹ÓÃ¡£
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÉÏÎç11:10:23
+	 * 		è¿™æ˜¯CSPæ¥å£è¯¥æ–¹æ³•ä¸­æè¿°ç›¸åŒã€‚ä¸»è¦æ˜¯ä¸ºæœ¬åŒ…ä¸­çš„Dijkstraç±»ä½¿ç”¨ã€‚
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸Šåˆ11:10:23
 	 */
-	public static double Ctheta(List<Integer> path, double[][] Id, int[][] IdLink) {// ÓÃÓÚÇó½âÂ·¾¶ÉÏµÄ´ú¼Û
+	public static double Ctheta(List<Integer> path, double[][] Id, int[][] IdLink) {// ç”¨äºæ±‚è§£è·¯å¾„ä¸Šçš„ä»£ä»·
 		// TODO Auto-generated method stub
 		double total = 0;
 		for (int i = path.size() - 1; i >= 1; i--) {
@@ -118,12 +118,12 @@ public class Common {
 	/**
 	 * 
 	 * Function: 
-	 * 		Çó¸ø¶¨Â·¾¶ÉÏµÄÑÓÊ±×ÜºÍ
+	 * 		æ±‚ç»™å®šè·¯å¾„ä¸Šçš„å»¶æ—¶æ€»å’Œ
 	 * Details: 
-	 * 		ÕâÊÇCSP½Ó¿Ú¸Ã·½·¨ÖĞÃèÊöÏàÍ¬¡£Ö÷ÒªÊÇÎª±¾°üÖĞµÄDijkstraÀàÊ¹ÓÃ¡£
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÉÏÎç11:11:32
+	 * 		è¿™æ˜¯CSPæ¥å£è¯¥æ–¹æ³•ä¸­æè¿°ç›¸åŒã€‚ä¸»è¦æ˜¯ä¸ºæœ¬åŒ…ä¸­çš„Dijkstraç±»ä½¿ç”¨ã€‚
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸Šåˆ11:11:32
 	 */
-	public static double Ptheta(List<Integer> path, double[][] Id, int[][] IdLink) {// ÓÃÓÚÇó½âÂ·¾¶ÉÏµÄÑÓÊ±
+	public static double Ptheta(List<Integer> path, double[][] Id, int[][] IdLink) {// ç”¨äºæ±‚è§£è·¯å¾„ä¸Šçš„å»¶æ—¶
 		// TODO Auto-generated method stub
 		double delay = 0;
 		for (int i = path.size() - 1; i >= 1; i--) {

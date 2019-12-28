@@ -7,16 +7,16 @@ import java.util.Scanner;
 /**
  * 
  * OverView:
- *		¸ÃÀàÓÃÀ´»ñÈ¡Ò»¸ö¸ø¶¨ÎÄ¼şÖĞÓĞ¶àÉÙĞĞ
+ *		è¯¥ç±»ç”¨æ¥è·å–ä¸€ä¸ªç»™å®šæ–‡ä»¶ä¸­æœ‰å¤šå°‘è¡Œ
  */
 public class FileLine {
 	/**
 	 * 
 	 * Function:
-	 *		»ñÈ¡ÎÄ¼şµÄĞĞÊı
+	 *		è·å–æ–‡ä»¶çš„è¡Œæ•°
 	 * Details:
-	 *		Ê¹ÓÃÀÛ¼Æ±äÁ¿£¬¶ÔÃ¿´Î±éÀúµÄĞĞ½øĞĞ¼ÆÊı
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÏÂÎç12:53:58
+	 *		ä½¿ç”¨ç´¯è®¡å˜é‡ï¼Œå¯¹æ¯æ¬¡éå†çš„è¡Œè¿›è¡Œè®¡æ•°
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸‹åˆ12:53:58
 	 */
 	public static int GetLineNumber(String filename) {
 		int count=0;
@@ -24,7 +24,7 @@ public class FileLine {
 			Scanner in=new Scanner(new File(filename));
 			while(in.hasNextLine()){
 				in.nextLine();
-				count++;//ĞĞÊıÀÛ»ı
+				count++;//è¡Œæ•°ç´¯ç§¯
 			}
 			in.close();
 		} catch (FileNotFoundException e) {

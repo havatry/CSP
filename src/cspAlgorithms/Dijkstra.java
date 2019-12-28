@@ -8,42 +8,42 @@ import randomTopology.Constant;
 /**
  * 
  * OverView: 
- * 		¸ÃÀàÊÇYenËã·¨¡¢ËÑË÷Ëã·¨¡¢ÆäËûCSPËã·¨µÄ»ù´¡¡£Ö÷ÒªÒÀ¾İdijkstraËã·¨Çó×î¶ÌÂ·¾¶¡¢
- * 		ÕÒ³öµÚÒ»¸öÂú×ãÑÓÊ±ãĞÖµµÄÂ·¾¶¡¢ËÑË÷Èı½ÇĞÎÀïÃæÂú×ãÑÓÊ±ãĞÖµµÄ×î¼ÑÂ·¾¶¡¢·µ»Øµ÷ÓÃdijkstra´ÎÊı
+ * 		è¯¥ç±»æ˜¯Yenç®—æ³•ã€æœç´¢ç®—æ³•ã€å…¶ä»–CSPç®—æ³•çš„åŸºç¡€ã€‚ä¸»è¦ä¾æ®dijkstraç®—æ³•æ±‚æœ€çŸ­è·¯å¾„ã€
+ * 		æ‰¾å‡ºç¬¬ä¸€ä¸ªæ»¡è¶³å»¶æ—¶é˜ˆå€¼çš„è·¯å¾„ã€æœç´¢ä¸‰è§’å½¢é‡Œé¢æ»¡è¶³å»¶æ—¶é˜ˆå€¼çš„æœ€ä½³è·¯å¾„ã€è¿”å›è°ƒç”¨dijkstraæ¬¡æ•°
  */
 public class Dijkstra {
-	private int CallDijkstraTime = 0;// ³õÊ¼»¯µ÷ÓÃDijkstra´ÎÊı
+	private int CallDijkstraTime = 0;// åˆå§‹åŒ–è°ƒç”¨Dijkstraæ¬¡æ•°
 
 	/**
 	 * 
 	 * Function: 
-	 * 		ÕâÊÇ×Ô¼ºĞ´µÄÒ»¸öDijkstraËã·¨¡£ 
+	 * 		è¿™æ˜¯è‡ªå·±å†™çš„ä¸€ä¸ªDijkstraç®—æ³•ã€‚ 
 	 * Details: 
-	 * 		¾ßÌåÊµÏÖ²Î¿¼Êı¾İ½á¹¹Êé¼® 
-	 * Remark: 2018Äê9ÔÂ18ÈÕ ÏÂÎç10:21:56
+	 * 		å…·ä½“å®ç°å‚è€ƒæ•°æ®ç»“æ„ä¹¦ç± 
+	 * Remark: 2018å¹´9æœˆ18æ—¥ ä¸‹åˆ10:21:56
 	 */
 	protected List<Integer> DijkstraOfPath(int[] Node, double[][] Edge, int start, int end) {
-		// ³õÊ¼»¯
+		// åˆå§‹åŒ–
 		final int NumberOfNode = Node.length;
-		int next = -1;// ¼ÇÂ¼Ñ¡ÔñµÄÏÂÒ»¸ö½áµã
-		boolean[] S = new boolean[NumberOfNode];// S¼¯ºÏ
-		int[] pre = new int[NumberOfNode];// ¼ÇÂ¼Ç°Çı½Úµã
-		double[] Distance = new double[NumberOfNode];// ¹¹Ôì×î¶Ì¾àÀë¾ØÕó**
+		int next = -1;// è®°å½•é€‰æ‹©çš„ä¸‹ä¸€ä¸ªç»“ç‚¹
+		boolean[] S = new boolean[NumberOfNode];// Sé›†åˆ
+		int[] pre = new int[NumberOfNode];// è®°å½•å‰é©±èŠ‚ç‚¹
+		double[] Distance = new double[NumberOfNode];// æ„é€ æœ€çŸ­è·ç¦»çŸ©é˜µ**
 		for (int i = 0; i < pre.length; i++) {
 			pre[i] = -1;
 		}
 		for (int i = 0; i < NumberOfNode; i++) {
 			Distance[i] = Edge[start][i];
-			pre[i] = start;// ÔÚ´Ë¼ÇÂ¼Ç°Çı
+			pre[i] = start;// åœ¨æ­¤è®°å½•å‰é©±
 		}
 		S[start] = true;
 		pre[start] = -1;
 
-		while (!isFullOfTrue(S)) {// µ±S¼¯²»Âú
-			double Min = Integer.MAX_VALUE;// ÓÃÓÚÉ¸Ñ¡×îĞ¡µÄdistance
-			// Ñ¡Ôñ×îĞ¡µÄDistance,¶ÔÓ¦µÄ½ÚµãÎªnext
+		while (!isFullOfTrue(S)) {// å½“Sé›†ä¸æ»¡
+			double Min = Integer.MAX_VALUE;// ç”¨äºç­›é€‰æœ€å°çš„distance
+			// é€‰æ‹©æœ€å°çš„Distance,å¯¹åº”çš„èŠ‚ç‚¹ä¸ºnext
 			for (int i = 0; i < NumberOfNode; i++) {
-				if (!S[i]) {// ´Ó·ÇS¼¯ºÏÖĞÑ¡Ôñ
+				if (!S[i]) {// ä»éSé›†åˆä¸­é€‰æ‹©
 					if (Distance[i] < Min) {
 						Min = Distance[i];
 						next = i;
@@ -51,10 +51,10 @@ public class Dijkstra {
 				}
 			}
 
-			// ÒÔnextÀ´ËÉ³ÚÂ·¾¶
+			// ä»¥nextæ¥æ¾å¼›è·¯å¾„
 			S[next] = true;
 			for (int i = 0; i < NumberOfNode; i++) {
-				if (!S[i]) {// ËÉ³Ú·ÇS¼¯ºÏÖĞµÄ¶¥µã
+				if (!S[i]) {// æ¾å¼›éSé›†åˆä¸­çš„é¡¶ç‚¹
 					if (Distance[next] + Edge[next][i] < Distance[i]) {
 						Distance[i] = Distance[next] + Edge[next][i];
 						pre[i] = next;
@@ -62,25 +62,25 @@ public class Dijkstra {
 				}
 			}
 		}
-		// ÕÒ³öµ½ÖÕµãµÄÂ·¾¶,»ØËİ·¨
+		// æ‰¾å‡ºåˆ°ç»ˆç‚¹çš„è·¯å¾„,å›æº¯æ³•
 		List<Integer> path = new ArrayList<Integer>();
 		while (pre[end] != -1) {
 			path.add(end);
 			end = pre[end];
 		}
-		path.add(start);// ¼ÓÉÏÆğÊ¼½Úµã,×Ô¼ºË¼¿¼...
-		// Ã¿´Îµ÷ÓÃ¸Ã·½·¨Ê±ºò£¬¶¼»á´¥·¢µ÷ÓÃ´ÎÊı×ÔÔöµÄ²Ù×÷
+		path.add(start);// åŠ ä¸Šèµ·å§‹èŠ‚ç‚¹,è‡ªå·±æ€è€ƒ...
+		// æ¯æ¬¡è°ƒç”¨è¯¥æ–¹æ³•æ—¶å€™ï¼Œéƒ½ä¼šè§¦å‘è°ƒç”¨æ¬¡æ•°è‡ªå¢çš„æ“ä½œ
 		CallDijkstraTime++;
-		return path;// ÕâÊÇ·´ÏòµÄÂ·¾¶£¬±ÈÈçÊä³ö36-32-18-2¡£Êµ¼ÊÂ·¾¶ÊÇ2-18-32-36¡£ÆäÖĞÊı×ÖÊÇ½Úµã±àºÅ£¬±àºÅ´Ó0¿ªÊ¼¡£
+		return path;// è¿™æ˜¯åå‘çš„è·¯å¾„ï¼Œæ¯”å¦‚è¾“å‡º36-32-18-2ã€‚å®é™…è·¯å¾„æ˜¯2-18-32-36ã€‚å…¶ä¸­æ•°å­—æ˜¯èŠ‚ç‚¹ç¼–å·ï¼Œç¼–å·ä»0å¼€å§‹ã€‚
 	}
 
 	/**
 	 * 
 	 * Function: 
-	 * 		ÅĞ¶ÏS¼¯ºÏÊÇ²»ÊÇÒÑ¾­ÂúÁË£¬¸Ã·½·¨×÷ÎªÉÏ¸öDijkstraOfPath·½·¨µÄ¸¨Öú·½·¨¡£ 
+	 * 		åˆ¤æ–­Sé›†åˆæ˜¯ä¸æ˜¯å·²ç»æ»¡äº†ï¼Œè¯¥æ–¹æ³•ä½œä¸ºä¸Šä¸ªDijkstraOfPathæ–¹æ³•çš„è¾…åŠ©æ–¹æ³•ã€‚ 
 	 * Details:
-	 * 		S¼¯ºÏ±íÊ¾ÒÑ¾­·ÃÎÊµÄ½Úµã¼¯ºÏ¡£ÕâÀïÓÃ²¼¶ûÊı×éÄ£Äâ¼¯ºÏ¡£ µ±ÇÒ½öµ±ËùÓĞ½Úµã¶¼ÔÚSÖĞ£¬·µ»ØÕæ 
-	 * Remark: 2018Äê9ÔÂ18ÈÕ ÏÂÎç10:26:34
+	 * 		Sé›†åˆè¡¨ç¤ºå·²ç»è®¿é—®çš„èŠ‚ç‚¹é›†åˆã€‚è¿™é‡Œç”¨å¸ƒå°”æ•°ç»„æ¨¡æ‹Ÿé›†åˆã€‚ å½“ä¸”ä»…å½“æ‰€æœ‰èŠ‚ç‚¹éƒ½åœ¨Sä¸­ï¼Œè¿”å›çœŸ 
+	 * Remark: 2018å¹´9æœˆ18æ—¥ ä¸‹åˆ10:26:34
 	 */
 	protected boolean isFullOfTrue(boolean[] S) {
 		boolean full = true;
@@ -95,36 +95,36 @@ public class Dijkstra {
 	/**
 	 * 
 	 * Function:
-	 * 		 ÕâÊÇ¶ÔÓÚÒ»¸öÍøÂç£¬Í¬Ê±Çó³öÁ½Ìõ×î¶ÌÂ·¾¶¡£·Ö±ğÊÇ¶ÔÓ¦Â·¾¶ÉÏµÄc×îĞ¡ºÍd×îĞ¡¡£
-	 * 		Ò²¾ÍÊÇËµÇóÁ½µãÁ¬ÏßÉÏµÄÁ½¸ö¶Ëµã¡£
+	 * 		 è¿™æ˜¯å¯¹äºä¸€ä¸ªç½‘ç»œï¼ŒåŒæ—¶æ±‚å‡ºä¸¤æ¡æœ€çŸ­è·¯å¾„ã€‚åˆ†åˆ«æ˜¯å¯¹åº”è·¯å¾„ä¸Šçš„cæœ€å°å’Œdæœ€å°ã€‚
+	 * 		ä¹Ÿå°±æ˜¯è¯´æ±‚ä¸¤ç‚¹è¿çº¿ä¸Šçš„ä¸¤ä¸ªç«¯ç‚¹ã€‚
 	 * Details:
-	 * 		ÓÃpre1ºÍpre2·Ö±ğ¼ÇÂ¼c×îĞ¡ºÍd×îĞ¡Â·¾¶µÄÇ°Çı½Úµã,Distance¼ÇÂ¼±ßµÄÁ¬½ÓÈ¨ÖØ£¬ÕâÀïÈ¨ÖØÊÇĞÂÍøÂçµÄ¡£
-	 * 		µ±ËÉ³ÚµÄÊ±ºò¶ÔÕâÈıÖÖÇé¿ö½øĞĞ´¦Àí¡£ Èç¹ûËÉ³Ú½á¹ûÏàÍ¬£¬ÔòÈç¹ûc¿ÉÒÔ¸üĞÂÔò¸üĞÂc£¬Èç¹ûd¿ÉÒÔ¸üĞÂÔò¸üĞÂd¡£
-	 * 		Èç¹ûËÉ³Ú½á¹û²»ÏàÍ¬£¬Ôò¸üĞÂËùÓĞ¡££¨ËùÓĞÊÇÖ¸pre1,pre2,Disatcen) 
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÉÏÎç10:31:32
+	 * 		ç”¨pre1å’Œpre2åˆ†åˆ«è®°å½•cæœ€å°å’Œdæœ€å°è·¯å¾„çš„å‰é©±èŠ‚ç‚¹,Distanceè®°å½•è¾¹çš„è¿æ¥æƒé‡ï¼Œè¿™é‡Œæƒé‡æ˜¯æ–°ç½‘ç»œçš„ã€‚
+	 * 		å½“æ¾å¼›çš„æ—¶å€™å¯¹è¿™ä¸‰ç§æƒ…å†µè¿›è¡Œå¤„ç†ã€‚ å¦‚æœæ¾å¼›ç»“æœç›¸åŒï¼Œåˆ™å¦‚æœcå¯ä»¥æ›´æ–°åˆ™æ›´æ–°cï¼Œå¦‚æœdå¯ä»¥æ›´æ–°åˆ™æ›´æ–°dã€‚
+	 * 		å¦‚æœæ¾å¼›ç»“æœä¸ç›¸åŒï¼Œåˆ™æ›´æ–°æ‰€æœ‰ã€‚ï¼ˆæ‰€æœ‰æ˜¯æŒ‡pre1,pre2,Disatcen) 
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸Šåˆ10:31:32
 	 */
 	public List<List<Integer>> AdjustDijkstraOfPath(int[] Node, double[][] Edge, double[][] Id, int[][] IdLink,
 			int start, int end) {
 		final int NumberOfNode = Node.length;
-		int next = -1;// ¼ÇÂ¼Ñ¡ÔñµÄÏÂÒ»¸ö½áµã
-		boolean[] S = new boolean[NumberOfNode];// S¼¯ºÏ
-		int[] pre1 = new int[NumberOfNode];// ¼ÇÂ¼Ç°Çı½Úµãc×îĞ¡
-		int[] pre2 = new int[NumberOfNode];// ¼ÇÂ¼Ç°Çı½Úµãd×îĞ¡
-		double[] Distance = new double[NumberOfNode];// ¹¹ÔìĞÂÍøÂçÖĞµÄ´ú¼Û¾ØÕó
-		double[] c = new double[NumberOfNode];// ¹¹ÔìÔ­ÍøÂçÖĞµÄ´ú¼Û¾ØÕó
-		double[] d = new double[NumberOfNode];// ¹¹ÔìÔ­ÍøÂçÖĞµÄÑÓÊ±¾ØÕó
+		int next = -1;// è®°å½•é€‰æ‹©çš„ä¸‹ä¸€ä¸ªç»“ç‚¹
+		boolean[] S = new boolean[NumberOfNode];// Sé›†åˆ
+		int[] pre1 = new int[NumberOfNode];// è®°å½•å‰é©±èŠ‚ç‚¹cæœ€å°
+		int[] pre2 = new int[NumberOfNode];// è®°å½•å‰é©±èŠ‚ç‚¹dæœ€å°
+		double[] Distance = new double[NumberOfNode];// æ„é€ æ–°ç½‘ç»œä¸­çš„ä»£ä»·çŸ©é˜µ
+		double[] c = new double[NumberOfNode];// æ„é€ åŸç½‘ç»œä¸­çš„ä»£ä»·çŸ©é˜µ
+		double[] d = new double[NumberOfNode];// æ„é€ åŸç½‘ç»œä¸­çš„å»¶æ—¶çŸ©é˜µ
 
-		// ³õÊ¼»¯
+		// åˆå§‹åŒ–
 		for (int i = 0; i < pre1.length; i++) {
 			pre1[i] = -1;
 			pre2[i] = -1;
 		}
 		for (int i = 0; i < NumberOfNode; i++) {
 			Distance[i] = Edge[start][i];
-			c[i] = IdLink[start][i] == -1 ? Constant.MAX_VALUE : Id[IdLink[start][i]][2];// IdLinkÖĞÈç¹ûÖµÎª-1£¬ËµÃ÷Á½µãÖ±½ÓÃ»ÓĞÁ´Â·
-																							// ,¾ßÌå²Î¿¼README
+			c[i] = IdLink[start][i] == -1 ? Constant.MAX_VALUE : Id[IdLink[start][i]][2];// IdLinkä¸­å¦‚æœå€¼ä¸º-1ï¼Œè¯´æ˜ä¸¤ç‚¹ç›´æ¥æ²¡æœ‰é“¾è·¯
+																							// ,å…·ä½“å‚è€ƒREADME
 			d[i] = IdLink[start][i] == -1 ? Constant.MAX_VALUE : Id[IdLink[start][i]][3];
-			pre1[i] = start;// ÔÚ´Ë¼ÇÂ¼Ç°Çı
+			pre1[i] = start;// åœ¨æ­¤è®°å½•å‰é©±
 			pre2[i] = start;
 		}
 		c[start] = d[start] = 0;
@@ -132,22 +132,22 @@ public class Dijkstra {
 		pre1[start] = -1;
 		pre2[start] = -1;
 
-		// ºËĞÄ
+		// æ ¸å¿ƒ
 		while (!isFullOfTrue(S)) {
-			// ÓÃÓÚÉ¸Ñ¡×îĞ¡µÄdistance£¬²¢½«×îĞ¡distance¶ÔÓ¦µÄ½Úµã×÷Îªnext
+			// ç”¨äºç­›é€‰æœ€å°çš„distanceï¼Œå¹¶å°†æœ€å°distanceå¯¹åº”çš„èŠ‚ç‚¹ä½œä¸ºnext
 			double Min = Integer.MAX_VALUE;
 			for (int i = 0; i < NumberOfNode; i++)
-				if (!S[i]) {// ´Ó·ÇS¼¯ºÏÖĞÑ¡Ôñ
+				if (!S[i]) {// ä»éSé›†åˆä¸­é€‰æ‹©
 					if (Distance[i] < Min) {
 						Min = Distance[i];
 						next = i;
 					}
 				}
 
-			// ÒÔnextÀ´ËÉ³ÚÂ·¾¶
+			// ä»¥nextæ¥æ¾å¼›è·¯å¾„
 			S[next] = true;
 			for (int i = 0; i < NumberOfNode; i++) {
-				if (!S[i]) {// ËÉ³Ú·ÇS¼¯ºÏÖĞµÄ¶¥µã
+				if (!S[i]) {// æ¾å¼›éSé›†åˆä¸­çš„é¡¶ç‚¹
 					if (Distance[next] + Edge[next][i] < Distance[i] - Constant.esp) {
 						Distance[i] = Distance[next] + Edge[next][i];
 						pre1[i] = next;
@@ -169,25 +169,25 @@ public class Dijkstra {
 			}
 		}
 
-		// ÕÒ³öµ½ÖÕµãµÄÂ·¾¶
+		// æ‰¾å‡ºåˆ°ç»ˆç‚¹çš„è·¯å¾„
 		List<List<Integer>> paths = new ArrayList<>();
 		List<Integer> pathc = new ArrayList<>();
 		List<Integer> pathd = new ArrayList<>();
-		pathc = SinglePath(pre1, start, end);// Êµ¼ÊÉÏÕâÀï½«»ØËİÇóÂ·¾¶×ªÒÆµ½SinglePath·½·¨ÖĞ
+		pathc = SinglePath(pre1, start, end);// å®é™…ä¸Šè¿™é‡Œå°†å›æº¯æ±‚è·¯å¾„è½¬ç§»åˆ°SinglePathæ–¹æ³•ä¸­
 		pathd = SinglePath(pre2, start, end);
 		paths.add(pathc);
 		paths.add(pathd);
 
-		return paths;// ÕâÊÇ·´ÏòµÄÂ·¾¶
+		return paths;// è¿™æ˜¯åå‘çš„è·¯å¾„
 	}
 
 	/**
 	 * 
 	 * Function: 
-	 * 		ÒÀ¾İ¸ø¶¨µÄÆğÊ¼½ÚµãºÍ½áÊø½ÚµãºÍÇ°Çı¾ØÕó£¬½øĞĞ»ØËİÇóµÃÂ·¾¶¡£
+	 * 		ä¾æ®ç»™å®šçš„èµ·å§‹èŠ‚ç‚¹å’Œç»“æŸèŠ‚ç‚¹å’Œå‰é©±çŸ©é˜µï¼Œè¿›è¡Œå›æº¯æ±‚å¾—è·¯å¾„ã€‚
 	 * Details:
-	 * 		ÕâÊÇÉÏÃæAdjustDijkstraOfPath·½·¨µÄ¸¨Öú·½·¨£¬ÊµÏÖ´úÂëÖØÓÃ¡£ 
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÉÏÎç10:41:33
+	 * 		è¿™æ˜¯ä¸Šé¢AdjustDijkstraOfPathæ–¹æ³•çš„è¾…åŠ©æ–¹æ³•ï¼Œå®ç°ä»£ç é‡ç”¨ã€‚ 
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸Šåˆ10:41:33
 	 */
 	protected static List<Integer> SinglePath(int[] pre, int start, int end) {
 		List<Integer> path = new ArrayList<Integer>();
@@ -196,33 +196,33 @@ public class Dijkstra {
 			end = pre[end];
 		}
 		path.add(start);
-		return path;// ÕâÊÇ·´ÏòµÄÂ·¾¶
+		return path;// è¿™æ˜¯åå‘çš„è·¯å¾„
 	}
 
 	/**
 	 * 
 	 * Function:
-	 *		ÕâÊÇÔÚ¸ø¶¨Èı½ÇĞÎÇøÓòÄÚ½øĞĞËÑË÷£¬·µ»ØËÑË÷ÇøÓòÄÚÂú×ãÌõ¼şµÄËùÓĞ×î¶ÌÂ·¾¶
+	 *		è¿™æ˜¯åœ¨ç»™å®šä¸‰è§’å½¢åŒºåŸŸå†…è¿›è¡Œæœç´¢ï¼Œè¿”å›æœç´¢åŒºåŸŸå†…æ»¡è¶³æ¡ä»¶çš„æ‰€æœ‰æœ€çŸ­è·¯å¾„
 	 * Details:
-	 *		¸Ã·½·¨Ö÷ÒªÊÇ×÷Îª±¾°üÖĞµÄSearchTriangleÀàµÄ¸¨Öú·½·¨
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÉÏÎç10:59:00
+	 *		è¯¥æ–¹æ³•ä¸»è¦æ˜¯ä½œä¸ºæœ¬åŒ…ä¸­çš„SearchTriangleç±»çš„è¾…åŠ©æ–¹æ³•
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸Šåˆ10:59:00
 	 */
-	// ÏÂÃæÕâ·½·¨ÓÃÓÚÇó¶ş·Ö·¨´øËÑË÷Èı½ÇĞÎ,ÔÚÉÏÃæµÄ»ù´¡ÉÏÉÔ×÷ĞŞ¸Ä
+	// ä¸‹é¢è¿™æ–¹æ³•ç”¨äºæ±‚äºŒåˆ†æ³•å¸¦æœç´¢ä¸‰è§’å½¢,åœ¨ä¸Šé¢çš„åŸºç¡€ä¸Šç¨ä½œä¿®æ”¹
 	public List<List<Integer>> YenWithSearch(int[] Node, double[][] Edge, double[][] Id, int[][] IdLink, int start,
 			int end, double baseCost, double theta, double delayConstriant) {
-		// baseCostÊÇÏà¶ÔµÄcost£¬lambdaÊÇĞ±ÂÊ
-		// Ã÷È·ÒªÊ¹ÓÃÈı¸öÈİÆ÷£¬Ò»¸öÓÃÀ´×°ºòÑ¡Â·¾¶£¬Ò»¸ö×°×îÖÕ¶¨ÏÂÀ´µÄÂ·¾¶£¬Ò»¸ö×°¶ªÆúµÄÂ·¾¶
+		// baseCostæ˜¯ç›¸å¯¹çš„costï¼Œlambdaæ˜¯æ–œç‡
+		// æ˜ç¡®è¦ä½¿ç”¨ä¸‰ä¸ªå®¹å™¨ï¼Œä¸€ä¸ªç”¨æ¥è£…å€™é€‰è·¯å¾„ï¼Œä¸€ä¸ªè£…æœ€ç»ˆå®šä¸‹æ¥çš„è·¯å¾„ï¼Œä¸€ä¸ªè£…ä¸¢å¼ƒçš„è·¯å¾„
 		List<List<Integer>> A = new ArrayList<>();
 		List<List<Integer>> B = new ArrayList<>();
 		List<List<Integer>> C = new ArrayList<>();
-		int loop = 0;// ³õÊ¼»¯Ñ­»·´ÎÊı
-		List<Integer> shortestPath = DijkstraOfPath(Node, Edge, start, end);// µ÷ÓÃdijkstraËã·¨ÇóµÃ×î¶ÌÂ·¾¶
+		int loop = 0;// åˆå§‹åŒ–å¾ªç¯æ¬¡æ•°
+		List<Integer> shortestPath = DijkstraOfPath(Node, Edge, start, end);// è°ƒç”¨dijkstraç®—æ³•æ±‚å¾—æœ€çŸ­è·¯å¾„
 		double[][] subEdge = Common.deepCloneEdge(Edge);
 		while (loop < Constant.notExistsPathForYenKValue) {
-			// ÅĞ¶Ïµ±Ç°×î¶ÌÂ·¾¶ÊÇ·ñÂú×ãÌõ¼ş,ÕâÀïµÄÌõ¼ş²»½ö½öÊÇÅĞ¶ÏÊÇ·ñ³¬³ö¸ø¶¨µÄnotExistsPathForValueÖµ¡£
-			// Í¬Ê±Èç¹û»¹³¬³öbaseCost+Constant.esp¡£ÆäÖĞbaseCostÊÇ³õÊ¼µãÏÈÓëÑÓÊ±ãĞÖµÏß¶ÎµÄ½»µã£¬È»ºó¸Ã½»µã
-			// ×öĞ±ÂÊtan(theta)µÄÖ±ÏßÓëyÖá½»µãµÄÄÇ¸öÊıÖµ£¬¾ÍÊÇbaseCost¡£
-			// Ö®ºóµÄÃ¿¸öµã¶¼ÊÇÕâÃ´ÇóÆäcurrent¡£currentµÄÒâÒåºÍbaseCostÏàÍ¬¡£
+			// åˆ¤æ–­å½“å‰æœ€çŸ­è·¯å¾„æ˜¯å¦æ»¡è¶³æ¡ä»¶,è¿™é‡Œçš„æ¡ä»¶ä¸ä»…ä»…æ˜¯åˆ¤æ–­æ˜¯å¦è¶…å‡ºç»™å®šçš„notExistsPathForValueå€¼ã€‚
+			// åŒæ—¶å¦‚æœè¿˜è¶…å‡ºbaseCost+Constant.espã€‚å…¶ä¸­baseCostæ˜¯åˆå§‹ç‚¹å…ˆä¸å»¶æ—¶é˜ˆå€¼çº¿æ®µçš„äº¤ç‚¹ï¼Œç„¶åè¯¥äº¤ç‚¹
+			// åšæ–œç‡tan(theta)çš„ç›´çº¿ä¸yè½´äº¤ç‚¹çš„é‚£ä¸ªæ•°å€¼ï¼Œå°±æ˜¯baseCostã€‚
+			// ä¹‹åçš„æ¯ä¸ªç‚¹éƒ½æ˜¯è¿™ä¹ˆæ±‚å…¶currentã€‚currentçš„æ„ä¹‰å’ŒbaseCostç›¸åŒã€‚
 			Edge = Common.deepCloneEdge(subEdge);
 			double shortCost = 0;
 			for (int i = shortestPath.size() - 1; i >= 1; i--) {
@@ -230,44 +230,44 @@ public class Dijkstra {
 				int node2 = shortestPath.get(i - 1);
 				shortCost += Edge[node1][node2];
 			}
-			// Èç¹û³¬³öÁË¸üĞÂµÄÉÏ½ç£¬ÄÇÃ´¾ÍÍ£»ú£¬¼Ó¿ìËÑË÷ËÙ¶È
-			if (shortCost > Constant.notExistsPathForValue || shortCost > baseCost + Constant.esp) {// ÕâÀï5000ÒÀ¾İ¾ßÌåÇé¿öµ÷Õû
+			// å¦‚æœè¶…å‡ºäº†æ›´æ–°çš„ä¸Šç•Œï¼Œé‚£ä¹ˆå°±åœæœºï¼ŒåŠ å¿«æœç´¢é€Ÿåº¦
+			if (shortCost > Constant.notExistsPathForValue || shortCost > baseCost + Constant.esp) {// è¿™é‡Œ5000ä¾æ®å…·ä½“æƒ…å†µè°ƒæ•´
 				return A;
 			}
 
-			// ¼ÆËãµ±Ç°µãµÄÉÏ½çÖµ£¬È»ºóºÍ¸üĞÂµÄÉÏ½ç½øĞĞ±È½Ï£¬¾ö¶¨ÊÇ·ñÒª¼ÌĞø¸üĞÂÉÏ½ç
+			// è®¡ç®—å½“å‰ç‚¹çš„ä¸Šç•Œå€¼ï¼Œç„¶åå’Œæ›´æ–°çš„ä¸Šç•Œè¿›è¡Œæ¯”è¾ƒï¼Œå†³å®šæ˜¯å¦è¦ç»§ç»­æ›´æ–°ä¸Šç•Œ
 			double c = Common.Ctheta(shortestPath, Id, IdLink);
 			double d = Common.Ptheta(shortestPath, Id, IdLink);
 			double current = Math.cos(theta) * c + delayConstriant * Math.sin(theta);
-			if (current < baseCost && d <= delayConstriant) {// µ±Ç°¸üĞÂµÄÇ°ÌáÊÇ¸ÃµãµÄÑÓÊ±£¬ÑÓÊ±Ê×ÏÈµÃÂú×ãÑÓÊ±ãĞÖµ
+			if (current < baseCost && d <= delayConstriant) {// å½“å‰æ›´æ–°çš„å‰ææ˜¯è¯¥ç‚¹çš„å»¶æ—¶ï¼Œå»¶æ—¶é¦–å…ˆå¾—æ»¡è¶³å»¶æ—¶é˜ˆå€¼
 				baseCost = current;
 			}
 
-			double MAX_NUMBER = Constant.ExistsPathForValue;// ÓÃÓÚÉ¸Ñ¡×î¶ÌÂ·¾¶
-			A.add(shortestPath);// µÚÒ»¸öÎŞÕùÒéµØ¶¨ÏÂÀ´µÄÂ·¾¶
-			// ÏÂÃæ¿ªÊ¼ÒÀ´ÎÉ¾³ı±ß,ÕâºÍÉÏÃæµÄYenBasedDelayConstraint·½·¨¸Ã²½ÖèÒâË¼ÏàÍ¬
+			double MAX_NUMBER = Constant.ExistsPathForValue;// ç”¨äºç­›é€‰æœ€çŸ­è·¯å¾„
+			A.add(shortestPath);// ç¬¬ä¸€ä¸ªæ— äº‰è®®åœ°å®šä¸‹æ¥çš„è·¯å¾„
+			// ä¸‹é¢å¼€å§‹ä¾æ¬¡åˆ é™¤è¾¹,è¿™å’Œä¸Šé¢çš„YenBasedDelayConstraintæ–¹æ³•è¯¥æ­¥éª¤æ„æ€ç›¸åŒ
 			List<Integer> rootPath = new ArrayList<>();
 			for (int i = shortestPath.size() - 1; i >= 1; i--) {
-				int relateI = shortestPath.size() - 1 - i;// Ïà¶Ô±äÁ¿i´Ó0µ½size-1
+				int relateI = shortestPath.size() - 1 - i;// ç›¸å¯¹å˜é‡iä»0åˆ°size-1
 				rootPath.add(shortestPath.get(i));
 				int spurNode = shortestPath.get(i);
-				Edge = Common.deepCloneEdge(subEdge);// Ê¹ÓÃÎ´±äµÄ¸±±¾
-				// ½ÓÏÂÀ´É¾³ı³ıÁËspurNodeÖ®ÍâµÄËùÓĞ½Úµã
+				Edge = Common.deepCloneEdge(subEdge);// ä½¿ç”¨æœªå˜çš„å‰¯æœ¬
+				// æ¥ä¸‹æ¥åˆ é™¤é™¤äº†spurNodeä¹‹å¤–çš„æ‰€æœ‰èŠ‚ç‚¹
 				for (int j = 0; j < rootPath.size(); j++) {
 					if (rootPath.get(j) != spurNode) {
 						for (int m = 0; m < Edge.length; m++) {
-							Edge[rootPath.get(j)][m] = Constant.MAX_VALUE;// É¾³ıĞĞ
-							Edge[m][rootPath.get(j)] = Constant.MAX_VALUE;// É¾³ıÁĞ
-							// ÒÔÉÏ±íÊ¾ÒÑ¾­É¾³ı·Çspur½Úµã
+							Edge[rootPath.get(j)][m] = Constant.MAX_VALUE;// åˆ é™¤è¡Œ
+							Edge[m][rootPath.get(j)] = Constant.MAX_VALUE;// åˆ é™¤åˆ—
+							// ä»¥ä¸Šè¡¨ç¤ºå·²ç»åˆ é™¤éspurèŠ‚ç‚¹
 						}
 					}
 				}
-				// µÃµ½¸üĞÂºóµÄEdge
-				// ÏÂÃæÇóspurPath
-				int leftNode = shortestPath.get(i);// ÒªÉ¾³ı±ßµÄ¸ùµã
-				List<Integer> nodes = new ArrayList<>();// ÒªÉ¾³ı±ßµÄÏÂÒ»¸ö½ÚµãµÄ¼¯ºÏ
-				for (int j = 0; j < A.size(); j++) {// ÒÀ´Î±éÀúAÖĞËùÓĞ¶¨ÏÂÀ´µÄÁ´±í
-					if (relateI >= A.get(j).size() - 1)// ÒÑ¾­¸Ä¶¯
+				// å¾—åˆ°æ›´æ–°åçš„Edge
+				// ä¸‹é¢æ±‚spurPath
+				int leftNode = shortestPath.get(i);// è¦åˆ é™¤è¾¹çš„æ ¹ç‚¹
+				List<Integer> nodes = new ArrayList<>();// è¦åˆ é™¤è¾¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„é›†åˆ
+				for (int j = 0; j < A.size(); j++) {// ä¾æ¬¡éå†Aä¸­æ‰€æœ‰å®šä¸‹æ¥çš„é“¾è¡¨
+					if (relateI >= A.get(j).size() - 1)// å·²ç»æ”¹åŠ¨
 						continue;
 					if (A.get(j).size() <= rootPath.size())
 						break;
@@ -286,39 +286,39 @@ public class Dijkstra {
 					if (add)
 						nodes.add(A.get(j).get(h));
 				}
-				// ÖÁ´ËÒÑ¾­µÃµ½ËùÓĞÓëleftNodeÏàÁ¬µÄAÖĞµã
-				// ÖØµã£º¿ªÊ¼ÒÀ´ÎÉ¾±ß
+				// è‡³æ­¤å·²ç»å¾—åˆ°æ‰€æœ‰ä¸leftNodeç›¸è¿çš„Aä¸­ç‚¹
+				// é‡ç‚¹ï¼šå¼€å§‹ä¾æ¬¡åˆ è¾¹
 				for (int j = 0; j < nodes.size(); j++) {
 					int rightNode = nodes.get(j);
 					Edge[leftNode][rightNode] = Constant.MAX_VALUE;
 				}
-				List<Integer> spurpath = DijkstraOfPath(Node, Edge, spurNode, end);// ÕâÊÇÉ¾³ı±ßºóµÃµ½×î¶ÌÂ·¾¶
+				List<Integer> spurpath = DijkstraOfPath(Node, Edge, spurNode, end);// è¿™æ˜¯åˆ é™¤è¾¹åå¾—åˆ°æœ€çŸ­è·¯å¾„
 				List<Integer> path = conj(rootPath, spurpath);
-				if ((!A.contains(path)) && (!B.contains(path)))// ±£Ö¤¸ÃÂ·¾¶ÓëÖ®Ç°µÄ²»ÖØ¸´
+				if ((!A.contains(path)) && (!B.contains(path)))// ä¿è¯è¯¥è·¯å¾„ä¸ä¹‹å‰çš„ä¸é‡å¤
 					B.add(path);
 			}
 
 			if (B.size() == 0) {
-				return A;// Èç¹ûÃ»ÓĞºòÑ¡µÄ¾ÍÌø³ö
+				return A;// å¦‚æœæ²¡æœ‰å€™é€‰çš„å°±è·³å‡º
 			}
 
 			Edge = Common.deepCloneEdge(subEdge);
-			int u = -1;// ¼ÇÏÂÁôÏÂµÄ×îĞ¡µÄÂ·¾¶
+			int u = -1;// è®°ä¸‹ç•™ä¸‹çš„æœ€å°çš„è·¯å¾„
 			for (int i = 0; i < B.size(); i++) {
-				double cost = 0;// ÓÃÓÚ±È½Ï×îĞ¡µÄcost
+				double cost = 0;// ç”¨äºæ¯”è¾ƒæœ€å°çš„cost
 				for (int j = B.get(i).size() - 1; j >= 1; j--) {
 					int foreNode = B.get(i).get(j);
 					int nextNode = B.get(i).get(j - 1);
 					cost += Edge[foreNode][nextNode];
-				} // Çó³öÄÃ³öÀ´µÄµÚÒ»¸öÂ·¾¶µÄ´ú¼Û
+				} // æ±‚å‡ºæ‹¿å‡ºæ¥çš„ç¬¬ä¸€ä¸ªè·¯å¾„çš„ä»£ä»·
 				if (cost < MAX_NUMBER) {
 					MAX_NUMBER = cost;
 					shortestPath = Common.deepCloneList(B.get(i));
 					u = i;
 				}
 			}
-			B.remove(u);// ½«¸ÃÂ·¾¶´ÓÈİÆ÷ÖĞÉ¾³ıÖ®
-			C.add(shortestPath);// »ØÊÕÉ¾³ıµÄÂ·¾¶
+			B.remove(u);// å°†è¯¥è·¯å¾„ä»å®¹å™¨ä¸­åˆ é™¤ä¹‹
+			C.add(shortestPath);// å›æ”¶åˆ é™¤çš„è·¯å¾„
 			loop++;
 		}
 		return A;
@@ -327,11 +327,11 @@ public class Dijkstra {
 	/**
 	 * 
 	 * Function:
-	 * 		 ½«¸ø¶¨µÄÁ½ÌõÂ·¾¶½øĞĞÁ¬½Ó³ÉÒ»ÌõÂ·¾¶
+	 * 		 å°†ç»™å®šçš„ä¸¤æ¡è·¯å¾„è¿›è¡Œè¿æ¥æˆä¸€æ¡è·¯å¾„
 	 * Details:
-	 * 		 °´ÕÕYenËã·¨µÄ¹æ¶¨½øĞĞÁ¬½ÓÂ·¾¶¡£ÕâÊÇYenËã·¨µÄ¸¨Öú·½·¨¡£
-	 * 		Ê×ÏÈ½«spurPath´ÓÍ·µ½Î²¼Óµ½ĞÂµÄÁĞ±íÖĞ£¬È»ºó½«rootPath´ÓÎ²µ½Í·¼Óµ½ÁĞ±íºóÃæ¡£ 
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÉÏÎç11:12:35
+	 * 		 æŒ‰ç…§Yenç®—æ³•çš„è§„å®šè¿›è¡Œè¿æ¥è·¯å¾„ã€‚è¿™æ˜¯Yenç®—æ³•çš„è¾…åŠ©æ–¹æ³•ã€‚
+	 * 		é¦–å…ˆå°†spurPathä»å¤´åˆ°å°¾åŠ åˆ°æ–°çš„åˆ—è¡¨ä¸­ï¼Œç„¶åå°†rootPathä»å°¾åˆ°å¤´åŠ åˆ°åˆ—è¡¨åé¢ã€‚ 
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸Šåˆ11:12:35
 	 */
 	private List<Integer> conj(List<Integer> rootPath, List<Integer> spurPath) {
 		List<Integer> path = new ArrayList<>();
@@ -341,17 +341,17 @@ public class Dijkstra {
 		for (int j = rootPath.size() - 1; j >= 0; j--) {
 			path.add(rootPath.get(j));
 		}
-		return path;// ÄæĞòµÄ
+		return path;// é€†åºçš„
 	}
 
 	/**
 	 * 
 	 * Function: 
-	 * 		¸Ã·½·¨ÊÇ·µ»Øµ÷ÓÃDijkstraµÄ´ÎÊı 
+	 * 		è¯¥æ–¹æ³•æ˜¯è¿”å›è°ƒç”¨Dijkstraçš„æ¬¡æ•° 
 	 * Details:
-	 * 		ÓÉÓÚÃ¿´Îµ÷ÓÃDijkstraOfPath·½·¨£¬±¾ÀàÖĞµÄCallDijkstraTimeÈ«¾Ö±äÁ¿¾Í»á×ÔÔö¡£
-	 * 		ÕâÀïµ±ÔËĞĞÍê³Éºó£¬µ÷ÓÃ¸Ã·½·¨¾ÍÄÜÇó³öËùµ÷ÓÃdijkstraµÄ´ÎÊı¡£ 
-	 * Remark: 2018Äê9ÔÂ19ÈÕ ÉÏÎç11:16:16
+	 * 		ç”±äºæ¯æ¬¡è°ƒç”¨DijkstraOfPathæ–¹æ³•ï¼Œæœ¬ç±»ä¸­çš„CallDijkstraTimeå…¨å±€å˜é‡å°±ä¼šè‡ªå¢ã€‚
+	 * 		è¿™é‡Œå½“è¿è¡Œå®Œæˆåï¼Œè°ƒç”¨è¯¥æ–¹æ³•å°±èƒ½æ±‚å‡ºæ‰€è°ƒç”¨dijkstraçš„æ¬¡æ•°ã€‚ 
+	 * Remark: 2018å¹´9æœˆ19æ—¥ ä¸Šåˆ11:16:16
 	 */
 	public int getCallDijkstraTime() {
 		return CallDijkstraTime;

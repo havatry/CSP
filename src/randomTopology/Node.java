@@ -8,7 +8,7 @@ import java.util.Set;
  * Represents a node in a graph.
  * 
  * OverView:
- * 		¸ÃÀàÔÚgithubÉÏ¸´ÖÆÀ´µÄ£¬Ö÷ÒªÊÇ¸ø±¾°üÖĞµÄGrapÀà×ö¸¨ÖúµÄ
+ * 		è¯¥ç±»åœ¨githubä¸Šå¤åˆ¶æ¥çš„ï¼Œä¸»è¦æ˜¯ç»™æœ¬åŒ…ä¸­çš„Grapç±»åšè¾…åŠ©çš„
  */
 class Node
 {
