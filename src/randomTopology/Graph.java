@@ -13,7 +13,7 @@ import java.util.Set;
  * OverView:
  * 		该类在github上复制来的，作为网络的基础
  */
-class Graph
+public class Graph
 {
     protected int numNodes;
     protected List<Node> nodes;

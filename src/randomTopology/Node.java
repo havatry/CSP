@@ -10,7 +10,7 @@ import java.util.Set;
  * OverView:
  * 		该类在github上复制来的，主要是给本包中的Grap类做辅助的
  */
-class Node
+public class Node
 {
     private int identifier;
     // Holds the Identifiers of this nodes neighbors.
