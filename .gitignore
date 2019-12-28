@@ -1,0 +1,6 @@
+.git
+.settings
+bin
+!result/set/setting.xml
+.classpath
+.project

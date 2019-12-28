@@ -1,7 +1,9 @@
 package fileInput;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -24,10 +26,12 @@ public class IdFile {
 	 * Remark: 2018年9月19日 下午12:48:31
 	 */
 	public static double[][] GetId() {
-		int linenum = FileLine.GetLineNumber(Constant.idFile.replace(".", "_" + Constant.TimeForTest + "."));
-		double[][] id = new double[linenum - 1][4];// 0-4分别表示起点，终点，代价，延时
+		String fileName = Constant.specFile ? Constant.specIdFile : Constant.idFile.replace(".", "_" + Constant.TimeForTest + ".");
+		double[][] id = null;
 		try {
-			Scanner in = new Scanner(new File(Constant.idFile.replace(".", "_" + Constant.TimeForTest + ".")));
+			int lineNum = Files.readAllLines(Paths.get(fileName)).size();
+			id = new double[lineNum - 1][4];// 0-4分别表示起点，终点，代价，延时
+			Scanner in = new Scanner(new File(fileName));
 			in.nextLine();// 先除去第一行备注
 			while (in.hasNextLine()) {
 				String[] parts = in.nextLine().split("\t");
@@ -38,7 +42,7 @@ public class IdFile {
 				id[currentId][3] = Integer.parseInt(parts[4]);// 延时
 			}
 			in.close();
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

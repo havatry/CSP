@@ -122,13 +122,10 @@ public class MutilMethodsComparision {
 					row = sheet.createRow(baseRowNum * k + t * Constant.copy + h + 2);
 					int nodenum = Constant.step * (t + 1);// baseNumNodes
 					int[] Node = new int[nodenum];
-					for (int s = 0; s < nodenum; s++)
+					for (int s = 0; s < nodenum; s++) {
 						Node[s] = s;
-					Constant.TimeForTest = t * Constant.copy + h + 1;// 测试数据的index，通知修改TimeForTest
-					// 指定idFile
-					if (Constant.specFile) {
-						Constant.idFile = Constant.specIdFile;
 					}
+					Constant.TimeForTest = t * Constant.copy + h + 1;// 测试数据的index，通知修改TimeForTest
 					double[][] Id = IdFile.GetId();
 					int[][] IdLink = IdFile.GetIdLink(Id);
 					// 预设是2和6

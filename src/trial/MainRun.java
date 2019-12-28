@@ -32,7 +32,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
 
 import fileInput.ClearFiles;
-import fileInput.FileLine;
+import fileInput.IdFile;
 import randomTopology.Constant;
 import randomTopology.Topology;
 import randomTopology.XMLHelper;
@@ -474,7 +474,20 @@ public class MainRun extends JFrame {
 						Constant.specIdFile = fc.getSelectedFile().getAbsolutePath();
 						Constant.specFile = true; // 指定目录
 						// key
-						Constant.numNodes = FileLine.GetLineNumber(Constant.specIdFile);
+						double[][] Id = IdFile.GetId();
+						if (Id == null) {
+							JOptionPane.showMessageDialog(null, "file parse error, please check style");
+							return;
+						}
+						// 默认是每个节点都有边 并且序号从0开始延伸，因此找到最大值即可
+						double maxIndex = -1;
+						for (double[] d : Id) {
+							if (Math.max(d[0], d[1]) > maxIndex) {
+								maxIndex = Math.max(d[0], d[1]);
+							}
+						}
+						Constant.step = (int) Math.round(maxIndex + 1);
+						Constant.numNodes = Constant.step;
 						tfData.setText("OK");
 					}
 				}
@@ -559,6 +572,8 @@ public class MainRun extends JFrame {
 						Constant.start = Integer.parseInt(tfSource.getText());
 						Constant.end = Integer.parseInt(tfTarget.getText());
 						Constant.specDelay = Integer.parseInt(tfDelay.getText());
+						// 读取出节点数
+						
 						status.setText((info1 = "Locate file: " + 
 								Constant.specIdFile.substring(Constant.specIdFile.lastIndexOf("\\") + 1)));
 					}
