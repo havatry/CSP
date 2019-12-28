@@ -107,4 +107,7 @@ public class Graph
         return builder.toString();
     }
 
+    public List<Node> getNodes() {
+		return nodes;
+	}
 }
