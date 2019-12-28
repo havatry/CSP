@@ -23,7 +23,7 @@ public class Common {
 	 * 		实际上结果不变，只不过对结果进行缩放cos(theta)倍。
 	 * Remark: 2018年9月18日 下午9:58:18
 	 */
-	protected static double[][] getEdge(int[] Node, double[][] Id, int[][] IdLink, double theta) {
+	public static double[][] getEdge(int[] Node, double[][] Id, int[][] IdLink, double theta) {
 		int nodeNum = Node.length;
 		double[][] Edge = new double[nodeNum][nodeNum];
 		for (int i = 0; i < Id.length; i++) {
@@ -49,7 +49,7 @@ public class Common {
 	 * 		这里本来应该使用Object类的clone方法，介于不是很熟悉，还是自己实现了保存副本的方法。
 	 * Remark: 2018年9月18日 下午10:02:29
 	 */
-	protected static double[][] deepCloneEdge(double[][] Edge) {// 保存Edge的副本
+	public static double[][] deepCloneEdge(double[][] Edge) {// 保存Edge的副本
 		double[][] subEdge = new double[Edge.length][Edge.length];
 		for (int i = 0; i < Edge.length; i++) {
 			for (int j = 0; j < Edge.length; j++) {
@@ -67,7 +67,7 @@ public class Common {
 	 * 		具体实现，和上面deepCloneEdge方法类似
 	 * Remark: 2018年9月18日 下午10:05:08
 	 */
-	protected static List<Integer> deepCloneList(List<Integer> path) {// 保存路径副本
+	public static List<Integer> deepCloneList(List<Integer> path) {// 保存路径副本
 		List<Integer> subPath = new ArrayList<>();
 		for (int i = 0; i < path.size(); i++) {
 			subPath.add(path.get(i));// 保存

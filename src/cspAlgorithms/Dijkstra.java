@@ -333,7 +333,7 @@ public class Dijkstra {
 	 * 		首先将spurPath从头到尾加到新的列表中，然后将rootPath从尾到头加到列表后面。 
 	 * Remark: 2018年9月19日 上午11:12:35
 	 */
-	private List<Integer> conj(List<Integer> rootPath, List<Integer> spurPath) {
+	protected List<Integer> conj(List<Integer> rootPath, List<Integer> spurPath) {
 		List<Integer> path = new ArrayList<>();
 		for (int i = 0; i < spurPath.size() - 1; i++) {
 			path.add(spurPath.get(i));
