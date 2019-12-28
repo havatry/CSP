@@ -25,7 +25,7 @@ public class IdFile {
 	 *		然后读取特定文件，写入链路矩阵
 	 * Remark: 2018年9月19日 下午12:48:31
 	 */
-	public static double[][] GetId() {
+	public static double[][] GetId(boolean multi) {
 		String fileName = Constant.specFile ? Constant.specIdFile : Constant.idFile.replace(".", "_" + Constant.TimeForTest + ".");
 		double[][] id = null;
 		try {
@@ -40,6 +40,9 @@ public class IdFile {
 				id[currentId][1] = Integer.parseInt(parts[2]);// 终点
 				id[currentId][2] = Integer.parseInt(parts[3]);// 代价
 				id[currentId][3] = Integer.parseInt(parts[4]);// 延时
+				if (multi) {
+					id[currentId][4] = Integer.parseInt(parts[5]); // 丢包
+				}
 			}
 			in.close();
 		} catch (IOException e) {

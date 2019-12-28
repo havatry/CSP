@@ -126,7 +126,7 @@ public class MutilMethodsComparision {
 						Node[s] = s;
 					}
 					Constant.TimeForTest = t * Constant.copy + h + 1;// 测试数据的index，通知修改TimeForTest
-					double[][] Id = IdFile.GetId();
+					double[][] Id = IdFile.GetId(false);
 					int[][] IdLink = IdFile.GetIdLink(Id);
 					// 预设是2和6
 					// 预处理一下

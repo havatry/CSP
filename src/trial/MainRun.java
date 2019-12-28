@@ -474,7 +474,7 @@ public class MainRun extends JFrame {
 						Constant.specIdFile = fc.getSelectedFile().getAbsolutePath();
 						Constant.specFile = true; // 指定目录
 						// key
-						double[][] Id = IdFile.GetId();
+						double[][] Id = IdFile.GetId(false);
 						if (Id == null) {
 							JOptionPane.showMessageDialog(null, "file parse error, please check style");
 							return;
