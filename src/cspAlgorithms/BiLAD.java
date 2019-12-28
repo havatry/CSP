@@ -11,7 +11,7 @@ import randomTopology.Constant;
  * 		safeGuard条件在LARACMethod定义。该类重载了OptimalPath方法。
  */
 public class BiLAD extends AbstractCSPMethods {
-	private double gama = Constant.gama;// safeGuard条件的参数，一般取0.05较佳
+	protected double gama = Constant.gama;// safeGuard条件的参数，一般取0.05较佳
 
 	@Override
 	public List<Integer> OptimalPath(int[] Node, double[][] Id, int[][] IdLink, int delayConstraint, int start,
