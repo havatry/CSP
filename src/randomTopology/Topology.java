@@ -15,8 +15,8 @@ import java.util.PriorityQueue;
  * 		该类主要完成一个网络的拓扑生成。 提供
  */
 public class Topology {
-	private Point[] points;// 节点矩阵
-	private Graph graph;// 当前网络图
+	protected Point[] points;// 节点矩阵
+	protected Graph graph;// 当前网络图
 	private List<Integer> coreNodes;// 核心节点编号列表
 
 	public Topology() {
