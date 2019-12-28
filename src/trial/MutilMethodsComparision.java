@@ -20,7 +20,6 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import cspAlgorithms.AbstractCSPMethods;
 import cspAlgorithms.SearchTriangle;
 import cspAlgorithms.Common;
-import cspAlgorithms.LARACMethod;
 import cspAlgorithms.BiLAD;
 import fileInput.IdFile;
 import randomTopology.XMLHelper;
@@ -162,7 +161,7 @@ public class MutilMethodsComparision {
 					int[] MinAndMaxDegree = Common.GetMinAndMaxDegree(nodenum, Id);
 					row.createCell(3).setCellValue(MinAndMaxDegree[0] / 2);// 设置最小度
 					row.createCell(4).setCellValue(MinAndMaxDegree[1] / 2);// 设置最大度
-					double mindelay = new LARACMethod().GetMinDelay(Node, Id, IdLink, start, end);
+					double mindelay = new BiLAD().GetMinDelay(Node, Id, IdLink, start, end);
 					row.createCell(5).setCellValue(mindelay);// 设置最小延时
 					row.createCell(6).setCellValue(gama[k]);// 设置gama
 					int[] delayCST = new int[delayConstraint.length];

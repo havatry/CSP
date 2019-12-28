@@ -2,18 +2,16 @@ package cspAlgorithms;
 
 import java.util.List;
 
+import randomTopology.Constant;
+
 /**
  * 
  * OverView: 
  * 		该类继承LARACMethod方法。事实上该类是在LARAC基础上加了safeGuard这个条件，该条件在构造函数中加以附加。
  * 		safeGuard条件在LARACMethod定义。该类重载了OptimalPath方法。
  */
-public class BiLAD extends LARACMethod {
-
-	public BiLAD() {
-		// TODO Auto-generated constructor stub
-		super.safeGuard = true;
-	}
+public class BiLAD extends AbstractCSPMethods {
+	private double gama = Constant.gama;// safeGuard条件的参数，一般取0.05较佳
 
 	@Override
 	public List<Integer> OptimalPath(int[] Node, double[][] Id, int[][] IdLink, int delayConstraint, int start,
