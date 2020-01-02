@@ -43,7 +43,7 @@ import randomTopology.XMLHelper;
  *		该类是对本程序的一个总结。通过三个按钮、一个进度条和一个显示信息的状态栏，完成了本程序的所有功能。
  *		APP可以由本程序算法自行开发。此图形界面代码和本程序相关度不大，不再进行注释。
  */
-public class Main extends JFrame {
+public class MainUi extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JButton jbtProduceTopology = new JButton("RandomGeneration");
@@ -56,7 +56,7 @@ public class Main extends JFrame {
 	private String info1 = "Step1";
 	private String info2 = "Step2";
 	
-	public Main() {
+	public MainUi() {
 		// TODO Auto-generated constructor stub
 		init();
 	}
@@ -598,7 +598,7 @@ public class Main extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		Main frame = new Main();
+		MainUi frame = new MainUi();
 		frame.page1();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
