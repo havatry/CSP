@@ -1,4 +1,4 @@
-package trial;
+package ui;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;

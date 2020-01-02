@@ -1,4 +1,4 @@
-package trial;
+package ui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -43,7 +43,7 @@ import randomTopology.XMLHelper;
  *		该类是对本程序的一个总结。通过三个按钮、一个进度条和一个显示信息的状态栏，完成了本程序的所有功能。
  *		APP可以由本程序算法自行开发。此图形界面代码和本程序相关度不大，不再进行注释。
  */
-public class MainRun extends JFrame {
+public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JButton jbtProduceTopology = new JButton("RandomGeneration");
@@ -56,7 +56,7 @@ public class MainRun extends JFrame {
 	private String info1 = "Step1";
 	private String info2 = "Step2";
 	
-	public MainRun() {
+	public Main() {
 		// TODO Auto-generated constructor stub
 		init();
 	}
@@ -388,7 +388,6 @@ public class MainRun extends JFrame {
 		protected void done() {
 			// TODO Auto-generated method stub
 			super.done();
-//			GenerateRandomNetwork_MainProgram.writeCharacteristicToFile();
 			status.setText((info1 = "save dir: " + Constant.basePath));
 			status.setVisible(true);
 			infoBar.setValue(0);
@@ -404,7 +403,6 @@ public class MainRun extends JFrame {
 					setProgress(100 * Constant.WriteFile_TimeFor / count);//当这个到100的时候，可能提前结束了
 				}
 			}
-//			GenerateRandomNetwork_MainProgram.writeCharacteristicToFile();
 		}
 	}
 
@@ -600,7 +598,7 @@ public class MainRun extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		MainRun frame = new MainRun();
+		Main frame = new Main();
 		frame.page1();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
