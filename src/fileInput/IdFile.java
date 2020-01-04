@@ -30,7 +30,8 @@ public class IdFile {
 		double[][] id = null;
 		try {
 			int lineNum = Files.readAllLines(Paths.get(fileName)).size();
-			id = new double[lineNum - 1][4];// 0-4分别表示起点，终点，代价，延时
+			int size = multi ? 5 : 4;
+			id = new double[lineNum - 1][size];// 0-4分别表示起点，终点，代价，延时
 			Scanner in = new Scanner(new File(fileName));
 			in.nextLine();// 先除去第一行备注
 			while (in.hasNextLine()) {
