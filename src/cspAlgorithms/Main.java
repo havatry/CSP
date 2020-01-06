@@ -36,9 +36,12 @@ public class Main {
 			}
 		}
 		int[] Node = new int[(int) Math.round(maxIndex + 1)];
+		for (int s = 0; s < Node.length; s++) {
+			Node[s] = s;
+		}
 		int[][] IdLink = IdFile.GetIdLink(Id);
 		double minDelay = abstractCSPMethods.GetMinDelay(Node, Id, IdLink, start, end);
-		int delayConstraint = (int)(minDelay + Math.random() * 2 + 1);
+		int delayConstraint = (int)(minDelay + Math.random() * 20 + 1);
 		List<Integer> paths = abstractCSPMethods.OptimalPath(Node, Id, IdLink, delayConstraint, start, end);
 		double[] result = new double[2];
 		result[0] = abstractCSPMethods.Ctheta(paths, Id, IdLink);
@@ -49,7 +52,7 @@ public class Main {
 	
 	public double[] compute(Integer nodeNum) {
 		// 自动生成
-		Constant.step = nodeNum;
+		Constant.step = (Constant.numNodes = nodeNum);
 		new Topology().ProduceTopology();
 		String filename = Constant.idFile.replace(".", "_" + Constant.WriteFile_TimeFor + ".");
 		return compute(filename);
@@ -69,6 +72,9 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Main main = new Main();
-		System.out.println(Arrays.toString(main.compute(20)));
+		String filename = Constant.idFile.replace(".", "_" + 1 + ".");
+		main.setStart(0);
+		main.setEnd(3);
+		System.out.println(Arrays.toString(main.compute(filename)));
 	}
 }
