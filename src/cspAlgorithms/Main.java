@@ -41,7 +41,7 @@ public class Main {
 		}
 		int[][] IdLink = IdFile.GetIdLink(Id);
 		double minDelay = abstractCSPMethods.GetMinDelay(Node, Id, IdLink, start, end);
-		int delayConstraint = (int)(minDelay + Math.random() * 20 + 1);
+		int delayConstraint = (int)(minDelay + Math.random() * 2 + 1);
 		List<Integer> paths = abstractCSPMethods.OptimalPath(Node, Id, IdLink, delayConstraint, start, end);
 		double[] result = new double[2];
 		result[0] = abstractCSPMethods.Ctheta(paths, Id, IdLink);
@@ -71,10 +71,11 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		Main main = new Main();
+		Main main = new Main(false);
 		String filename = Constant.idFile.replace(".", "_" + 1 + ".");
 		main.setStart(0);
 		main.setEnd(3);
 		System.out.println(Arrays.toString(main.compute(filename)));
+		System.out.println(main.getCallTime());
 	}
 }
